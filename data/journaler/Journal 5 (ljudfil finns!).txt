@@ -1,0 +1,13 @@
+Journal 5 (ljudfil finns!)
+Situation: Sepsis-misstanke
+Bakgrund: 83-årig kvinna. KAD. Kärlkramp. 
+Socialt: Trygghetslarm. 
+Aktuellt: Alert. Fryser. 
+a: Fritt
+b: Rena lungljud. Hosta. God saturation 92 % utan syrgas. Åtgärd: Ger syrgas. 
+c: Blodtryck 120/75. Regelbunden fyllig radialis. Frusen. 
+d: PEARRL. Rör alla extremiteter. AKUT test kan inte genomföras. Trött/somnolent. GCS 13. 
+e: Utslag mage. Eventuellt petekier Temp 38,8. Grumlig urin i KAD. Åtgärd: Får alvedon och vätskeinfusion. Grön PVK höger arm. 
+Prehospitalt bedömt tillstånd: Feber/infektion, sannolikt urinvägsfokus.
+Rekommendation: Till sjukhus för vidare utredning och vård.
+Under transport: Vätskebehandling, syrgas, övervakning. 

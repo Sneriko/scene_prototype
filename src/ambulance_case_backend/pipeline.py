@@ -1,19 +1,26 @@
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Any
 
 from .config import AppConfig
 from .data_access import DataRepository
+from .local_backend import LocalKBWhisperBackend
 from .models import CaseOutput
 from .openai_client import OpenAIBackend
 from .pdf_utils import extract_pdf_text
 
 
 class AmbulanceCasePipeline:
-    def __init__(self, config: AppConfig | None = None, backend: OpenAIBackend | None = None) -> None:
+    def __init__(self, config: AppConfig | None = None, backend: Any | None = None) -> None:
         self.config = config or AppConfig()
         self.repository = DataRepository(self.config)
-        self.backend = backend or OpenAIBackend(self.config)
+        self.backend = backend or self._build_backend()
+
+    def _build_backend(self) -> OpenAIBackend:
+        if self.config.transcription_backend == "local_kb_whisper":
+            return LocalKBWhisperBackend(self.config)
+        return OpenAIBackend(self.config)
 
     def run_case(self, case_id: int, output_dir: Path | None = None) -> CaseOutput:
         case_assets = self.repository.get_case(case_id)
@@ -21,7 +28,10 @@ class AmbulanceCasePipeline:
         treatment_instructions = extract_pdf_text(self.config.treatment_pdf)
 
         raw_transcript = self.backend.transcribe_audio(case_assets.audio_path)
-        diarized = self.backend.diarize_transcript(raw_transcript)
+        try:
+            diarized = self.backend.diarize_transcript(raw_transcript, audio_path=case_assets.audio_path)
+        except TypeError:
+            diarized = self.backend.diarize_transcript(raw_transcript)
         result = self.backend.generate_case_output(
             case_id=case_id,
             audio_path=case_assets.audio_path,

@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ambulance Edge Recorder</title>
+  <style>
+    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 900px; }
+    button { font-size: 1rem; margin-right: .5rem; padding: .7rem 1rem; }
+    pre, textarea { width: 100%; min-height: 12rem; }
+    .status { padding: .75rem; background: #eef; margin: 1rem 0; }
+  </style>
+</head>
+<body>
+  <h1>Ambulance Edge Recorder</h1>
+  <p>Records audio on this Windows device and sends chunks only to the local ambulance edge server.</p>
+  <div>
+    <button id="start">Start recording</button>
+    <button id="stop" disabled>Stop and process</button>
+  </div>
+  <div class="status" id="status">Ready.</div>
+  <h2>Case output</h2>
+  <pre id="output">No output yet.</pre>
+  <script src="/app/main.js"></script>
+</body>
+</html>

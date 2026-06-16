@@ -24,6 +24,11 @@ local_asr = [
   "torch>=2.2.0",
   "pyannote.audio>=3.1.0",
 ]
+edge = [
+  "fastapi>=0.111.0",
+  "uvicorn[standard]>=0.29.0",
+  "python-multipart>=0.0.9",
+]
 
 [project.scripts]
 ambulance-case = "ambulance_case_backend.cli:main"
@@ -37,3 +42,6 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 pythonpath = ["src"]
+
+[tool.setuptools.package-data]
+ambulance_case_backend = ["frontend/*.html", "frontend/*.js"]

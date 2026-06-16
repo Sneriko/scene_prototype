@@ -67,5 +67,8 @@ class CaseOutput:
     treatment_suggestions: list[TreatmentSuggestion]
     drafted_journal: str
 
+    def to_dict(self) -> dict[str, Any]:
+        return asdict(self)
+
     def to_json(self, *, indent: int = 2) -> str:
-        return json.dumps(asdict(self), ensure_ascii=False, indent=indent, default=str)
+        return json.dumps(self.to_dict(), ensure_ascii=False, indent=indent, default=str)

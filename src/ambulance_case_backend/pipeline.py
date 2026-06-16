@@ -6,6 +6,7 @@ from typing import Any
 from .config import AppConfig
 from .data_access import DataRepository
 from .local_backend import LocalKBWhisperBackend
+from .local_llm_backend import LocalEdgeBackend
 from .models import CaseOutput
 from .openai_client import OpenAIBackend
 from .pdf_utils import extract_pdf_text
@@ -18,6 +19,8 @@ class AmbulanceCasePipeline:
         self.backend = backend or self._build_backend()
 
     def _build_backend(self) -> OpenAIBackend:
+        if self.config.transcription_backend == "local_edge":
+            return LocalEdgeBackend(self.config)
         if self.config.transcription_backend == "local_kb_whisper":
             return LocalKBWhisperBackend(self.config)
         return OpenAIBackend(self.config)
@@ -35,6 +38,26 @@ class AmbulanceCasePipeline:
         result = self.backend.generate_case_output(
             case_id=case_id,
             audio_path=case_assets.audio_path,
+            raw_transcript=raw_transcript,
+            diarized=diarized,
+            treatment_instructions=treatment_instructions,
+            reference_journals=reference_journals,
+        )
+        self.write_output(result, output_dir=output_dir)
+        return result
+
+    def run_audio_file(self, *, case_id: int, audio_path: Path, output_dir: Path | None = None) -> CaseOutput:
+        reference_journals = self.repository.get_reference_journals(exclude_case_id=case_id)
+        treatment_instructions = extract_pdf_text(self.config.treatment_pdf)
+
+        raw_transcript = self.backend.transcribe_audio(audio_path)
+        try:
+            diarized = self.backend.diarize_transcript(raw_transcript, audio_path=audio_path)
+        except TypeError:
+            diarized = self.backend.diarize_transcript(raw_transcript)
+        result = self.backend.generate_case_output(
+            case_id=case_id,
+            audio_path=audio_path,
             raw_transcript=raw_transcript,
             diarized=diarized,
             treatment_instructions=treatment_instructions,

@@ -67,3 +67,24 @@ ambulance-case run --case-id 3 --output-dir outputs
 - The transcription and generation steps are intentionally separated so they can be swapped or cached later.
 - `pypdf` is required at runtime to read the treatment-instruction PDF.
 - Even in local transcription mode, the final treatment suggestions/journal drafting currently uses OpenAI chat completion models.
+
+## Edge API and local ambulance UI
+
+Install the API/frontend dependencies:
+
+```bash
+pip install -e .[edge]
+```
+
+Serve the local ambulance API and browser UI:
+
+```bash
+ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
+```
+
+`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`.
+
+## Deployment planning
+
+For a privacy-preserving ambulance setup with a Windows recording UI and an NVIDIA Spark edge server, see [`docs/ambulance_edge_deployment.md`](docs/ambulance_edge_deployment.md).
+

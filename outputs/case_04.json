@@ -1,0 +1,223 @@
+{
+  "case_id": 4,
+  "audio_path": "/home/sneriko/projects/scene_prototype/data/ljudfiler/Journal 4.m4a",
+  "raw_transcript": "Hej, Daniel i ambulansen.\nHej, Nathalie.\nHej, är det här Novel?\nJa, det här är Novel.\nOkej, vad är det som har hänt?\nAlltså, jag vet inte, han krampade typ för 20 minuter sedan.\nOkej, hur länge höll det i sig?\nJa, men fem minuter kanske.\nOkej, men skakade han hela kroppen?\nJa, det gjorde han och han kissade på sig.\nOkej, är han frisk sedan, har han några tidigare sjukdomar?\nNej, nej.\nMen är han sjuk nu?\nJa, han har feber.\nJag tar lite kontroller på honom.\nHundra saturationen, han verkar trött.\nOch lite trött så.\nJa, lugn och när är okej, låter bra.\nRegelbunden puls och kapillär återfinna under två sekunder.\nÄr han allergisk mot någonting?\nNej.\nOkej, har han krampat förut?\nNej, det har han inte gjort.\nTog du tempen?\nJa, 40 grader.\nOkej, har han fått med Alvedona av dig?\nNej, nej.\nOkej, men vad väger han?\nHan väger 20 kilo.\n20 kilo och är född 21.\nFödd 21, ja precis.\nOkej, då kollar jag dosen.\nSka jag ge lite Alvedona?\nJa, det ska du göra. Jag kollar dosen bara.\nJag tror att det är 250.\nDubbelkolla så ger vi det.\nJa, jag dubbelkollar det.\nAnnars på en munsundefallande.\nDet stämmer, jag ger det.\nNej!\nOkej, men Erik, vi tar och far på en gång då.\nSå vi får åka till sjukhus helt enkelt.\nOkej, tror du att det är farligt?\nNej, det tror jag inte.\nJag misstänker att det är en feberkramp.\nDet är det tillståndet jag bedömer nu.\nMen man måste alltid kolla det på sjukhus.\nOkej.\nSå vi åker till barnakuten på Huddinge.\nOkej, ja.",
+  "diarized_transcript": {
+    "summary": "Ett barn har fått ett krampanfall hemma. Ambulanspersonal anländer, samlar in information om förloppet, tidigare sjukdomar, allergier och feber. Barnet har feber, krampen varade cirka fem minuter och barnet kissade på sig under anfallet. Barnet får Alvedon och förs till barnakuten på Huddinge sjukhus. Ambulanspersonalen bedömer att det rör sig om en feberkramp men att läkarbedömning ska göras på sjukhus.",
+    "speakers": [
+      "staff_1",
+      "staff_2",
+      "relative"
+    ],
+    "segments": [
+      {
+        "speaker": "staff_1",
+        "text": "Hej, Daniel i ambulansen."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Hej, Nathalie."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Hej, är det här Novel?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Ja, det här är Novel."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, vad är det som har hänt?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Alltså, jag vet inte, han krampade typ för 20 minuter sedan."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, hur länge höll det i sig?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Ja, men fem minuter kanske."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, men skakade han hela kroppen?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Ja, det gjorde han och han kissade på sig."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, är han frisk sedan, har han några tidigare sjukdomar?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Men är han sjuk nu?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Ja, han har feber."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Jag tar lite kontroller på honom."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Hundra saturationen, han verkar trött."
+      },
+      {
+        "speaker": "relative",
+        "text": "Och lite trött så."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, lugn och när är okej, låter bra. Regelbunden puls och kapillär återfinna under två sekunder."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Är han allergisk mot någonting?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Nej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, har han krampat förut?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Nej, det har han inte gjort."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Tog du tempen?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Ja, 40 grader."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, har han fått med Alvedona av dig?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, men vad väger han?"
+      },
+      {
+        "speaker": "relative",
+        "text": "Han väger 20 kilo."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "20 kilo och är född 21."
+      },
+      {
+        "speaker": "relative",
+        "text": "Född 21, ja precis."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, då kollar jag dosen."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ska jag ge lite Alvedona?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, det ska du göra. Jag kollar dosen bara."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Jag tror att det är 250."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Dubbelkolla så ger vi det."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, jag dubbelkollar det."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Annars på en munsundefallande."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Det stämmer, jag ger det."
+      },
+      {
+        "speaker": "relative",
+        "text": "Nej!"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, men Erik, vi tar och far på en gång då. Så vi får åka till sjukhus helt enkelt."
+      },
+      {
+        "speaker": "relative",
+        "text": "Okej, tror du att det är farligt?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Nej, det tror jag inte. Jag misstänker att det är en feberkramp. Det är det tillståndet jag bedömer nu. Men man måste alltid kolla det på sjukhus."
+      },
+      {
+        "speaker": "relative",
+        "text": "Okej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så vi åker till barnakuten på Huddinge."
+      },
+      {
+        "speaker": "relative",
+        "text": "Okej, ja."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Upprätthåll ABCDE-bedömning och noggrann övervakning",
+      "rationale": "Barnet hade en kramp under cirka 5 minuter med efterföljande trötthet, men vid ambulanspersonals ankomst var andning och cirkulation stabila (hundra procent saturation, regelbunden puls, normal kapillär återfyllnad). Struktur enligt ABCDE säkerställer att livshotande tillstånd snabbt identifieras och behandlas enligt riktlinje 7.1.1 och 7.4.1.",
+      "urgency": "high"
+    },
+    {
+      "title": "Smärtlindring och febernedsättande – ge paracetamol",
+      "rationale": "Febern är 40°C vilket enligt riktlinje 7.1.1 och 7.4.1 bör behandlas med paracetamol 10–15 mg/kg till barn vid feber eller värk. För ett barn som väger 20 kg motsvarar det 250 mg suppositorium eller munsönderfallande tablett. Detta ges när barnet är vaken nog att ta emot det.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Avtransport till akutmottagning för vidare utredning",
+      "rationale": "Förstagångskramp hos barn är alltid en intransportindikation för läkarbedömning enligt riktlinje 7.4.1. Feberkramper är oftast godartade men behöver uteslutas mot annan kramp- eller infektionsorsak. Barn med förstagångskramp lämnas aldrig kvar hemma.",
+      "urgency": "high"
+    },
+    {
+      "title": "Noggrann information och lugnande bemötande av vårdnadshavare",
+      "rationale": "Enligt psykiatri, barn och allmänna riktlinjer ska vårdnadshavare få tydlig information om riskbild och fortsatt plan. Vid feberkramper krävs både lugnande besked och tydlig kommunikation om att vidare utredning är rutin.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Om ytterligare kramper uppstår – förbered för kramplösande behandling",
+      "rationale": "Om ett nytt krampanfall skulle inträffa enligt riktlinje 7.4.1 ges i första hand midazolam intranasalt, doserat efter kroppsvikt. Då barnet inte haft ytterligare kramp efter ambulansens ankomst är detta endast aktuellt vid ny händelse under transport.",
+      "urgency": "medium"
+    }
+  ],
+  "drafted_journal": "Situation: Barn, Novel, född 2021, cirka 20 kg. Krampanfall i hemmet enligt närstående, varat cirka 5 minuter innan ankomst. Förstagångskramp. Feber 40°C mätt av närstående. Barnet därefter trött, men kontaktbar och svarar adekvat. Ingen känd tidigare sjukdom, ingen känd allergi, ingen tidigare kramp.\n\nBakgrund: Ingen tidigare sjukdom, aldrig tidigare kramper. Ingen medicinering. Ingen känd allergi. Ej tidigare feberkramper. Ingen annan nylig infektion känd av närstående.\n\nSocialt: Bor hemma med familj. Inga särskilda sociala omständigheter av betydelse noterade.\n\nAktuellt vid ambulansens ankomst: Barnet vaken, trött men reagerar på tilltal. Andas obehindrat, lungsituationen normal. Saturation 100 %, andningen opåverkad, andningsljud utan anmärkning. Puls regelbunden och fyllig, kapillär återfyllnad <2 sekunder, ingen perifer cyanos eller blekhet. Ingen yttre skada. \n\nNeurologiskt: Postiktal trötthet men inga fokala bortfall, ingen känd pares, barnets förmåga att röra alla extremiteter verifierad. Kramper har inte återkommit under vårdtiden på platsen. Enligt närstående urinerade barnet i samband med kramperna.\n\nStatus:\nA: Fri luftväg.\nB: Andning opåverkad. Saturation 100 % på luft.\nC: Regelbunden puls, god perifer cirkulation, kapillär återfyllnad <2 sek.\nD: Trött postiktalt. AVPU: Responderar. Gjort enstaka egna spontana rörelser mellan frågor.\nE: Temp 40,0°C mätt av närstående. Ingen annan sjukdom aktuell. Ingen tillförd Alvedon/febernedsättande innan ambulansens ankomst.\n\nBedömning/åtgärd: Sammantaget stark misstanke om feberkramp (förstagångskramp hos barn med pågående feber). Ingen ytterligare åtgärd på plats utöver febernedsättande behandling. Diskussion i team om rätt dos paracetamol för kroppsvikt – dubbelkollad ordination enligt tabell 7.1.1/7.4.1. Paracetamol 250 mg munsönderfallande tablett ges (barn > 10 kg), godkänd enligt doseringstabell.\n\nFöräldrar informeras om misstänkt feberkramp och handläggningen. Ingen indikation för annan akut åtgärd. Förstagångskramp och fortsatt trötthet innebär alltid krav på läkarbedömning. Barnet transporteras till barnakuten, Huddinge, i liggande med fortlöpande vitalparameterövervakning enligt riktlinje. Ingen ytterligare kramp, stabila vitalparametrar under transport. Föräldrar informerade om orsaken till transport och uppmanas att ta kontakt vid eventuell försämring.\n\nPrehospitalt bedömt tillstånd: Förstagångskramper hos barn, sannolikt feberorsakat. Fortsatt observation och utredning på barnakuten enligt gällande riktlinje."
+}

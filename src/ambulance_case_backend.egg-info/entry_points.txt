@@ -1,0 +1,2 @@
+[console_scripts]
+ambulance-case = ambulance_case_backend.cli:main

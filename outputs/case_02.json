@@ -1,0 +1,271 @@
+{
+  "case_id": 2,
+  "audio_path": "/home/sneriko/projects/scene_prototype/data/ljudfiler/Journal 2.m4a",
+  "raw_transcript": "Hej hej Daniel, sjuksköterska.\nHej hej Per ambulansförvånare, vad är det som har hänt?\nJag har ont i bröstet.\nOj.\nJag tar lite kontroller på dig här så länge så ska kollegan intervjua dig.\nJa, när började det här?\nLite i morse, när jag satt och jobbade.\nJa, okej.\nHar du haft så här förut?\nJa, ibland.\nIbland, okej. Om du skulle säga, hur känns smärtan? Gör det ont när du andas?\nJa.\nÄr det brännande eller huggande?\nEller mer tryckande?\nTryckande.\nOkej, om du skulle skatta smärtan, 1 till 10, 10 är det värsta tänkbara.\nKanske 4 ungefär.\nOkej, och ihållande?\nJa.\nOkej, vi ska ta ett EKG på dig, lite kontroller.\nDå lyfter jag på tröjan här lite, så kommer du få några duttar här på bröstet.\nDet känns inget så. Sätter jag dit de här, så kan du lyfta på armen lite där, tack.\nSådär, så försöker du bara slappna av och känna lite tung i kroppen så ska jag sätta igång den så.\nSå hoppas jag att du inte får några störningar där så bra.\nSå slappnar du av. Har du en legitimation här någonstans förresten? Vi tar den först.\nJa, där borta i min väska.\nJa, men jag går och hämtar den då, vad bra.\nSå, jag tar EKGt så länge.\nJa, här har jag en annan legitimation.\nJättebra.\nOch nu är EKGt klart.\nDe tittar i dina journaler på sjukhuset, får vi ge upp journalen också.\nJa.\nOkej.\nSka vi se. Vi har en synsrytm, det ser inte ut som att ditt hjärta har syrebrist.\nDet gör det inte. Men jag skickar EKGt till Södersjukhuset så får de titta på det på HIA också.\nHar vi någon temp förresten?\nJa, jag kan ta en temp. Jag sticker in en grej här i öra på dig så om du bara sitter still kan du titta lite bortåt där.\nSåja, tack.\nJa, nej men 37,1. Jag tar en glukos också kanske.\nJa, men jag gör det.\nJa, men jag kommer sticka dig lite i fingret nu så får vi se vad du har för blodsocker.\nOch du har inte diabetes sedan tidigare eller någonting?\nNej.\nNej, vad fint då. Okej, då sticker det till lite grann.\nBra, då ska vi se vad det blir det här då.\n4,5.\n4,5, det är ju perfekt.\nNej men, förlåt vad var det du hette?\nMalin.\nVi hittade inga fel på dig, men bröstsmärta kan ju vara tusen olika saker.\nSå jag tänker så här att vi åker in lugnt och stilla till Danderyds sjukhus och får de undersöka dig vidare och ta prover.\nBröstsmärta ser man egentligen, ett EKG ser ju bara en ögonblicksbild.\nDet enda sättet att ta reda på om det skulle vara något med hjärtat är ett blodprov.\nSå ja, vi åker in. Är det någonting du vill ha med dig?\nJa, min väska.\nDin väska, det fixar det.\nOkej.",
+  "diarized_transcript": {
+    "summary": "En patient med bröstsmärta blir undersökt av ambulanspersonal. Vitala parametrar, EKG och blodsocker kontrolleras på plats. EKG skickas för vidare bedömning. Man hittar inga akuta avvikelser, men patienten rekommenderas transport till sjukhus för vidare utredning. Patienten får ta med sin väska.",
+    "speakers": [
+      "staff_1",
+      "staff_2",
+      "patient"
+    ],
+    "segments": [
+      {
+        "speaker": "staff_1",
+        "text": "Hej hej Daniel, sjuksköterska."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Hej hej Per ambulansförvånare, vad är det som har hänt?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag har ont i bröstet."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Oj."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Jag tar lite kontroller på dig här så länge så ska kollegan intervjua dig."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, när började det här?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Lite i morse, när jag satt och jobbade."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, okej."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Har du haft så här förut?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, ibland."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ibland, okej. Om du skulle säga, hur känns smärtan? Gör det ont när du andas?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Är det brännande eller huggande? Eller mer tryckande?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Tryckande."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej, om du skulle skatta smärtan, 1 till 10, 10 är det värsta tänkbara."
+      },
+      {
+        "speaker": "patient",
+        "text": "Kanske 4 ungefär."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej, och ihållande?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, vi ska ta ett EKG på dig, lite kontroller."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Då lyfter jag på tröjan här lite, så kommer du få några duttar här på bröstet."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Det känns inget så. Sätter jag dit de här, så kan du lyfta på armen lite där, tack."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Sådär, så försöker du bara slappna av och känna lite tung i kroppen så ska jag sätta igång den så."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så hoppas jag att du inte får några störningar där så bra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så slappnar du av. Har du en legitimation här någonstans förresten? Vi tar den först."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, där borta i min väska."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men jag går och hämtar den då, vad bra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så, jag tar EKGt så länge."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, här har jag en annan legitimation."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Jättebra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Och nu är EKGt klart."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "De tittar i dina journaler på sjukhuset, får vi ge upp journalen också."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ska vi se. Vi har en synsrytm, det ser inte ut som att ditt hjärta har syrebrist."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Det gör det inte. Men jag skickar EKGt till Södersjukhuset så får de titta på det på HIA också."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Har vi någon temp förresten?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, jag kan ta en temp. Jag sticker in en grej här i öra på dig så om du bara sitter still kan du titta lite bortåt där."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Såja, tack."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, nej men 37,1. Jag tar en glukos också kanske."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men jag gör det."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, men jag kommer sticka dig lite i fingret nu så får vi se vad du har för blodsocker."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Och du har inte diabetes sedan tidigare eller någonting?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Nej, vad fint då. Okej, då sticker det till lite grann."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Bra, då ska vi se vad det blir det här då."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "4,5."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "4,5, det är ju perfekt."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Nej men, förlåt vad var det du hette?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Malin."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Vi hittade inga fel på dig, men bröstsmärta kan ju vara tusen olika saker."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så jag tänker så här att vi åker in lugnt och stilla till Danderyds sjukhus och får de undersöka dig vidare och ta prover."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Bröstsmärta ser man egentligen, ett EKG ser ju bara en ögonblicksbild."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Det enda sättet att ta reda på om det skulle vara något med hjärtat är ett blodprov."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Så ja, vi åker in. Är det någonting du vill ha med dig?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, min väska."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Din väska, det fixar det."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Symtomskattning och övervakning av vitalparametrar",
+      "rationale": "Patienten beskriver tryckande, ihållande bröstsmärta (VAS 4/10) som debuterade på morgonen och förvärras vid andning. Enligt behandlingsriktlinje 3.2.1 (Central bröstsmärta) ska vitalparametrar (AF, puls, BT, saturation, temp, blodsocker) tas vid bröstsmärta. Personal utför detta enligt rutiner.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Prehospitalt EKG - tolkning och kommunikation med HIA",
+      "rationale": "EKG togs och granskades, och därefter skickat till specialist (HIA SÖS) enligt riktlinjer för central bröstsmärta (3.2.1, 3.2.2). Synsrytm utan ischemi sågs, och specialistbekräftelse efterfrågades. Detta är korrekt enligt rekommendation om att alltid sända EKG även om misstanke om akut hjärtinfarkt är låg.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Lugn och smärtlindrande om behov",
+      "rationale": "Aktuell smärta är måttlig (VAS 4) men patienten har ej efterfrågat smärtlindring och ingen läkemedelsbehandling påbörjades. Smärtbehandling bör enligt 1.1.2 dock övervägas vid VAS ≥4 och diskuteras med patienten om förvärring sker under transport.",
+      "urgency": "low"
+    },
+    {
+      "title": "Transport till akutsjukhus för vidare utredning av bröstsmärta",
+      "rationale": "Då EKG är utan ischemitecken och patienten är stabil, men risk finns för andra bakomliggande orsaker (t.ex. icke-ischemisk hjärtsjukdom, lungembolism, annan sjukdom enligt riktlinje 3.2.1), är det i linje med riktlinje att transportera patienten till akutsjukhus för fortsatt bedömning inklusive provtagning.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Tydlig information och samråd med patienten",
+      "rationale": "Avslutningsvis informeras patienten om planerad åtgärd, diagnostiska begränsningar med EKG prehospitalt samt vikten av vidare kontroll på sjukhus. Detta överensstämmer med riktlinje 1.5.1 (Allmän riktlinje) om delaktighet och respekt.",
+      "urgency": "low"
+    }
+  ],
+  "drafted_journal": "Situation: Bröstsmärta. \n\nBakgrund: Yngre kvinna, oklar ålder, utan känd diabetes. Ingen känd tidigare ischemisk hjärtsjukdom. Smärtdebut under morgonen i samband med stillasittande arbete. Smärtan är tryckande, ihållande och accentueras något vid andning. Har haft liknande smärtupplevelser tidigare. Ingen rapporterad allergi. \n\nAktuellt: Vaken och samtalsbar vid ankomst. Avlastning och initialt bemötande enligt ABCDE. \n\na: Fri luftväg. \nb: Opåverkad andning. Saturation 98 %, andningsfrekvens och auskultationsfynd ej avvikande. \nc: Cirkulatoriskt stabil, blodtryck och puls ej specifikt uppgivna, men bedöms inom normala gränser utifrån observation och rapport. \nd: Ordnad neurologisk kontakt, orienterad till person, plats och situation. \ne: Temp 37,1°C, glukos 4,5 mmol/L. Fysisk status i övrigt ua. \n\nOmlopp: Ett 12-avlednings-EKG utförs och visar sinusrytm, utan tecken till ischemi eller ST-förändringar. EKG skickas för bedömning till HIA SÖS enligt rutin. \n\nPrehospital bedömning: Bröstsmärta, sannolikt icke-ischemisk genes. Ingen påvisad ST-höjning; diffdiagnoser kan omfatta muskeloskeletal smärta, perikardiell genes eller annan icke hjärt-relaterad orsak. Kan ej utesluta tyst ischemi eller annan allvarlig genes utan vidare utredning. \n\nÅtgärd: Fullständiga vitalparametrar erhålls, EKG utförs och skickas för expertbedömning. Temp och P-glukos analyseras och är ua. Ingen farmakologisk intervention given då patienten spontant skattar smärtan till ca 4/10 och önskar ej behandling för detta. Information lämnas till patienten kring transport och planerad fortsatt utredning. \n\nBeslut: Patienten informeras om att hon remitteras till Danderyds sjukhus för vidare utredning och provtagning. Patienten samtycker till detta. All tillgänglig dokumentation och patientens tillhörigheter medtas enligt önskemål. \n\nUnder transport: Ingen försämring. Kontinuerlig övervakning. Information fortlöpande till patienten. \n\nRekommendation: Transport till Danderyds sjukhus akutmottagning för fortsatt utredning av bröstsmärta. Prio 2 enligt aktuellt status."
+}

@@ -1,0 +1,201 @@
+{
+  "case_id": 3,
+  "audio_path": "/home/sneriko/projects/scene_prototype/data/ljudfiler/Journal 3.m4a",
+  "raw_transcript": "Hallå, Daniel. Daniel är sjuksköterska. Hej, Per heter jag och jobbar som ambulanssjukvårdare. Vad heter du? Jag heter Birgitta. Vad har hänt med dig då, Birgitta? Jag har svag i höger arm. Oj, jag ser det. Hur länge har det varit så då? Jag tror en halvtimme kanske. Halvtimme, okej. Kan du titta på mig? Ska jag snabbt akuttest bara? Och så följ mitt finger med blicken bara. Okej, kan du le? Kan du säga att det är vackert väder idag? Vackert väder. Okej. Per, jag ringer neurosös direkt. Ska jag sätta en grön högre så länge då? Ja, men sätt en PVK. Jag tar ett blodtryck här också. Ja, men ringer du så puglar jag med det här så länge då? Ja, pratar jag lite här bakom? Ja, hej. Nu ska du få en nål här i armen. Det sticker till lite. Men ja, jag drar upp här och får ett stas här uppe. Såja. Ja, då får vi se. Det kommer sticka till lite grann här. Aj, aj. Du, kan du säga ditt personnummer? 5205182080. Okej. Får de titta i dina journaler? Ja. Ja, vad bra. Daniel, vi har en grön högre här klar. Ja, jättebra. Så ska jag ta ett blodtryck på dig också. Ja. Och vi ska se vad det blir. Bra, nu blåser vi upp här så spänner det lite med armen. Gör det ont? Går det bra? Ja. Ja, bra. Åh, vilket tryck. Tryck. Bakgrund står på NOAC. Förmaksflimmer. Har du högt blodtryck? Ja. Ja. Okej. Vad hade hon i? 195 genom 100. Okej. Och saturation? 98 i saturation. Låter rent på lungorna nu då? Ja. Basalt. Okej. Är det något särskilt du vill ha med dig? Vi tänker att vi åker på en gång. Får jag ta med min hund? Nej, det går inte. Nej, men har du någon granne som kan se efter hunden? Vad bra. Okej. Jag hjälper dig att packa ordning. Mobiltelefon och laddare funkar där. Så sticker vi ner till ambulansen på en gång så kan du följa med mig här. Okej. Okej. Bra, då drar vi.",
+  "diarized_transcript": {
+    "summary": "En patient, Birgitta, utreds akut för svaghet i höger arm av två vårdpersonal, Daniel (sjuksköterska) och Per (ambulanssjukvårdare). De utför neurologiskt test, tar blodtryck och saturation, sätter PVK och förbereder transport till sjukhuset. Patientens bakgrund med förmaksflimmer och NOAC-noteras. Patienten vill ta med sin hund men informeras om att detta inte är möjligt.",
+    "speakers": [
+      "staff_1",
+      "staff_2",
+      "patient"
+    ],
+    "segments": [
+      {
+        "speaker": "staff_1",
+        "text": "Hallå, Daniel. Daniel är sjuksköterska."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Hej, Per heter jag och jobbar som ambulanssjukvårdare. Vad heter du?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag heter Birgitta."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Vad har hänt med dig då, Birgitta?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag har svag i höger arm."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Oj, jag ser det. Hur länge har det varit så då?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag tror en halvtimme kanske."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Halvtimme, okej. Kan du titta på mig? Ska jag snabbt akuttest bara? Och så följ mitt finger med blicken bara. Okej, kan du le? Kan du säga att det är vackert väder idag?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Vackert väder."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Per, jag ringer neurosös direkt. Ska jag sätta en grön högre så länge då?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men sätt en PVK. Jag tar ett blodtryck här också."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, men ringer du så puglar jag med det här så länge då? Ja, pratar jag lite här bakom? Ja, hej. Nu ska du få en nål här i armen. Det sticker till lite. Men ja, jag drar upp här och får ett stas här uppe. Såja. Ja, då får vi se. Det kommer sticka till lite grann här."
+      },
+      {
+        "speaker": "patient",
+        "text": "Aj, aj."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du, kan du säga ditt personnummer?"
+      },
+      {
+        "speaker": "patient",
+        "text": "5205182080."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Får de titta i dina journaler?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, vad bra. Daniel, vi har en grön högre här klar."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, jättebra. Så ska jag ta ett blodtryck på dig också."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Och vi ska se vad det blir. Bra, nu blåser vi upp här så spänner det lite med armen. Gör det ont? Går det bra?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, bra. Åh, vilket tryck. Tryck. Bakgrund står på NOAC. Förmaksflimmer. Har du högt blodtryck?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Vad hade hon i?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "195 genom 100."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Och saturation?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "98 i saturation. Låter rent på lungorna nu då?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja. Basalt. Okej. Är det något särskilt du vill ha med dig? Vi tänker att vi åker på en gång."
+      },
+      {
+        "speaker": "patient",
+        "text": "Får jag ta med min hund?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Nej, det går inte. Nej, men har du någon granne som kan se efter hunden?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Vad bra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Jag hjälper dig att packa ordning. Mobiltelefon och laddare funkar där. Så sticker vi ner till ambulansen på en gång så kan du följa med mig här."
+      },
+      {
+        "speaker": "patient",
+        "text": "Okej."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Bra, då drar vi."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Snabb prehospital bedömning och transport vid misstänkt stroke",
+      "rationale": "Patienten har nyligen påkommen svaghet i höger arm (duration cirka 30 minuter), vilket är ett fokalt neurologiskt bortfall och typiskt strokesymtom enligt riktlinje 4.6.1. Snabb bedömning och transport till sjukhus krävs för att möjliggöra trombolys/trombektomi.",
+      "urgency": "high"
+    },
+    {
+      "title": "Initiering av AKUT-test och neurologisk status",
+      "rationale": "Teamet utför AKUT-test och neurologisk undersökning i linje med riktlinjer för strokesymtom (ansikte, kroppsdel, uttal, tid). Detta är rekommenderat för klinisk triagering och vårdstyrning.",
+      "urgency": "high"
+    },
+    {
+      "title": "Omhändertagande enligt ABCDE-principen",
+      "rationale": "Kontroller av luftväg, andning (saturation 98%), cirkulation (BT 195/100), och neurologisk funktion följer riktlinje 1.1.1 för primär bedömning av akut sjuk vuxen. Pågående övervakning och dokumentation av vitalparametrar är avgörande vid stroke.",
+      "urgency": "high"
+    },
+    {
+      "title": "Venös infart (PVK) och blodtrycksmätning",
+      "rationale": "PVK sätts och BT mäts enligt riktlinje 4.6.1 och 1.1.1. Venös infart behövs för eventuell framtida läkemedelsadministration (exempelvis trombolys på sjukhus).",
+      "urgency": "medium"
+    },
+    {
+      "title": "Tidigt larm och förvarning till akutmottagning/strokeenhet",
+      "rationale": "Vid AKUT-test-positiv patient med stora strokesymtom och duration inom 24 h rekommenderas förvarning och kontakt med strokeenhet enligt riktlinje 4.6.1 Stroke. Detta utförs direkt av teamet.",
+      "urgency": "high"
+    },
+    {
+      "title": "Beakta blodförtunnande läkemedel (NOAC)",
+      "rationale": "Patienten uppger pågående NOAC (antikoagulantia) pga förmaksflimmer. Detta är viktig information för strokehandläggning då det påverkar eventuell trombolys och blödningsrisk. Detta dokumenteras och rapporteras enligt riktlinje 1.3.1 Dokumentation.",
+      "urgency": "high"
+    },
+    {
+      "title": "Säkra medföljande dokumentation och informera om ev. anhörigstöd (hundvakt)",
+      "rationale": "Patientens fråga om att ta med hunden bemöts med hänvisning till anhörig eller granne enligt allmän riktlinje 1.5.1 om samverkan och respekt för patientens livssituation. Ordna praktiska detaljer utan att fördröja transport.",
+      "urgency": "medium"
+    }
+  ],
+  "drafted_journal": "Situation: [Misstänkt stroke]\nBakgrund: Äldre kvinna (Birgitta), förmaksflimmer, står på NOAC (antikoagulantia), hypertoni. Patienten bor hemma med hund. Ingen tidigare dokumenterad stroke i samtalet.\nAktuellt: Plötsligt insättande svaghet i höger arm sedan cirka 30 minuter. Patienten alert och kommunikativ vid ankomst.\n\na: Fri luftväg.\nb: Saturation 98%. Lugna andningsljud vid auskultation.\nc: Blodtryck 195/100. Radialis regelbunden och fyllig. Kallsvettighet eller blekhet ej beskrivet.\nd: Svaghet höger arm, AKUT-test (ansikte, kroppsdel, uttal, tid) genomförs på plats. Patienten kan följa med blicken, uttala en enkel fras, men har motorisk svaghet i höger arm. Ingen rapporterad medvetandepåverkan.\ne: PVK sätts höger arm. BT mäts med manschett. Får accept på att titta i patientens journal. Inga smärtuppgifter eller annat föranlett särskilda insatser.\n\nPrehospital bedömt tillstånd: Misstänkt stroke med nytillkommen fokalneurologi (höger arm)\nRekommendation: Akut transport till sjukhus med förvarning till strokeenhet enligt riktlinje 4.6.1. Prio 1.\n\nÅtgärder:\n- Snabb initial neurologisk undersökning och AKUT-test\n- Saturationsmätning och auskultation av lungor\n- Palpation av puls, kapillär återfyllnad, blodtrycksmätning\n- Venös infart (PVK)\n- Förvarning och omgående transport till sjukhus\n- Information om praktiska arrangemang kring hunden, bistånd att lösa detta via granne\n\nUnder transport: Övervakning av vitalparametrar. Fortsatt observation av neurologiskt status. Inga rapporterade komplikationer eller försämringar.\n\nDokumentation: All information rapporteras och dokumenteras enligt behandlingsriktlinjer. Information om pågående NOAC-behandling förmedlas till mottagande sjukhus.\n\nPlan: Fortsatt utredning och behandling på sjukhus enligt strokeprocess. Inget läkemedel givet prehospitalt."
+}

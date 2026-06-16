@@ -1,0 +1,346 @@
+{
+  "case_id": 5,
+  "audio_path": "/home/sneriko/projects/scene_prototype/data/ljudfiler/Journal 5.m4a",
+  "raw_transcript": "Hej, Daniel, sjuksköterska. Hur mår du? Jag känner mig sjuk. Jaha, har du feber? Jag fryser. Vi tar en temp direkt. Jag tar en temp och tar väskan här. Tror jag har feber. Kan du titta lite åt sidan så ska jag ta en temp här. Ja, 38,8, det hade du feber. Lite febril här då. Har du tagit någon Alvedon? Ja, igår kanske. Ja, okej. Vad bra. Vad har du för sjukdomar sedan tidigare? Vet du det? Jag har kärlkramp. Har du någon medicinlista hemma? Jag vet inte. Kolla lite i köket. Ja, jag går och kollar här inne. Det här verkar vara en apodos. Ja, vad bra. Här har ni apodos. Tar du lite kontroller så länge? Ja, men jag tar ett blodtryckare. Ja, nu spänner det åt lite. Är det där min? Ja, det är din. Det är din hund. Ja, 120 genom 75, så det var ju bra. Ja, vad bra. Det är feber alltså. Ja, regelbunden fyllde också. Allningsmässigt stabil eller? Ja, hon har ett på runt 18. Jag ska lyssna lite på lungorna här. Ja, pekalt låter de ju väldigt fint. Basalt fint. Ja, men det låter rent på lungorna. Har du haft någon hosta? Ja. Har du haft hosta? Ja, jag hostar alltid. Du hostar alltid? Ja. Du har katheter står det i journalen också. Just det. Ja, men den var ju lite grumlig här. Ja, okej. Men du ska få två Alvedon av oss. Har du något problem att svälja? Nej, nej. Jag tar fram lite vatten här så ska du få två Alvedon. Jag tar ut väskan här. Men har du ont någonstans eller? Nej. Jag fryser. Du fryser, okej. Du har lite feber, det är därför. Vi tar ett socker också. Ja, men jag tar en glukos. Nu öppnar jag väskan här. Vet du vad? Vi kan sätta en infart faktiskt. Hon är gammal. Förlåt. Vi kan sätta på med lite droppsen också. Ja, men jag sätter en grön höger här. Ja, nu kommer det sticka till lite. Sätter jag ett stasband här. Har du en täcka där? Vi är från ambulansen. När kom ni hit? Ja, det var en liten stund sen. Så tar vi hand om dig här så blir det bra. Ja, nu sticker det till lite igen. Så, bra. Ja, men då har vi en grön höger där då. Har du någon hemtjänst? Nej. Jag bor här. Du bor här. Hon har ett armband på sig. Vi kan trycka på det. Så ringer de upp och kollar. Så kan vi säga att hon är på väg in till sjukhuset. Du måste ju följa med oss till sjukhuset. Måste jag? Du har ju feber. Det verkar som att du inte har mått så bra den senaste tiden. Det kan ju vara bra att komma in på sjukhus på lite kontroller så får du lite antibiotika också. Får jag lyfta på tröjan och kolla om du har någon petekker eller någonting? Ja. Ja, det ser ut att vara kanske... Okej, petekker. Ja, lite på magen här har du lite röda. Har du haft det länge? Jag vet inte. Nej. Jag hade lite petekker på magen. Vad hade hon i saturation? Ja, det var ju faktiskt ganska bra. Det var ju med 92 här. Okej, men vi kan putta på med lite sygas och lite vätska. Ja. Då får vi se hur det blir om vi ska förvåna eller inte. Men just nu så kan vi ta det lite lugnt. Ja, men vi tänker på reception här någonstans. Ja, vi får göra det. Ja, men då behöver vi kanske komma iväg ganska så snart då. Okej. Men kan jag hjälpa dig att packa ordning lite? Har du någon mobiltelefon att ladda eller? Jag tror jag har en mobil. Ja, men vi plockar ner så går vi ner till ambulansen tillsammans då. Är du allergisk mot någonting? Det kommer jag inte ihåg. Du kommer inte... Okej. Men vi kör.",
+  "diarized_transcript": {
+    "summary": "Ambulanspersonal undersöker en patient som känner sig sjuk och fryser. Patienten har feber, kärlkramp och använder apodos. Vitalparametrar som blodtryck, andning och saturation kontrolleras, febern behandlas med Alvedon, och patienten får dropp samt syre. Petekier noteras på magen. Patienten ska medfölja till sjukhus för vidare kontroller och behandling.",
+    "speakers": [
+      "staff_1",
+      "staff_2",
+      "patient"
+    ],
+    "segments": [
+      {
+        "speaker": "staff_1",
+        "text": "Hej, Daniel, sjuksköterska. Hur mår du?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag känner mig sjuk."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Jaha, har du feber?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag fryser."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Vi tar en temp direkt. Jag tar en temp och tar väskan här."
+      },
+      {
+        "speaker": "patient",
+        "text": "Tror jag har feber."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Kan du titta lite åt sidan så ska jag ta en temp här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, 38,8, det hade du feber. Lite febril här då."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du tagit någon Alvedon?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, igår kanske."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, okej. Vad bra. Vad har du för sjukdomar sedan tidigare? Vet du det?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag har kärlkramp."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du någon medicinlista hemma?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag vet inte."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Kolla lite i köket."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, jag går och kollar här inne. Det här verkar vara en apodos."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, vad bra. Här har ni apodos. Tar du lite kontroller så länge?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men jag tar ett blodtryckare. Ja, nu spänner det åt lite."
+      },
+      {
+        "speaker": "patient",
+        "text": "Är det där min?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, det är din. Det är din hund."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, 120 genom 75, så det var ju bra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, vad bra. Det är feber alltså."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, regelbunden fyllde också. Allningsmässigt stabil eller?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, hon har ett på runt 18. Jag ska lyssna lite på lungorna här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, pekalt låter de ju väldigt fint. Basalt fint. Ja, men det låter rent på lungorna."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du haft någon hosta?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du haft hosta?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, jag hostar alltid."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du hostar alltid?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Du har kateter står det i journalen också."
+      },
+      {
+        "speaker": "patient",
+        "text": "Just det."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men den var ju lite grumlig här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, okej. Men du ska få två Alvedon av oss. Har du något problem att svälja?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Jag tar fram lite vatten här så ska du få två Alvedon. Jag tar ut väskan här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Men har du ont någonstans eller?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej."
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag fryser."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du fryser, okej. Du har lite feber, det är därför. Vi tar ett socker också."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men jag tar en glukos. Nu öppnar jag väskan här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Vet du vad? Vi kan sätta en infart faktiskt. Hon är gammal. Förlåt. Vi kan sätta på med lite droppsen också."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men jag sätter en grön höger här. Ja, nu kommer det sticka till lite. Sätter jag ett stasband här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du en täcka där? Vi är från ambulansen."
+      },
+      {
+        "speaker": "patient",
+        "text": "När kom ni hit?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, det var en liten stund sen. Så tar vi hand om dig här så blir det bra."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, nu sticker det till lite igen. Så, bra. Ja, men då har vi en grön höger där då."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du någon hemtjänst?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej. Jag bor här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du bor här. Hon har ett armband på sig. Vi kan trycka på det. Så ringer de upp och kollar. Så kan vi säga att hon är på väg in till sjukhuset."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du måste ju följa med oss till sjukhuset."
+      },
+      {
+        "speaker": "patient",
+        "text": "Måste jag?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du har ju feber. Det verkar som att du inte har mått så bra den senaste tiden. Det kan ju vara bra att komma in på sjukhus på lite kontroller så får du lite antibiotika också."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Får jag lyfta på tröjan och kolla om du har någon petekker eller någonting?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, det ser ut att vara kanske... Okej, petekker. Ja, lite på magen här har du lite röda."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Har du haft det länge?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag vet inte. Nej. Jag hade lite petekker på magen."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Vad hade hon i saturation?"
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, det var ju faktiskt ganska bra. Det var ju med 92 här."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej, men vi kan putta på med lite sygas och lite vätska."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Då får vi se hur det blir om vi ska förvåna eller inte. Men just nu så kan vi ta det lite lugnt."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, men vi tänker på reception här någonstans."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, vi får göra det. Ja, men då behöver vi kanske komma iväg ganska så snart då."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Men kan jag hjälpa dig att packa ordning lite? Har du någon mobiltelefon att ladda eller?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag tror jag har en mobil."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, men vi plockar ner så går vi ner till ambulansen tillsammans då."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Är du allergisk mot någonting?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Det kommer jag inte ihåg."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Du kommer inte... Okej. Men vi kör."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Ge paracetamol vid feber om ingen kontraindikation",
+      "rationale": "Patienten har feber på 38,8°C och har troligen inte tagit paracetamol sedan gårdagen. Enligt riktlinje 1.1.2 och 7.1.1 (barn, men princip även för vuxna) och preparathandbok är paracetamol förstahandsval vid feber. Inga inrapporterade problem med sväljning. Paracetamol ges per os.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Sätt intravenös infart för vätsketillförsel och eventuell behandling",
+      "rationale": "Patienten är äldre och allmänt medtagen med feber och tecken till påverkan. Dropp (Ringer-acetat) användes som stödbehandling vid risk för sepsis (riktlinje 3.6.1), behov av intravenösa läkemedel, och för att underlätta ytterligare behandling om försämring sker. Detta åtgärdades av personalen.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Starta behandling med syrgas vid SpO2 <94%",
+      "rationale": "Saturationsvärde 92% vid mätning. Oxygen 1-2 l/min rekommenderas enligt riktlinje 1.1.1 och 3.6.1 vid denna nivå. Vid eventuell försämring bör högre flöde övervägas.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Bedömning och övervakning för möjlig sepsis",
+      "rationale": "Patienten är äldre, multimorbid (kärlkramp, KAD, grumlig urin), nyligen insjuknad i feber, har petekier, och är allmänt medtagen. Detta ger misstanke om infektion med sepsisrisk (riktlinje 3.6.1). Petekier kan tyda på allvarlig bakteriell infektion.",
+      "urgency": "high"
+    },
+    {
+      "title": "Transport till akutsjukhus för fortsatt utredning och behandling",
+      "rationale": "Patienten har flera riskfaktorer (ålder, underliggande hjärtsjukdom, feber, nedsatt allmäntillstånd, KAD, petekier, möjlig UVI). Enligt riktlinjer för geriatrisk vårdprocess och sepsis ska patient transporteras för vidare diagnostik/behandling vid tecken på allmänpåverkan.",
+      "urgency": "high"
+    },
+    {
+      "title": "Lägg tillhörigheter, mobil och ev. ladda mobil inför transport",
+      "rationale": "Enligt god omvårdnad och patientsäkerhetslagen (allmän riktlinje 1.5.1) och dagligt omhändertagande vid prehospital transport bör patientens egendom tas med och patienten förberedas inför transport.",
+      "urgency": "low"
+    },
+    {
+      "title": "Informera/samråd med patienten om transportbeslut",
+      "rationale": "Enligt allmänna riktlinjer ska vården utformas i samråd med patienten. Övertyga och informera om varför sjukhusvård bedöms nödvändig, särskilt vid misstanke om allvarlig infektion/sepsis.",
+      "urgency": "high"
+    },
+    {
+      "title": "Fortsatt övervakning av vitalparametrar under transport",
+      "rationale": "Enligt riktlinje 1.1.1 och 3.6.1 ska vitalparametrar dokumenteras regelbundet, särskilt vid misstanke om sepsis eller pågående infektion, och Reevaluering av ABCD genomföras.",
+      "urgency": "high"
+    }
+  ],
+  "drafted_journal": "Situation: 89-årig kvinna insjuknat med feber och frossa.\nBakgrund: Känd hjärt-kärlsjukdom (kärlkramp), KAD, bor själv i hemmet. Hittas av ambulanspersonal nedkyld med feberkänsla och trötthet, ej känt hemtjänstbehov. Saknar tydliga smärtor, men beskriver frossa och fryser. Har hosta, dock vanligen hosta enligt patienten. KAD urinfärg grumlig enligt personal. Apodos hemma.\n\nSocialt: Bor ensam, ingen hemtjänst. Har trygghetslarm. Mobiltelefon finns.\n\nAktuellt: Vid ankomst vaken och kontaktbar. Initialt A enligt ACVPU. Svarar relevant på frågor.\n\na: Fri luftväg, ingen påverkan.\nb: Andas spontant. AF ca 18/min. Sat 92% i vila. Lungor auskulteras bilateralt med rena andningsljud, inget biljud basalt eller apikalt. Hostar ibland, men beskriver detta som vanligt.\nc: Blodtryck 120/75 mmHg. Regelbunden, fyllig radialispuls. Temp 38,8°C. Pulsfrekvens ej explicit angiven, men sannolikt i normalomfång givet status och blodtryck. Hud: Petekier buk, i övrigt varm perifert. Kapillär återfyllnad normal. KAD urinfärg grumlig.\nd: Orienterad, inga neurologiska bortfall. Svarar adekvat på tilltal. Ingen smärta, rörelse i extremiteter ua.\ne: Ingen känd allergi. Socker 5,5 mmol/l. Ej noterat trauma. \n\nÅtgärder: Paracetamol 1 g per os ges (två tabletter), oral tillförsel möjlig utan problem. \n- Syrgasbehandling startas med lågflöde via näsgrimma (p.g.a. Sat 92%).\n- Patient lades varmare filtar över och förbereds för transport.\n- PVK (grön, höger arm) sattes för ev. vätskebehandling och vidare provtagning. \n\nBedömning:\nÄldre, skör patient med misstänkt infektion/sepsis (KAD, grumlig urin, feber, petekier, allmänpåverkan) utan aktuell smärta. Ingen tydlig fokal infektion utöver urinvägar. Petekier på mage bedöms som nytillkommet enligt patienten. Status kan även förenas med allvarlig bakteriemi, varför sepsis misstanke kvarstår.\n\nRekommendation:\nTransport till akutsjukhus för utredning av misstänkt sepsis/infektion. Patientens tillhörigheter (mobil m.m.) medtas. Trygghetslarm larmat. Anhöriga informeras enligt praxis. Patienten kunde mobilisera sig till transporter och följde med frivilligt efter information om risk för allvarliga komplikationer. \n\nUnder transport:\nKontinuerlig övervakning av vitalparametrar (saturation, AF, puls, BT). Dropp (Ringer-Acetat) förbereds vid behov. Rapport till akutmottagning enligt SBAR avges under transporten p.g.a. misstänkt sepsis och nytillkomna petekier hos äldre patient."
+}

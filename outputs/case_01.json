@@ -1,0 +1,226 @@
+{
+  "case_id": 1,
+  "audio_path": "/home/sneriko/projects/scene_prototype/data/ljudfiler/Journal 1.m4a",
+  "raw_transcript": "Hallå, hallå, hej Daniel, ambulansen.\n\nJa, Nathalie. Jobbar också på ambulansen.\n\nÄr det du som är Erik?\n\nDet är jag som är Erik.\n\nHur mår du?\n\nJag har ont i bröstet.\n\nOkej, när började det?\n\nJa, men typ kvart i fyra kanske.\n\nOkej. Har du haft det här förut?\n\nNej.\n\nÄr du frisk sedan innan?\n\nJa, det är jag.\n\nÄter du några mediciner?\n\nJa, jag äter atorvastatin och losartan.\n\nOkej. Men du, vi ska ta ett EKG på dig direkt. Kan du ta av dig tröjan bara?\n\nJa, visst.\n\nNathalie, kan du ta kontroller? Jag kan sätta en infart direkt. Det ser väldigt kallsvettig ut, Erik.\n\nJa, det är som en tryckande smärta i bröstet.\n\nOkej. Är du allergisk mot någonting förresten?\n\nNej, inga allergier.\n\nMen Nathalie, om du tar saturation och blodtryck så sätter jag en infart direkt.\n\nJa, jag tar lite kontroller. Nu ska vi se. 98 i saturation och 22 i andningsfrekvens. Jag tar blodtrycket nu. Det är 167 genom 88 och 86 i puls.\nJag tar EKG-tider då.\n\nJa, tack. Men bor du här?\n\nNej, det gör jag inte.\n\nOkej. Var bor du någonstans?\n\nJag bor i Åkersberga.\n\nOkej. Så, nu har jag kopplat upp. Det ser ut som lite SD-höjningar. Det skulle kunna vara en stemi.\nOkej. Jag kan ringa, eller jag skickar det här till HIA. Men kan du preppa lite morfin och ge 2,5?\n\nDet gör jag. Jag ger 2,5 milligram morfin. Ska jag ge lite nitro också?\n\nHej, Daniel på HIA. Nej, men du kan ge nitro.\n\nJag ger lite nitro också.\n\nHej, Daniel på HIA. Nej, men du kan ge nitro.\n\nJag ger lite nitro också.\n\nHej, Daniel på HIA. Nej, Daniel på ambulansen. Jag har tagit ett EKG och skickat frakt till er. Det ser ut som SD-höjningar. Erik, kan du säga ditt personnummer?\n\n1964-03-10-01-53.\n\nFår de läsa dina journaler på sjukhus?\n\nJa, det får de göra.\n\nOkej. Ja, det är SD-höjningar och tryck över bröstet. Debut 15.45. Mår du illa någonting?\n\nJa, det gör jag.\n\nNathalie, kan du ge lite ondasetron också?\n\nJa, jag ger lite ondasetron. Jag får det, Erik.\n\nBra. Men Erik, vi ska packa lite snabbt här. Mobil och laddare. Och så kommer vi åka till Sös. Det hör ju till Dandryd, men vi åker till närmsta sjukhus. För det ser ut som att ditt hjärta har lite syrebrist. De får titta på dig direkt. Hade du någon effekt av nitron, av den här puffen du fick i munnen?\n\nNej, egentligen inte.\n\nOkej. Ja, men då åker vi.",
+  "diarized_transcript": {
+    "summary": "Ambulanspersonalen, Daniel och Nathalie, vårdar Erik som har tryckande bröstsmärta sedan cirka 15:45. De genomför undersökningar och ger Erik läkemedel, inklusive morfin, nitroglycerin och ondasetron. EKG visar SD-höjningar, vilket misstänks för STEMI. De förbereder transport till Sös, närmaste sjukhus.",
+    "speakers": [
+      "staff_1",
+      "staff_2",
+      "patient"
+    ],
+    "segments": [
+      {
+        "speaker": "staff_1",
+        "text": "Hallå, hallå, hej Daniel, ambulansen."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, Nathalie. Jobbar också på ambulansen."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Är det du som är Erik?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Det är jag som är Erik."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Hur mår du?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag har ont i bröstet."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej, när började det?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, men typ kvart i fyra kanske."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Har du haft det här förut?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Är du frisk sedan innan?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, det är jag."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Äter du några mediciner?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, jag äter atorvastatin och losartan."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Men du, vi ska ta ett EKG på dig direkt. Kan du ta av dig tröjan bara?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, visst."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Nathalie, kan du ta kontroller? Jag kan sätta en infart direkt. Det ser väldigt kallsvettig ut, Erik."
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, det är som en tryckande smärta i bröstet."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Är du allergisk mot någonting förresten?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej, inga allergier."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Men Nathalie, om du tar saturation och blodtryck så sätter jag en infart direkt."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, jag tar lite kontroller. Nu ska vi se. 98 i saturation och 22 i andningsfrekvens. Jag tar blodtrycket nu. Det är 167 genom 88 och 86 i puls. Jag tar EKG-tider då."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Ja, tack. Men bor du här?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej, det gör jag inte."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Var bor du någonstans?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Jag bor i Åkersberga."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Okej. Så, nu har jag kopplat upp. Det ser ut som lite SD-höjningar. Det skulle kunna vara en stemi."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Jag kan ringa, eller jag skickar det här till HIA. Men kan du preppa lite morfin och ge 2,5?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Det gör jag. Jag ger 2,5 milligram morfin. Ska jag ge lite nitro också?"
+      },
+      {
+        "speaker": "caller",
+        "text": "Hej, Daniel på HIA. Nej, men du kan ge nitro."
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Jag ger lite nitro också."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Hej, Daniel på HIA. Nej, Daniel på ambulansen. Jag har tagit ett EKG och skickat frakt till er. Det ser ut som SD-höjningar. Erik, kan du säga ditt personnummer?"
+      },
+      {
+        "speaker": "patient",
+        "text": "1964-03-10-01-53."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Får de läsa dina journaler på sjukhus?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, det får de göra."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Ja, det är SD-höjningar och tryck över bröstet. Debut 15.45. Mår du illa någonting?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Ja, det gör jag."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Nathalie, kan du ge lite ondasetron också?"
+      },
+      {
+        "speaker": "staff_2",
+        "text": "Ja, jag ger lite ondasetron. Jag får det, Erik."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Bra. Men Erik, vi ska packa lite snabbt här. Mobil och laddare. Och så kommer vi åka till Sös. Det hör ju till Dandryd, men vi åker till närmsta sjukhus. För det ser ut som att ditt hjärta har lite syrebrist. De får titta på dig direkt. Hade du någon effekt av nitron, av den här puffen du fick i munnen?"
+      },
+      {
+        "speaker": "patient",
+        "text": "Nej, egentligen inte."
+      },
+      {
+        "speaker": "staff_1",
+        "text": "Okej. Ja, men då åker vi."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "EKG-tolkning och direktkontakt med HIA/PCI-center",
+      "rationale": "Vid misstanke om STEMI, med EKG som visar ST-höjningar samt tryckande bröstsmärta med akut debut, skall EKG tas och skickas till HIA inom 10 minuter enligt riktlinje 3.2.1 Central bröstsmärta. Direktkontakt tas med HIA för vidare vårdstyrning och beslut om primär PCI.",
+      "urgency": "high"
+    },
+    {
+      "title": "Smärtlindring med morfin",
+      "rationale": "Vid VAS ≥4 och central bröstsmärta ges morfin 2,5 ml i.v. enligt riktlinje för bröstsmärta (3.2.1) och smärtbehandling allmänt (1.1.2), vilket har administrerats eftersom patienten beskriver tryckande smärta och rapporterar stark smärtupplevelse.",
+      "urgency": "high"
+    },
+    {
+      "title": "Sublingual glyceryltrinitrat (Nitro)",
+      "rationale": "Vid misstänkt akut koronart syndrom samt systoliskt blodtryck ≥90 mmHg kan glyceryltrinitrat ges (3.2.1 Central bröstsmärta). Patienten fick nitro efter kontakt med HIA som stöd för smärtlindring och ischemilindring.",
+      "urgency": "high"
+    },
+    {
+      "title": "Antiemetikum (Ondansetron) vid illamående",
+      "rationale": "Patienten rapporterar illamående och får därför ondansetron 2 ml i.v., i enlighet med rekommendation vid bröstsmärta med illamående (3.2.1, Preparathandbok).",
+      "urgency": "medium"
+    },
+    {
+      "title": "Snabb transport till närmaste akutsjukhus",
+      "rationale": "Vid stark misstanke om STEMI och hotande syrebrist till hjärtat är snabb avtransport till närmaste PCI-sjukhus enligt riktlinje för central bröstsmärta (3.2.1) avgörande för prognos – detta följs även om patientens folkbokföringsadress tillhör annan region.",
+      "urgency": "high"
+    },
+    {
+      "title": "Fortsatt monitorering av vitalparametrar",
+      "rationale": "Enligt basal behandling och övervakning (1.1.1), ska vitalparametrar dokumenteras minst två gånger; vid påverkade parametrar, helst var femte minut under transport/behandling. Patienten har påverkan (kallsvettig, tryck över bröstet).",
+      "urgency": "high"
+    },
+    {
+      "title": "Täta avstämningar kring effekt och biverkningar efter given behandling",
+      "rationale": "Effekt av läkemedel (t.ex. morfin och nitro) ska utvärderas och dokumenteras enligt behandlingsriktlinjerna (1.1.2, 3.2.1). Då nitro ej gav effekt och patienten var fortsatt besvärad, måste vidare utvärdering fortgå och adekvat dokumenteras.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Säkerställ samtycke till journalåtkomst och informationsöverföring",
+      "rationale": "Patienten tillfrågades och gav samtycke till att sjukhuspersonal får ta del av journaluppgifter – detta följer riktlinje för dokumentation och informationsöverföring (1.3.1).",
+      "urgency": "medium"
+    }
+  ],
+  "drafted_journal": "Situation: Bröstsmärta, misstänkt STEMI.\nBakgrund: Man, född 1964, tidigare väsentligen frisk förutom medicinering med atorvastatin och losartan. Ingen tidigare liknande smärtbild. Ej känd allergi. Bostadsort Åkersberga.\nAktuellt: Patienten har tryckande bröstsmärta som debuterat ca kl. 15:45 (uppskattad av patienten till ca kvart i fyra). Smärtan är konstant, tryckande, icke tidigare upplevd. I samband med ankomst konstateras patienten kallsvettig och besvärad.\nA: Fri luftväg\nB: Spontanandning, andningsfrekvens 22/min, saturation 98 %. Ingen påverkan på andningsarbetet.\nC: Puls 86, blodtryck 167/88 mmHg. Regelbunden, ej snabbare än vad som framkommer. Perifert blek, kallsvettig. Radialis palperas fyllig.\nD: Klar och orienterad initialt. Ingen fokal neurologi som framkommer. Smärtupplevelse tryckande över bröstet. Inga rapporterade neurologiska symtom.\nE: Temp ej mätt. Ingen feber uppges. Manuellt blodsocker ej avvikande enligt anteckningar. Smärtdebut i vila.\nÅtgärder:\n- EKG tagit och visar SD-höjningar enligt ambulanspersonal, skickat till HIA för bedömning (indikationsgrundad handläggning enl. 3.2.1 Central bröstsmärta)\n- PVK satt, förberett för i.v. medicinering.\n- Smärtlindring: 2,5 mg morfin i.v. given, enligt delegation/missad i text att VAS skattats, men indikation förelåg för smärtlindring.\n- Nitro (glyceryltrinitrat, 0,4 mg sublingualt) administrerat efter kontakt med HIA.\n- Ondansetron givet i.v. pga illamående.\n- Samtycke inhämtat för att sjukhuspersonal får ta del av patientjournal samt personlig data för sjukvården lämnad (personnummer).\n--\nTransport:\n- Informerat patient om transport till SÖS då närmsta PCI-sjukhus prioriteras vid akut PCI-misstanke, även om patienten egentliga upptagningsområde är annat.\nEfterföljande:\n- Patient monitoreras under transport med fortsatt vitalparametertagning. Effekt efter morfin/nitro avstämts, men anges ingen nämnvärd effekt av nitroglycerin.\nPrehospitalt bedömt tillstånd: Akut koronart syndrom (STEMI-misstanke)\nRekommendation: Prio 1 till SÖS för akut bedömning, PCI-beredskap. Fortsatt övervakning och behandling under transport enligt riktlinje för akuta bröstsmärtor/akut STEMI.\n\nNoteringar:\n- Ingen allergi rapporterad!\n- Patientens samtycke inhämtat och EKG samt statusrapport skickad till mottagande enhet.\n- Alla åtgärder, läkemedel och beslut i linje med centrala behandlingsriktlinjer 3.2.1, 1.1.1 samt 1.1.2 och enligt preparathandbokens behörighet."
+}

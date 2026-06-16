@@ -1,0 +1,58 @@
+Metadata-Version: 2.4
+Name: ambulance-case-backend
+Version: 0.1.0
+Summary: Backend pipeline for ambulance audio transcription, treatment support, and journal drafting.
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: openai>=1.30.0
+Requires-Dist: pydantic>=2.6.0
+Requires-Dist: pypdf>=4.2.0
+Requires-Dist: python-dotenv>=1.0.1
+Provides-Extra: dev
+Requires-Dist: pytest>=8.0.0; extra == "dev"
+
+# ambulance-case-backend
+
+Python backend package for processing ambulance case recordings with the OpenAI API.
+
+## Features
+
+- Discovers paired audio recordings and ground-truth journals from the `data/` folder.
+- Extracts treatment instructions from the supplied PDF.
+- Transcribes ambulance case recordings.
+- Asks an LLM to relabel the transcript into speakers such as `staff_1`, `staff_2`, `patient`, or `relative`.
+- Generates treatment suggestions grounded in the treatment instructions.
+- Drafts a journal that matches the style of the provided example journals.
+- Excludes the target journal from the in-context examples when generating output for its matching recording.
+
+## Installation
+
+```bash
+pip install -e .
+```
+
+Set your API key:
+
+```bash
+export OPENAI_API_KEY=your_key_here
+```
+
+## CLI usage
+
+Run the full pipeline for one case number:
+
+```bash
+ambulance-case run --case-id 3
+```
+
+Write outputs to a custom directory:
+
+```bash
+ambulance-case run --case-id 3 --output-dir outputs
+```
+
+## Notes
+
+- The package is structured as backend-only code so a frontend can be added later.
+- The transcription and generation steps are intentionally separated so they can be swapped or cached later.
+- `pypdf` is required at runtime to read the treatment-instruction PDF.

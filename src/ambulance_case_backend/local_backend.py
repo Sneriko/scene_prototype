@@ -12,7 +12,8 @@ class LocalKBWhisperBackend(OpenAIBackend):
     """Backend that runs transcription + diarization locally and reuses OpenAI for case generation."""
 
     def __init__(self, config: AppConfig) -> None:
-        super().__init__(config)
+        self.config = config
+        self._openai_generation_backend: OpenAIBackend | None = None
         self._asr_pipeline = self._build_asr_pipeline()
         self._diarization_pipeline = self._build_diarization_pipeline()
 
@@ -114,4 +115,8 @@ class LocalKBWhisperBackend(OpenAIBackend):
             speakers=sorted(set(item.speaker for item in segments)),
             segments=segments,
         )
+    def generate_case_output(self, **kwargs):
+        if self._openai_generation_backend is None:
+            self._openai_generation_backend = OpenAIBackend(self.config)
+        return self._openai_generation_backend.generate_case_output(**kwargs)
 

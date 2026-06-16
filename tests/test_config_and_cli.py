@@ -23,3 +23,12 @@ def test_cli_accepts_local_backend_and_model_size() -> None:
 
     assert args.transcription_backend == "local_kb_whisper"
     assert args.kb_whisper_size == "medium"
+
+
+def test_cli_accepts_edge_server_command() -> None:
+    parser = build_parser()
+    args = parser.parse_args(["serve-edge", "--host", "0.0.0.0", "--port", "8080"])
+
+    assert args.command == "serve-edge"
+    assert args.transcription_backend == "local_edge"
+    assert args.port == 8080

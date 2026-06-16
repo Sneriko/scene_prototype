@@ -24,6 +24,9 @@ class AppConfig:
     output_dir: Path = field(init=False)
     transcription_model: str = "gpt-4o-transcribe"
     transcription_backend: str = field(default_factory=lambda: os.getenv("TRANSCRIPTION_BACKEND", "openai"))
+    local_llm_base_url: str = field(default_factory=lambda: os.getenv("LOCAL_LLM_BASE_URL", "http://127.0.0.1:8001/v1"))
+    local_llm_model: str = field(default_factory=lambda: os.getenv("LOCAL_LLM_MODEL", "qwen2.5-7b-instruct"))
+    local_llm_api_key: str = field(default_factory=lambda: os.getenv("LOCAL_LLM_API_KEY", "local"))
     kb_whisper_size: str = field(default_factory=lambda: os.getenv("KB_WHISPER_SIZE", "large"))
     kb_whisper_model_id: str = field(init=False)
     reasoning_model: str = "gpt-4.1"

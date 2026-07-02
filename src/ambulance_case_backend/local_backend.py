@@ -11,7 +11,7 @@ from .openai_client import OpenAIBackend
 
 
 class LocalKBWhisperBackend(OpenAIBackend):
-    """Backend that runs transcription + diarization locally and reuses OpenAI for case generation."""
+    """Backend that runs transcription + optional local diarization and reuses OpenAI for case generation."""
 
     def __init__(self, config: AppConfig) -> None:
         self.config = config
@@ -63,17 +63,38 @@ class LocalKBWhisperBackend(OpenAIBackend):
                 "Install them with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)."
             ) from exc
 
-        if not self.config.huggingface_token:
-            raise ValueError(
-                "HUGGINGFACE_TOKEN is required for diarization model downloads (pyannote/speaker-diarization-3.1)."
-            )
-
-        pipeline = Pipeline.from_pretrained(
-            "pyannote/speaker-diarization-3.1",
-            token=self.config.huggingface_token,
-        )
         self._segment_type = Segment
-        return pipeline
+        if not self.config.huggingface_token:
+            warnings.warn(
+                "HUGGINGFACE_TOKEN is not set; continuing without pyannote speaker diarization. "
+                "Output will use a single 'speaker_unknown' speaker label.",
+                RuntimeWarning,
+                stacklevel=2,
+            )
+            return None
+
+        try:
+            return Pipeline.from_pretrained(
+                "pyannote/speaker-diarization-3.1",
+                token=self.config.huggingface_token,
+            )
+        except Exception as exc:
+            if self._is_huggingface_access_error(exc):
+                warnings.warn(
+                    "Cannot access gated pyannote/speaker-diarization-3.1 model with the configured "
+                    "HUGGINGFACE_TOKEN; continuing without speaker diarization. Visit "
+                    "https://huggingface.co/pyannote/speaker-diarization-3.1, request/accept access, "
+                    "then restart the backend with an authorized token to enable speaker labels.",
+                    RuntimeWarning,
+                    stacklevel=2,
+                )
+                return None
+            raise
+
+    @staticmethod
+    def _is_huggingface_access_error(exc: Exception) -> bool:
+        text = str(exc).lower()
+        return any(marker in text for marker in ("401", "403", "gated repo", "restricted", "unauthorized"))
 
     def transcribe_audio(self, audio_path: Path) -> str:
         result = self._asr_pipeline(str(audio_path), generate_kwargs={"language": "sw"})
@@ -84,10 +105,13 @@ class LocalKBWhisperBackend(OpenAIBackend):
         if audio_path is None:
             raise ValueError("audio_path is required for local diarization backend.")
 
-        diarization = self._diarization_pipeline(self._load_audio_for_pyannote(audio_path))
         asr_result = self._asr_pipeline(str(audio_path), return_timestamps=True, generate_kwargs={"language": "sw"})
         chunks = asr_result.get("chunks", []) if isinstance(asr_result, dict) else []
 
+        if self._diarization_pipeline is None:
+            return self._transcript_without_speaker_diarization(raw_transcript, chunks)
+
+        diarization = self._diarization_pipeline(self._load_audio_for_pyannote(audio_path))
         speaker_aliases: dict[str, str] = {}
         alias_counter = 1
         segments: list[TranscriptSegment] = []
@@ -127,6 +151,23 @@ class LocalKBWhisperBackend(OpenAIBackend):
             segments=segments,
         )
 
+    def _transcript_without_speaker_diarization(self, raw_transcript: str, chunks: list[Any]) -> DiarizedTranscript:
+        segments = [
+            TranscriptSegment(speaker="speaker_unknown", text=str(chunk.get("text", "")).strip())
+            for chunk in chunks
+            if isinstance(chunk, dict) and str(chunk.get("text", "")).strip()
+        ]
+        if not segments and raw_transcript.strip():
+            segments = [TranscriptSegment(speaker="speaker_unknown", text=raw_transcript.strip())]
+        return DiarizedTranscript(
+            summary=(
+                f"Transcribed {len(segments)} segments with local KB Whisper. "
+                "Speaker diarization was skipped because pyannote model access is not configured."
+            ),
+            speakers=["speaker_unknown"] if segments else [],
+            segments=segments,
+        )
+
     def _load_audio_for_pyannote(self, audio_path: Path) -> dict[str, Any]:
         """Load audio into memory so pyannote does not need torchcodec/FFmpeg decoding."""
         try:
@@ -147,4 +188,3 @@ class LocalKBWhisperBackend(OpenAIBackend):
         if self._openai_generation_backend is None:
             self._openai_generation_backend = OpenAIBackend(self.config)
         return self._openai_generation_backend.generate_case_output(**kwargs)
-

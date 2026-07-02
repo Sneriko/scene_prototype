@@ -33,11 +33,13 @@ Set environment variables:
 export OPENAI_API_KEY=your_key_here
 ```
 
-For local diarization model downloads (`pyannote/speaker-diarization-3.1`), create a Hugging Face access token, accept the pyannote model terms on Hugging Face, and export the token before starting the backend:
+Speaker diarization uses the gated `pyannote/speaker-diarization-3.1` model when it is available. To enable real speaker labels, create a Hugging Face access token, accept/request access to the pyannote model terms on Hugging Face, and export the token before starting the backend:
 
 ```bash
 export HUGGINGFACE_TOKEN=your_hf_token
 ```
+
+If the token is missing or does not have access to the gated pyannote repo, local KB Whisper transcription still runs and the backend returns `speaker_unknown` transcript segments instead of failing the frontend request.
 
 If you see a `torchcodec is not installed correctly` warning from pyannote, that is an FFmpeg/TorchCodec audio-decoder warning rather than a missing Hugging Face token. The backend loads diarization audio into memory with `soundfile` before passing it to pyannote so the diarization path does not rely on TorchCodec for decoding uploaded recordings.
 

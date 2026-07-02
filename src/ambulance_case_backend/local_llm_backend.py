@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 from typing import Any
-from urllib import request
+from urllib import error, request
 
 from .config import AppConfig
 from .local_backend import LocalKBWhisperBackend
@@ -36,10 +36,27 @@ class LocalOpenAICompatibleClient:
             },
             method="POST",
         )
-        with request.urlopen(http_request, timeout=timeout_seconds) as response:  # noqa: S310 - local configured URL.
-            response_payload = json.loads(response.read().decode("utf-8"))
+        try:
+            with request.urlopen(http_request, timeout=timeout_seconds) as response:  # noqa: S310 - local configured URL.
+                response_payload = json.loads(response.read().decode("utf-8"))
+        except error.URLError as exc:
+            raise RuntimeError(
+                "Cannot connect to the configured local LLM endpoint "
+                f"{self.base_url!r}. Start an OpenAI-compatible local LLM server "
+                "(for example vLLM, llama.cpp server, or Ollama's OpenAI-compatible API), "
+                "or set LOCAL_LLM_BASE_URL to the correct /v1 endpoint before running "
+                "`ambulance-case serve-edge --transcription-backend local_edge`."
+            ) from exc
+
         content = response_payload["choices"][0]["message"].get("content") or "{}"
-        return json.loads(content)
+        try:
+            return json.loads(content)
+        except json.JSONDecodeError as exc:
+            raise RuntimeError(
+                "The configured local LLM endpoint returned a non-JSON chat completion. "
+                "Use an instruction-tuned OpenAI-compatible model/server that honors "
+                "response_format={\"type\": \"json_object\"}, or choose a different LOCAL_LLM_MODEL."
+            ) from exc
 
 
 class LocalEdgeBackend(LocalKBWhisperBackend):

@@ -86,7 +86,41 @@ Serve the local ambulance API and browser UI:
 ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
 ```
 
-`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`. The `edge` extra includes the local ASR/diarization packages (`transformers`, `torch`, and `pyannote.audio`) required by that mode.
+`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`. The default endpoint is `http://127.0.0.1:8001/v1`, so start an OpenAI-compatible local LLM server (for example vLLM, llama.cpp server, or Ollama's OpenAI-compatible API) before processing a recording, or point `LOCAL_LLM_BASE_URL` at the server you already run. The `edge` extra includes the local ASR/diarization packages (`transformers`, `torch`, and `pyannote.audio`) required by that mode.
+
+If the browser shows `<urlopen error [Errno 111] Connection refused>` or a newer `Cannot connect to the configured local LLM endpoint` message after transcription completes, the API is running but the configured local LLM server is not reachable. Transcription has likely started or completed; the failure is in the local journal/treatment-generation step. Start the local LLM server and restart `ambulance-case serve-edge`, or export a matching endpoint first.
+
+### Local LLM quick start with Ollama
+
+Ollama is the simplest way to run an OpenAI-compatible local LLM endpoint for development. Run these commands in WSL/Linux before starting `ambulance-case serve-edge`:
+
+```bash
+# 1. Install Ollama if it is not already installed.
+curl -fsSL https://ollama.com/install.sh | sh
+
+# 2. Start the Ollama server. Keep this terminal open.
+ollama serve
+```
+
+Open a second terminal and download a model:
+
+```bash
+# qwen2.5:7b is a reasonable first model. Use qwen2.5:3b on slower/smaller machines.
+ollama pull qwen2.5:7b
+
+# Confirm the OpenAI-compatible API is reachable.
+curl http://127.0.0.1:11434/v1/models
+```
+
+Then start the ambulance edge backend in the same shell where you set the environment variables:
+
+```bash
+export LOCAL_LLM_BASE_URL=http://127.0.0.1:11434/v1
+export LOCAL_LLM_MODEL=qwen2.5:7b
+ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
+```
+
+If `ollama serve` says the address is already in use, Ollama is already running; keep it running and continue with `ollama pull ...`, the `export ...` commands, and `ambulance-case serve-edge`.
 
 ## Deployment planning
 

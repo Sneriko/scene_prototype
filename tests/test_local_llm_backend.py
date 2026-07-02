@@ -1,7 +1,7 @@
 from pathlib import Path
 
 from ambulance_case_backend.config import AppConfig
-from ambulance_case_backend.local_llm_backend import LocalEdgeBackend
+from ambulance_case_backend.local_llm_backend import LocalEdgeBackend, LocalOpenAICompatibleClient
 from ambulance_case_backend.models import DiarizedTranscript, TranscriptSegment
 
 
@@ -40,3 +40,23 @@ def test_local_edge_backend_generates_case_output_without_openai_key(tmp_path: P
 
     assert result.drafted_journal == "A local draft."
     assert result.treatment_suggestions[0].title == "Oxygen"
+
+
+def test_local_llm_connection_error_is_actionable(monkeypatch) -> None:
+    from urllib import error
+
+    def raise_connection_refused(*args, **kwargs):
+        raise error.URLError(ConnectionRefusedError(111, "Connection refused"))
+
+    monkeypatch.setattr("ambulance_case_backend.local_llm_backend.request.urlopen", raise_connection_refused)
+    client = LocalOpenAICompatibleClient("http://127.0.0.1:8001/v1")
+
+    try:
+        client.chat_completion_json(model="model", messages=[])
+    except RuntimeError as exc:
+        message = str(exc)
+    else:  # pragma: no cover - defensive assertion path
+        raise AssertionError("Expected local LLM connection failure")
+
+    assert "Cannot connect to the configured local LLM endpoint" in message
+    assert "LOCAL_LLM_BASE_URL" in message

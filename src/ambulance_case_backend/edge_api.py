@@ -67,11 +67,12 @@ class EdgeCaseStore:
             edge_case.audio_chunks = sorted(set([*edge_case.audio_chunks, chunk_path]))
         return chunk_path
 
-    def assemble_chunks(self, case_id: str, suffix: str = ".webm") -> Path:
+    def assemble_chunks(self, case_id: str, suffix: str | None = None) -> Path:
         edge_case = self.get_case(case_id)
         if not edge_case.audio_chunks:
             raise ValueError("Cannot finish recording without at least one audio chunk.")
-        output_path = self.root / case_id / f"recording{suffix}"
+        recording_suffix = suffix or sorted(edge_case.audio_chunks)[0].suffix or ".wav"
+        output_path = self.root / case_id / f"recording{recording_suffix}"
         with output_path.open("wb") as output_file:
             for chunk_path in sorted(edge_case.audio_chunks):
                 with chunk_path.open("rb") as input_file:

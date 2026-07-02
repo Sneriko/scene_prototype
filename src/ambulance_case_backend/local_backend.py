@@ -22,9 +22,10 @@ class LocalKBWhisperBackend(OpenAIBackend):
             import torch
             from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
         except ImportError as exc:
+            missing_package = exc.name or "transformers/torch"
             raise RuntimeError(
-                "Local KB Whisper mode requires 'transformers' and 'torch'. "
-                "Install with: pip install transformers torch"
+                f"Local KB Whisper mode requires the optional local ASR dependencies; missing {missing_package!r}. "
+                "Install them with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)."
             ) from exc
 
         model = AutoModelForSpeechSeq2Seq.from_pretrained(
@@ -48,8 +49,10 @@ class LocalKBWhisperBackend(OpenAIBackend):
             from pyannote.audio import Pipeline
             from pyannote.core import Segment
         except ImportError as exc:
+            missing_package = exc.name or "pyannote.audio"
             raise RuntimeError(
-                "Local diarization requires 'pyannote.audio'. Install with: pip install pyannote.audio"
+                f"Local diarization requires the optional local ASR dependencies; missing {missing_package!r}. "
+                "Install them with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)."
             ) from exc
 
         if not self.config.huggingface_token:

@@ -86,7 +86,7 @@ class EdgeCaseStore:
         edge_case.error = error
 
 
-def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseOutput:
+def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseOutput | None:
     edge_case = store.get_case(case_id)
     if edge_case.assembled_audio is None:
         raise ValueError("Case has no assembled audio file.")
@@ -103,7 +103,7 @@ def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseO
         return result
     except Exception as exc:
         store.set_failed(case_id, str(exc))
-        raise
+        return None
 
 
 def create_app(config: AppConfig | None = None):

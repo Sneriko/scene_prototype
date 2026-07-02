@@ -73,7 +73,7 @@ ambulance-case run --case-id 3 --output-dir outputs
 Install the API/frontend dependencies:
 
 ```bash
-pip install -e .[edge]
+pip install -e '.[edge]'
 ```
 
 Serve the local ambulance API and browser UI:
@@ -82,7 +82,7 @@ Serve the local ambulance API and browser UI:
 ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
 ```
 
-`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`.
+`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`. The `edge` extra includes the local ASR/diarization packages (`transformers`, `torch`, and `pyannote.audio`) required by that mode.
 
 ## Deployment planning
 

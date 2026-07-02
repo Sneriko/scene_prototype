@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from collections.abc import Callable
 from pathlib import Path
 from typing import Any
 
@@ -46,7 +47,14 @@ class AmbulanceCasePipeline:
         self.write_output(result, output_dir=output_dir)
         return result
 
-    def run_audio_file(self, *, case_id: int, audio_path: Path, output_dir: Path | None = None) -> CaseOutput:
+    def run_audio_file(
+        self,
+        *,
+        case_id: int,
+        audio_path: Path,
+        output_dir: Path | None = None,
+        on_generation_start: Callable[[], None] | None = None,
+    ) -> CaseOutput:
         reference_journals = self.repository.get_reference_journals(exclude_case_id=case_id)
         treatment_instructions = extract_pdf_text(self.config.treatment_pdf)
 
@@ -55,6 +63,9 @@ class AmbulanceCasePipeline:
             diarized = self.backend.diarize_transcript(raw_transcript, audio_path=audio_path)
         except TypeError:
             diarized = self.backend.diarize_transcript(raw_transcript)
+        if on_generation_start is not None:
+            on_generation_start()
+
         result = self.backend.generate_case_output(
             case_id=case_id,
             audio_path=audio_path,

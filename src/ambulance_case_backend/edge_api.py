@@ -97,6 +97,7 @@ def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseO
             case_id=edge_case.numeric_case_id,
             audio_path=edge_case.assembled_audio,
             output_dir=store.root / case_id,
+            on_generation_start=lambda: setattr(edge_case, "status", CaseStatus.GENERATING),
         )
         edge_case.status = CaseStatus.READY
         edge_case.output = result

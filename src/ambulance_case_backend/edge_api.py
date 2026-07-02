@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 import json
-from enum import StrEnum
+from enum import Enum
 from pathlib import Path
 from shutil import copyfileobj
 from threading import Lock
@@ -14,7 +14,7 @@ from .models import CaseOutput
 from .pipeline import AmbulanceCasePipeline
 
 
-class CaseStatus(StrEnum):
+class CaseStatus(str, Enum):
     RECORDING = "recording"
     QUEUED = "queued"
     TRANSCRIBING = "transcribing"

@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
+import warnings
 from typing import Any
 
 from .config import AppConfig
@@ -31,7 +32,7 @@ class LocalKBWhisperBackend(OpenAIBackend):
 
         model = AutoModelForSpeechSeq2Seq.from_pretrained(
             self.config.kb_whisper_model_id,
-            torch_dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
+            dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
             low_cpu_mem_usage=True,
         )
         processor = AutoProcessor.from_pretrained(self.config.kb_whisper_model_id)
@@ -42,12 +43,18 @@ class LocalKBWhisperBackend(OpenAIBackend):
             model=model,
             tokenizer=processor.tokenizer,
             feature_extractor=processor.feature_extractor,
-            return_timestamps=True,
         )
 
     def _build_diarization_pipeline(self):
         try:
-            from pyannote.audio import Pipeline
+            with warnings.catch_warnings():
+                warnings.filterwarnings(
+                    "ignore",
+                    message=r"\s*torchcodec is not installed correctly.*",
+                    category=UserWarning,
+                    module=r"pyannote\.audio\.core\.io",
+                )
+                from pyannote.audio import Pipeline
             from pyannote.core import Segment
         except ImportError as exc:
             missing_package = exc.name or "pyannote.audio"
@@ -63,7 +70,7 @@ class LocalKBWhisperBackend(OpenAIBackend):
 
         pipeline = Pipeline.from_pretrained(
             "pyannote/speaker-diarization-3.1",
-            use_auth_token=self.config.huggingface_token,
+            token=self.config.huggingface_token,
         )
         self._segment_type = Segment
         return pipeline

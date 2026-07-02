@@ -24,6 +24,7 @@ local_asr = [
   "transformers>=4.41.0",
   "torch>=2.2.0",
   "pyannote.audio>=3.1.0",
+  "soundfile>=0.12.1",
 ]
 edge = [
   "fastapi>=0.111.0",
@@ -32,6 +33,7 @@ edge = [
   "transformers>=4.41.0",
   "torch>=2.2.0",
   "pyannote.audio>=3.1.0",
+  "soundfile>=0.12.1",
 ]
 
 [project.scripts]

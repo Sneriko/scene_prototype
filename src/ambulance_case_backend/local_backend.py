@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
+from typing import Any
 
 from .config import AppConfig
 from .models import DiarizedTranscript, TranscriptSegment
@@ -76,7 +77,7 @@ class LocalKBWhisperBackend(OpenAIBackend):
         if audio_path is None:
             raise ValueError("audio_path is required for local diarization backend.")
 
-        diarization = self._diarization_pipeline(str(audio_path))
+        diarization = self._diarization_pipeline(self._load_audio_for_pyannote(audio_path))
         asr_result = self._asr_pipeline(str(audio_path), return_timestamps=True, generate_kwargs={"language": "sw"})
         chunks = asr_result.get("chunks", []) if isinstance(asr_result, dict) else []
 
@@ -118,6 +119,23 @@ class LocalKBWhisperBackend(OpenAIBackend):
             speakers=sorted(set(item.speaker for item in segments)),
             segments=segments,
         )
+
+    def _load_audio_for_pyannote(self, audio_path: Path) -> dict[str, Any]:
+        """Load audio into memory so pyannote does not need torchcodec/FFmpeg decoding."""
+        try:
+            import soundfile as sf
+            import torch
+        except ImportError as exc:
+            missing_package = exc.name or "soundfile/torch"
+            raise RuntimeError(
+                f"Local diarization audio loading requires {missing_package!r}. "
+                "Install local ASR dependencies with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)"
+            ) from exc
+
+        samples, sample_rate = sf.read(str(audio_path), always_2d=True, dtype="float32")
+        waveform = torch.from_numpy(samples.T.copy())
+        return {"waveform": waveform, "sample_rate": int(sample_rate)}
+
     def generate_case_output(self, **kwargs):
         if self._openai_generation_backend is None:
             self._openai_generation_backend = OpenAIBackend(self.config)

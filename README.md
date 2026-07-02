@@ -33,11 +33,13 @@ Set environment variables:
 export OPENAI_API_KEY=your_key_here
 ```
 
-For local diarization model downloads (`pyannote/speaker-diarization-3.1`):
+For local diarization model downloads (`pyannote/speaker-diarization-3.1`), create a Hugging Face access token, accept the pyannote model terms on Hugging Face, and export the token before starting the backend:
 
 ```bash
 export HUGGINGFACE_TOKEN=your_hf_token
 ```
+
+If you see a `torchcodec is not installed correctly` warning from pyannote, that is an FFmpeg/TorchCodec audio-decoder warning rather than a missing Hugging Face token. The backend loads diarization audio into memory with `soundfile` before passing it to pyannote so the diarization path does not rely on TorchCodec for decoding uploaded recordings.
 
 ## CLI usage
 

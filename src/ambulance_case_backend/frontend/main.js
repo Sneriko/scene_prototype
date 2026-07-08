@@ -2,12 +2,16 @@ let mediaRecorder;
 let caseId;
 let chunkNumber = 0;
 let activeMode = 'demo';
+let demoCases = [];
+let outputCatalogs = [];
 
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const statusBox = document.getElementById('status');
 const runtimeBox = document.getElementById('runtime');
 const demoSelect = document.getElementById('demoCases');
+const outputCatalogSelect = document.getElementById('outputCatalogs');
+const demoAudio = document.getElementById('demoAudio');
 const loadDemoButton = document.getElementById('loadDemo');
 const demoTab = document.getElementById('demoTab');
 const recordTab = document.getElementById('recordTab');
@@ -46,19 +50,66 @@ async function loadRuntime() {
   }
 }
 
-async function loadDemoCases() {
-  const payload = await jsonFetch('/demo-cases');
-  demoSelect.innerHTML = '';
-  payload.cases.forEach(item => {
+async function loadOutputCatalogs() {
+  const payload = await jsonFetch('/demo-output-catalogs');
+  outputCatalogs = payload.catalogs || [];
+  outputCatalogSelect.innerHTML = '';
+  outputCatalogs.forEach(catalog => {
     const option = document.createElement('option');
-    option.value = item.case_id;
-    option.disabled = !item.has_output;
-    option.textContent = `${item.label} · ${item.has_output ? 'ready' : 'missing generated output'}`;
-    demoSelect.appendChild(option);
+    option.value = catalog.id;
+    option.textContent = catalog.label;
+    outputCatalogSelect.appendChild(option);
   });
 }
 
-function renderOutput(output, pdfBaseUrl) {
+function selectedCase() {
+  return demoCases.find(item => String(item.case_id) === demoSelect.value);
+}
+
+function refreshCatalogOptionsForCase() {
+  const currentCase = selectedCase();
+  if (!currentCase) return;
+
+  outputCatalogSelect.innerHTML = '';
+  outputCatalogs.forEach(catalog => {
+    const hasOutput = Boolean(currentCase.outputs && currentCase.outputs[catalog.id]);
+    const option = document.createElement('option');
+    option.value = catalog.id;
+    option.disabled = !hasOutput;
+    option.textContent = `${catalog.label} · ${hasOutput ? 'ready' : 'missing output'}`;
+    outputCatalogSelect.appendChild(option);
+  });
+
+  const firstReady = Array.from(outputCatalogSelect.options).find(option => !option.disabled);
+  if (firstReady) outputCatalogSelect.value = firstReady.value;
+  loadDemoButton.disabled = !firstReady;
+}
+
+async function loadDemoCases() {
+  const payload = await jsonFetch('/demo-cases');
+  demoCases = payload.cases || [];
+  demoSelect.innerHTML = '';
+  demoCases.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.case_id;
+    option.disabled = !item.has_output;
+    option.textContent = `${item.label} · ${item.audio_file} · ${item.has_output ? 'ready' : 'missing generated output'}`;
+    demoSelect.appendChild(option);
+  });
+  refreshDemoAudio();
+  refreshCatalogOptionsForCase();
+}
+
+function refreshDemoAudio() {
+  const currentCase = selectedCase();
+  if (!currentCase) {
+    demoAudio.removeAttribute('src');
+    return;
+  }
+  demoAudio.src = currentCase.audio_url || `/demo-cases/${currentCase.case_id}/audio`;
+}
+
+function renderOutput(output, pdfBaseUrl, pdfQuery = '') {
   caseMeta.textContent = `Case ${output.case_id} · ${output.audio_path}`;
   suggestionsBox.innerHTML = '<h3>Suggested treatment instructions</h3>';
   output.treatment_suggestions.forEach(suggestion => {
@@ -69,8 +120,8 @@ function renderOutput(output, pdfBaseUrl) {
   });
   journalBox.textContent = output.drafted_journal || 'No journal text returned.';
 
-  const treatmentUrl = `${pdfBaseUrl}/treatment.pdf`;
-  const journalUrl = `${pdfBaseUrl}/journal.pdf`;
+  const treatmentUrl = `${pdfBaseUrl}/treatment.pdf${pdfQuery}`;
+  const journalUrl = `${pdfBaseUrl}/journal.pdf${pdfQuery}`;
   pdfLinks.innerHTML = `
     <a class="button primary" href="${treatmentUrl}" target="_blank" rel="noreferrer">Open treatment PDF</a>
     <a class="button secondary" href="${journalUrl}" target="_blank" rel="noreferrer">Open journal PDF</a>
@@ -81,12 +132,16 @@ function renderOutput(output, pdfBaseUrl) {
 }
 
 async function loadSelectedDemo() {
-  const selectedCase = demoSelect.value;
-  if (!selectedCase) return;
-  setStatus(`Loading demo case ${selectedCase}...`);
-  const output = await jsonFetch(`/demo-cases/${selectedCase}/output`);
-  renderOutput(output, `/demo-cases/${selectedCase}`);
-  setStatus(`Demo case ${selectedCase} ready.`);
+  const selectedCaseId = demoSelect.value;
+  const selectedCatalog = outputCatalogSelect.value || 'default';
+  if (!selectedCaseId || !selectedCatalog) return;
+  const catalog = outputCatalogs.find(item => item.id === selectedCatalog);
+  const catalogLabel = catalog ? catalog.label : selectedCatalog;
+  setStatus(`Loading demo case ${selectedCaseId} from ${catalogLabel}...`);
+  const query = new URLSearchParams({ catalog: selectedCatalog });
+  const output = await jsonFetch(`/demo-cases/${selectedCaseId}/output?${query}`);
+  renderOutput(output, `/demo-cases/${selectedCaseId}`, `?${query}`);
+  setStatus(`Demo case ${selectedCaseId} ready from ${catalogLabel}.`);
 }
 
 async function createCase() {
@@ -118,6 +173,11 @@ async function pollOutput() {
 demoTab.addEventListener('click', () => setMode('demo'));
 recordTab.addEventListener('click', () => setMode('record'));
 loadDemoButton.addEventListener('click', () => loadSelectedDemo().catch(error => setStatus(error.message)));
+demoSelect.addEventListener('change', () => {
+  refreshDemoAudio();
+  refreshCatalogOptionsForCase();
+});
+outputCatalogSelect.addEventListener('change', () => loadSelectedDemo().catch(error => setStatus(error.message)));
 
 startButton.addEventListener('click', async () => {
   const created = await createCase();
@@ -147,4 +207,9 @@ stopButton.addEventListener('click', async () => {
 });
 
 loadRuntime();
-loadDemoCases().then(loadSelectedDemo).catch(error => setStatus(error.message));
+Promise.all([loadOutputCatalogs(), loadDemoCases()])
+  .then(() => {
+    refreshCatalogOptionsForCase();
+    return loadSelectedDemo();
+  })
+  .catch(error => setStatus(error.message));

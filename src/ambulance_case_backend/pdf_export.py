@@ -5,8 +5,21 @@ from textwrap import wrap
 from .models import CaseOutput
 
 
-def _escape_pdf_text(text: str) -> str:
-    return text.replace("\\", "\\\\").replace("(", "\\(").replace(")", "\\)")
+def _escape_pdf_text_bytes(text: str) -> bytes:
+    """Return a PDF literal string encoded for Helvetica/WinAnsi text drawing.
+
+    PDF content streams for the built-in Helvetica font use single-byte font
+    encodings. Encoding the stream as UTF-8 makes Swedish characters such as
+    å, ä and ö render as mojibake in many PDF viewers. Windows-1252 maps those
+    characters to the bytes expected by the font encoding, while still keeping
+    the surrounding PDF drawing operators ASCII-compatible.
+    """
+    payload = text.encode("cp1252", errors="replace")
+    return (
+        payload.replace(b"\\", b"\\\\")
+        .replace(b"(", b"\\(")
+        .replace(b")", b"\\)")
+    )
 
 
 def _section_lines(title: str, body: str, *, width: int = 88) -> list[str]:
@@ -47,18 +60,18 @@ def _build_pdf(title: str, subtitle: str, lines: list[str]) -> bytes:
                 f"/Contents {stream_object_id} 0 R >>"
             ).encode("ascii")
         )
-        commands = [
-            "BT /F2 20 Tf 56 742 Td 28 TL",
-            f"({_escape_pdf_text(title)}) Tj",
-            "T* /F1 10 Tf",
-            f"({_escape_pdf_text(subtitle)}) Tj",
-            "T* T* /F1 10 Tf 14 TL",
+        commands: list[bytes] = [
+            b"BT /F2 20 Tf 56 742 Td 28 TL",
+            b"(" + _escape_pdf_text_bytes(title) + b") Tj",
+            b"T* /F1 10 Tf",
+            b"(" + _escape_pdf_text_bytes(subtitle) + b") Tj",
+            b"T* T* /F1 10 Tf 14 TL",
         ]
         for line in page_lines:
-            commands.append(f"({_escape_pdf_text(line)}) Tj")
-            commands.append("T*")
-        commands.append("ET")
-        stream = "\n".join(commands).encode("utf-8")
+            commands.append(b"(" + _escape_pdf_text_bytes(line) + b") Tj")
+            commands.append(b"T*")
+        commands.append(b"ET")
+        stream = b"\n".join(commands)
         objects.append(b"<< /Length " + str(len(stream)).encode("ascii") + b" >>\nstream\n" + stream + b"\nendstream")
 
     pdf = bytearray(b"%PDF-1.4\n")

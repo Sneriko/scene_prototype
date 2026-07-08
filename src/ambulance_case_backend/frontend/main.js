@@ -24,8 +24,79 @@ const pdfSection = document.getElementById('pdfSection');
 const pdfLinks = document.getElementById('pdfLinks');
 const treatmentFrame = document.getElementById('treatmentFrame');
 const journalFrame = document.getElementById('journalFrame');
+const transcriptList = document.getElementById('transcriptList');
+let transcriptCues = [];
 
 function setStatus(message) { statusBox.textContent = message; }
+
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds) || seconds < 0) return '0:00';
+  const minutes = Math.floor(seconds / 60);
+  const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+  return `${minutes}:${remainingSeconds}`;
+}
+
+function transcriptSegments(output) {
+  const diarizedSegments = output.diarized_transcript && Array.isArray(output.diarized_transcript.segments)
+    ? output.diarized_transcript.segments
+    : [];
+  if (diarizedSegments.length > 0) return diarizedSegments;
+  return String(output.raw_transcript || '')
+    .split(/\n{2,}/)
+    .map(text => ({ speaker: 'transcript', text: text.trim() }))
+    .filter(segment => segment.text);
+}
+
+function estimateTranscriptCues(output) {
+  const segments = transcriptSegments(output);
+  const duration = Number.isFinite(demoAudio.duration) && demoAudio.duration > 0 ? demoAudio.duration : 0;
+  const totalWeight = segments.reduce((sum, segment) => sum + Math.max(segment.text.length, 24), 0) || 1;
+  let cursor = 0;
+  return segments.map((segment, index) => {
+    const weight = Math.max(segment.text.length, 24);
+    const start = duration ? cursor : 0;
+    cursor += duration * (weight / totalWeight);
+    return { ...segment, index, start, end: duration ? cursor : Infinity };
+  });
+}
+
+function renderTranscript(output) {
+  transcriptCues = estimateTranscriptCues(output);
+  transcriptList.innerHTML = '';
+  if (transcriptCues.length === 0) {
+    transcriptList.innerHTML = '<p class="muted">No transcript returned in this output file.</p>';
+    return;
+  }
+  transcriptCues.forEach(cue => {
+    const row = document.createElement('button');
+    row.type = 'button';
+    row.className = 'transcript-cue';
+    row.dataset.index = cue.index;
+    row.innerHTML = '<span class="speaker"><span class="speaker-name"></span><br><span class="muted cue-time"></span></span><span class="transcript-text"></span>';
+    row.querySelector('.speaker-name').textContent = cue.speaker || 'speaker';
+    row.querySelector('.cue-time').textContent = formatTime(cue.start);
+    row.querySelector('.transcript-text').textContent = cue.text;
+    row.addEventListener('click', () => {
+      if (Number.isFinite(cue.start) && demoAudio.src) {
+        demoAudio.currentTime = cue.start;
+        demoAudio.play().catch(() => undefined);
+      }
+    });
+    transcriptList.appendChild(row);
+  });
+  highlightTranscriptCue();
+}
+
+function highlightTranscriptCue() {
+  if (!transcriptCues.length) return;
+  const currentTime = demoAudio.currentTime || 0;
+  const activeCue = transcriptCues.find(cue => currentTime >= cue.start && currentTime < cue.end) || transcriptCues.at(-1);
+  transcriptList.querySelectorAll('.transcript-cue').forEach(row => {
+    const isActive = Number(row.dataset.index) === activeCue.index;
+    row.classList.toggle('active', isActive);
+    if (isActive) row.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
+}
 
 function setMode(mode) {
   activeMode = mode;
@@ -119,6 +190,7 @@ function renderOutput(output, pdfBaseUrl, pdfQuery = '') {
     suggestionsBox.appendChild(card);
   });
   journalBox.textContent = output.drafted_journal || 'No journal text returned.';
+  renderTranscript(output);
 
   const treatmentUrl = `${pdfBaseUrl}/treatment.pdf${pdfQuery}`;
   const journalUrl = `${pdfBaseUrl}/journal.pdf${pdfQuery}`;
@@ -176,8 +248,14 @@ loadDemoButton.addEventListener('click', () => loadSelectedDemo().catch(error =>
 demoSelect.addEventListener('change', () => {
   refreshDemoAudio();
   refreshCatalogOptionsForCase();
+  transcriptList.innerHTML = '';
+  transcriptCues = [];
 });
 outputCatalogSelect.addEventListener('change', () => loadSelectedDemo().catch(error => setStatus(error.message)));
+demoAudio.addEventListener('timeupdate', highlightTranscriptCue);
+demoAudio.addEventListener('loadedmetadata', () => {
+  if (caseMeta.textContent.startsWith('Case ')) loadSelectedDemo().catch(error => setStatus(error.message));
+});
 
 startButton.addEventListener('click', async () => {
   const created = await createCase();

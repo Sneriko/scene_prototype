@@ -3,7 +3,7 @@ from pathlib import Path
 
 from ambulance_case_backend.config import AppConfig
 from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, demo_output_catalogs, demo_recording_media_type, load_demo_output, process_case
-from ambulance_case_backend.pdf_export import treatment_pdf
+from ambulance_case_backend.pdf_export import journal_pdf, treatment_pdf
 
 
 def test_edge_store_chunks_and_assembles_recording(tmp_path: Path) -> None:
@@ -121,3 +121,14 @@ def test_demo_output_can_be_loaded_from_comparison_catalog(tmp_path: Path) -> No
 def test_demo_recording_media_type_supports_mp4_video() -> None:
     assert demo_recording_media_type(Path("Journal 1.mp4")) == "video/mp4"
     assert demo_recording_media_type(Path("Journal 1.m4a")) == "audio/mp4"
+
+
+def test_journal_pdf_encodes_swedish_characters_for_builtin_pdf_fonts() -> None:
+    result = load_demo_output(AppConfig(), 1)
+    result.drafted_journal = "Patienten bor i Åkersberga och säger åäö ÅÄÖ."
+
+    payload = journal_pdf(result)
+
+    assert "Åkersberga".encode("cp1252") in payload
+    assert "åäö ÅÄÖ".encode("cp1252") in payload
+    assert "Åkersberga".encode("utf-8") not in payload

@@ -28,7 +28,8 @@
     .actions { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
     .field { display:grid; gap:.35rem; margin:.8rem 0; }
     .field label { font-weight:800; color:#334155; }
-    audio { width:100%; margin-top:.45rem; }
+    audio, video { width:100%; margin-top:.45rem; border-radius:14px; background:#0f172a; }
+    video { max-height:260px; }
     .status { margin-top:1rem; padding:.85rem 1rem; border-radius:16px; background:#ecfeff; color:#155e75; border:1px solid #a5f3fc; font-weight:700; }
     .muted { color:var(--muted); }
     .metric { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; margin-top:1rem; }
@@ -80,7 +81,7 @@
           <div class="field">
             <label for="demoCases">Case recording</label>
             <select id="demoCases"></select>
-            <audio id="demoAudio" controls preload="metadata"></audio>
+            <video id="demoAudio" controls preload="metadata" playsinline></video>
           </div>
           <div class="field">
             <label for="outputCatalogs">Generated output</label>

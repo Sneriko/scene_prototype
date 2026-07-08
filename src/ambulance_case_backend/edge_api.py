@@ -8,7 +8,7 @@ from typing import BinaryIO
 from uuid import uuid4
 
 from .config import AppConfig
-from .data_access import DataRepository
+from .data_access import DataRepository, SUPPORTED_RECORDING_SUFFIXES
 from .models import CaseOutput
 from .pdf_export import journal_pdf, treatment_pdf
 from .pipeline import AmbulanceCasePipeline
@@ -128,12 +128,26 @@ def demo_output_dir(config: AppConfig, catalog: str = "default") -> Path:
     return output_dir
 
 
+def demo_recording_media_type(path: Path) -> str:
+    if path.suffix.lower() == ".mp4":
+        return "video/mp4"
+    return "audio/mp4"
+
+
 def load_demo_output(config: AppConfig, case_id: int, catalog: str = "default") -> CaseOutput:
     output_dir = demo_output_dir(config, catalog)
     output_path = output_dir / f"case_{case_id:02d}.json"
     if not output_path.exists():
         raise FileNotFoundError(f"No generated demo output exists for case {case_id} in catalog {catalog!r}.")
-    audio_path = config.audio_dir / f"Journal {case_id}.m4a"
+    audio_path = next(
+        (
+            path
+            for path in sorted(config.audio_dir.iterdir())
+            if path.suffix.lower() in SUPPORTED_RECORDING_SUFFIXES
+            and path.stem == f"Journal {case_id}"
+        ),
+        config.audio_dir / f"Journal {case_id}.m4a",
+    )
     return case_output_from_dict(
         json.loads(output_path.read_text(encoding="utf-8")),
         fallback_audio_path=audio_path,
@@ -222,7 +236,7 @@ def create_app(config: AppConfig | None = None):
             case_assets = repository.get_case(case_id)
         except StopIteration as exc:
             raise HTTPException(status_code=404, detail=f"No demo case audio exists for case {case_id}.") from exc
-        return FileResponse(case_assets.audio_path, media_type="audio/mp4", filename=case_assets.audio_path.name)
+        return FileResponse(case_assets.audio_path, media_type=demo_recording_media_type(case_assets.audio_path))
 
     @app.get("/demo-cases/{case_id}/output")
     def demo_case_output(case_id: int, catalog: str = Query(default="default")):

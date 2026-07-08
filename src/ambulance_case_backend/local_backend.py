@@ -117,7 +117,11 @@ class LocalKBWhisperBackend(OpenAIBackend):
             )
 
     def transcribe_audio(self, audio_path: Path) -> str:
-        result = self._asr_pipeline(self._load_audio_for_transformers(audio_path), generate_kwargs={"language": "sw"})
+        result = self._asr_pipeline(
+            self._load_audio_for_transformers(audio_path),
+            return_timestamps=True,
+            generate_kwargs={"language": "sw"},
+        )
         text = result.get("text", "") if isinstance(result, dict) else str(result)
         return str(text).strip()
 

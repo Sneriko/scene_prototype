@@ -76,6 +76,32 @@ def test_diarization_pipeline_falls_back_on_gated_model_error(monkeypatch) -> No
     assert backend._build_diarization_pipeline() is None
 
 
+def test_transcribe_audio_requests_timestamps_for_long_form_whisper(monkeypatch) -> None:
+    captured_kwargs = {}
+
+    class FakePipeline:
+        def __call__(self, audio, **kwargs):
+            captured_kwargs["audio"] = audio
+            captured_kwargs.update(kwargs)
+            return {"text": "  Hej från ambulansen.  "}
+
+    backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
+    backend._asr_pipeline = FakePipeline()
+    monkeypatch.setattr(
+        backend,
+        "_load_audio_for_transformers",
+        lambda audio_path: {"array": [0.0], "sampling_rate": 16_000},
+    )
+
+    transcript = backend.transcribe_audio(Path("long-recording.m4a"))
+
+    assert transcript == "Hej från ambulansen."
+    assert captured_kwargs == {
+        "audio": {"array": [0.0], "sampling_rate": 16_000},
+        "return_timestamps": True,
+        "generate_kwargs": {"language": "sw"},
+    }
+
 def test_transcript_without_speaker_diarization_uses_chunks() -> None:
     backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
 

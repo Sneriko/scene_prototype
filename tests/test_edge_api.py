@@ -2,7 +2,7 @@ from io import BytesIO
 from pathlib import Path
 
 from ambulance_case_backend.config import AppConfig
-from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, demo_output_catalogs, load_demo_output, process_case
+from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, demo_output_catalogs, demo_recording_media_type, load_demo_output, process_case
 from ambulance_case_backend.pdf_export import treatment_pdf
 
 
@@ -116,3 +116,8 @@ def test_demo_output_can_be_loaded_from_comparison_catalog(tmp_path: Path) -> No
 
     assert result.raw_transcript == "Local transcript"
     assert result.drafted_journal == "Local Qwen journal"
+
+
+def test_demo_recording_media_type_supports_mp4_video() -> None:
+    assert demo_recording_media_type(Path("Journal 1.mp4")) == "video/mp4"
+    assert demo_recording_media_type(Path("Journal 1.m4a")) == "audio/mp4"

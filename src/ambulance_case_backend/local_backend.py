@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
+import shutil
 import warnings
 from typing import Any
 
@@ -38,12 +39,14 @@ class LocalKBWhisperBackend(OpenAIBackend):
         processor = AutoProcessor.from_pretrained(self.config.kb_whisper_model_id)
 
         model.to("cuda" if torch.cuda.is_available() else "cpu")
-        return pipeline(
+        asr_pipeline = pipeline(
             "automatic-speech-recognition",
             model=model,
             tokenizer=processor.tokenizer,
             feature_extractor=processor.feature_extractor,
         )
+        self._validate_local_audio_decoder()
+        return asr_pipeline
 
     def _build_diarization_pipeline(self):
         try:
@@ -81,10 +84,11 @@ class LocalKBWhisperBackend(OpenAIBackend):
         except Exception as exc:
             if self._is_huggingface_access_error(exc):
                 warnings.warn(
-                    "Cannot access gated pyannote/speaker-diarization-3.1 model with the configured "
-                    "HUGGINGFACE_TOKEN; continuing without speaker diarization. Visit "
-                    "https://huggingface.co/pyannote/speaker-diarization-3.1, request/accept access, "
-                    "then restart the backend with an authorized token to enable speaker labels.",
+                    "Cannot access gated pyannote speaker diarization models with the configured "
+                    "Hugging Face token; continuing without speaker diarization. Visit and accept access "
+                    "for both https://huggingface.co/pyannote/speaker-diarization-3.1 and "
+                    "https://huggingface.co/pyannote/segmentation-3.0, then restart the backend with an "
+                    "authorized HUGGINGFACE_TOKEN, HF_TOKEN, or HUGGINGFACE_HUB_TOKEN to enable speaker labels.",
                     RuntimeWarning,
                     stacklevel=2,
                 )
@@ -94,7 +98,20 @@ class LocalKBWhisperBackend(OpenAIBackend):
     @staticmethod
     def _is_huggingface_access_error(exc: Exception) -> bool:
         text = str(exc).lower()
-        return any(marker in text for marker in ("401", "403", "gated repo", "restricted", "unauthorized"))
+        return any(
+            marker in text
+            for marker in ("401", "403", "gated repo", "restricted", "unauthorized", "could not download")
+        )
+
+    @staticmethod
+    def _validate_local_audio_decoder() -> None:
+        if shutil.which("ffmpeg") is None:
+            raise RuntimeError(
+                "Local KB Whisper requires the ffmpeg executable to decode demo .m4a recordings and browser audio. "
+                "Install ffmpeg and make sure it is on PATH, then rerun the command. The bundled recordings are "
+                "valid MPEG-4/M4A files; this error means the local decoder is unavailable, not that the repo audio "
+                "is in the wrong format."
+            )
 
     def transcribe_audio(self, audio_path: Path) -> str:
         result = self._asr_pipeline(str(audio_path), generate_kwargs={"language": "sw"})

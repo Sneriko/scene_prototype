@@ -87,3 +87,24 @@ def test_transcript_without_speaker_diarization_uses_chunks() -> None:
     )
     assert diarized.speakers == ["speaker_unknown"]
     assert [segment.text for segment in diarized.segments] == ["Hej.", "Ont i bröstet."]
+
+
+def test_local_audio_decoder_error_mentions_demo_m4a(monkeypatch) -> None:
+    monkeypatch.setattr("ambulance_case_backend.local_backend.shutil.which", lambda name: None)
+
+    try:
+        LocalKBWhisperBackend._validate_local_audio_decoder()
+    except RuntimeError as exc:
+        message = str(exc)
+    else:  # pragma: no cover - defensive assertion helper
+        raise AssertionError("Expected missing ffmpeg to raise RuntimeError")
+
+    assert "ffmpeg" in message
+    assert "demo .m4a recordings" in message
+    assert "not that the repo audio is in the wrong format" in message
+
+
+def test_huggingface_access_error_detects_segmentation_download_failure() -> None:
+    exc = RuntimeError("Could not download Model from pyannote/segmentation-3.0")
+
+    assert LocalKBWhisperBackend._is_huggingface_access_error(exc)

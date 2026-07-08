@@ -3,6 +3,7 @@ from __future__ import annotations
 from collections import defaultdict
 from pathlib import Path
 import shutil
+import subprocess
 import warnings
 from typing import Any
 
@@ -86,8 +87,10 @@ class LocalKBWhisperBackend(OpenAIBackend):
                 warnings.warn(
                     "Cannot access gated pyannote speaker diarization models with the configured "
                     "Hugging Face token; continuing without speaker diarization. Visit and accept access "
-                    "for both https://huggingface.co/pyannote/speaker-diarization-3.1 and "
-                    "https://huggingface.co/pyannote/segmentation-3.0, then restart the backend with an "
+                    "for https://huggingface.co/pyannote/speaker-diarization-3.1, "
+                    "https://huggingface.co/pyannote/segmentation-3.0, and, with newer pyannote.audio "
+                    "releases, https://huggingface.co/pyannote/speaker-diarization-community-1, "
+                    "then restart the backend with an "
                     "authorized HUGGINGFACE_TOKEN, HF_TOKEN, or HUGGINGFACE_HUB_TOKEN to enable speaker labels.",
                     RuntimeWarning,
                     stacklevel=2,
@@ -100,7 +103,7 @@ class LocalKBWhisperBackend(OpenAIBackend):
         text = str(exc).lower()
         return any(
             marker in text
-            for marker in ("401", "403", "gated repo", "restricted", "unauthorized", "could not download")
+            for marker in ("401", "403", "gated repo", "private or gated", "restricted", "unauthorized", "could not download")
         )
 
     @staticmethod
@@ -114,7 +117,7 @@ class LocalKBWhisperBackend(OpenAIBackend):
             )
 
     def transcribe_audio(self, audio_path: Path) -> str:
-        result = self._asr_pipeline(str(audio_path), generate_kwargs={"language": "sw"})
+        result = self._asr_pipeline(self._load_audio_for_transformers(audio_path), generate_kwargs={"language": "sw"})
         text = result.get("text", "") if isinstance(result, dict) else str(result)
         return str(text).strip()
 
@@ -122,7 +125,11 @@ class LocalKBWhisperBackend(OpenAIBackend):
         if audio_path is None:
             raise ValueError("audio_path is required for local diarization backend.")
 
-        asr_result = self._asr_pipeline(str(audio_path), return_timestamps=True, generate_kwargs={"language": "sw"})
+        asr_result = self._asr_pipeline(
+            self._load_audio_for_transformers(audio_path),
+            return_timestamps=True,
+            generate_kwargs={"language": "sw"},
+        )
         chunks = asr_result.get("chunks", []) if isinstance(asr_result, dict) else []
 
         if self._diarization_pipeline is None:
@@ -185,21 +192,72 @@ class LocalKBWhisperBackend(OpenAIBackend):
             segments=segments,
         )
 
+
+    def _load_audio_for_transformers(self, audio_path: Path) -> dict[str, Any]:
+        """Decode audio with ffmpeg and pass raw samples to Transformers.
+
+        The Transformers ASR pipeline shells out to ffmpeg when given a path, but
+        its generic "malformed soundfile" error hides the real decoder stderr.
+        Decoding here makes local .m4a/.mp4 handling explicit and avoids path
+        suffix quirks while still feeding Whisper 16 kHz mono audio.
+        """
+        return {"array": self._decode_audio_with_ffmpeg(audio_path), "sampling_rate": 16_000}
+
+    @staticmethod
+    def _decode_audio_with_ffmpeg(audio_path: Path) -> Any:
+        try:
+            import numpy as np
+        except ImportError as exc:
+            raise RuntimeError(
+                "Local KB Whisper audio decoding requires 'numpy'. Install local ASR dependencies with: "
+                "pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)."
+            ) from exc
+
+        command = [
+            "ffmpeg",
+            "-v",
+            "error",
+            "-i",
+            str(audio_path),
+            "-ac",
+            "1",
+            "-ar",
+            "16000",
+            "-f",
+            "f32le",
+            "-",
+        ]
+        try:
+            completed = subprocess.run(command, check=True, capture_output=True)
+        except FileNotFoundError as exc:
+            raise RuntimeError(
+                "Local KB Whisper requires the ffmpeg executable to decode demo .m4a recordings and browser audio. "
+                "Install ffmpeg and make sure it is on PATH, then rerun the command."
+            ) from exc
+        except subprocess.CalledProcessError as exc:
+            stderr = exc.stderr.decode(errors="replace").strip()
+            detail = f" ffmpeg said: {stderr}" if stderr else ""
+            raise RuntimeError(
+                f"ffmpeg could not decode {audio_path}.{detail} The bundled recordings should be valid M4A files; "
+                "if this is an uploaded file, convert it to wav, flac, mp3, m4a, or mp4 and try again."
+            ) from exc
+
+        if not completed.stdout:
+            raise RuntimeError(f"ffmpeg decoded no audio samples from {audio_path}.")
+        return np.frombuffer(completed.stdout, dtype=np.float32).copy()
+
     def _load_audio_for_pyannote(self, audio_path: Path) -> dict[str, Any]:
         """Load audio into memory so pyannote does not need torchcodec/FFmpeg decoding."""
         try:
-            import soundfile as sf
             import torch
         except ImportError as exc:
-            missing_package = exc.name or "soundfile/torch"
             raise RuntimeError(
-                f"Local diarization audio loading requires {missing_package!r}. "
+                "Local diarization audio loading requires 'torch'. "
                 "Install local ASR dependencies with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)"
             ) from exc
 
-        samples, sample_rate = sf.read(str(audio_path), always_2d=True, dtype="float32")
-        waveform = torch.from_numpy(samples.T.copy())
-        return {"waveform": waveform, "sample_rate": int(sample_rate)}
+        waveform = torch.from_numpy(self._decode_audio_with_ffmpeg(audio_path)).unsqueeze(0)
+        return {"waveform": waveform, "sample_rate": 16_000}
 
     def generate_case_output(self, **kwargs):
         if self._openai_generation_backend is None:

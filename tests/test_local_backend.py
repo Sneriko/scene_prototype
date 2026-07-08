@@ -1,5 +1,8 @@
 import sys
 import types
+from pathlib import Path
+
+import pytest
 
 from ambulance_case_backend.config import AppConfig
 from ambulance_case_backend.local_backend import LocalKBWhisperBackend
@@ -108,3 +111,75 @@ def test_huggingface_access_error_detects_segmentation_download_failure() -> Non
     exc = RuntimeError("Could not download Model from pyannote/segmentation-3.0")
 
     assert LocalKBWhisperBackend._is_huggingface_access_error(exc)
+
+
+def test_huggingface_access_error_detects_community_pipeline_download_failure() -> None:
+    exc = RuntimeError("Could not download xvec_transform.npz from pyannote/speaker-diarization-community-1")
+
+    assert LocalKBWhisperBackend._is_huggingface_access_error(exc)
+
+
+def test_transformers_audio_loading_decodes_with_ffmpeg(monkeypatch) -> None:
+    captured_command = {}
+
+    class FakeArray(list):
+        def copy(self):
+            return self
+
+        def tolist(self):
+            return list(self)
+
+    fake_numpy = types.ModuleType("numpy")
+    fake_numpy.float32 = "float32"
+    fake_numpy.frombuffer = lambda data, dtype: FakeArray([0.0, 1.0])
+    monkeypatch.setitem(sys.modules, "numpy", fake_numpy)
+
+    class Completed:
+        stdout = b"\x00\x00\x00\x00\x00\x00\x80?"
+
+    def fake_run(command, **kwargs):
+        captured_command["command"] = command
+        captured_command.update(kwargs)
+        return Completed()
+
+    monkeypatch.setattr("ambulance_case_backend.local_backend.subprocess.run", fake_run)
+
+    backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
+    payload = backend._load_audio_for_transformers(Path("data/ljudfiler/Journal 1.m4a"))
+
+    assert payload["sampling_rate"] == 16_000
+    assert payload["array"].tolist() == [0.0, 1.0]
+    assert captured_command["command"] == [
+        "ffmpeg",
+        "-v",
+        "error",
+        "-i",
+        "data/ljudfiler/Journal 1.m4a",
+        "-ac",
+        "1",
+        "-ar",
+        "16000",
+        "-f",
+        "f32le",
+        "-",
+    ]
+    assert captured_command["check"] is True
+    assert captured_command["capture_output"] is True
+
+
+def test_transformers_audio_loading_reports_ffmpeg_stderr(monkeypatch) -> None:
+    import subprocess
+
+    fake_numpy = types.ModuleType("numpy")
+    fake_numpy.float32 = "float32"
+    fake_numpy.frombuffer = lambda data, dtype: []
+    monkeypatch.setitem(sys.modules, "numpy", fake_numpy)
+
+    def fake_run(command, **kwargs):
+        raise subprocess.CalledProcessError(1, command, stderr=b"bad atom")
+
+    monkeypatch.setattr("ambulance_case_backend.local_backend.subprocess.run", fake_run)
+
+    backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
+    with pytest.raises(RuntimeError, match="bad atom"):
+        backend._load_audio_for_transformers(Path("broken.m4a"))

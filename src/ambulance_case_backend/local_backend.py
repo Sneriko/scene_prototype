@@ -139,7 +139,8 @@ class LocalKBWhisperBackend(OpenAIBackend):
         if self._diarization_pipeline is None:
             return self._transcript_without_speaker_diarization(raw_transcript, chunks)
 
-        diarization = self._diarization_pipeline(self._load_audio_for_pyannote(audio_path))
+        diarization_output = self._diarization_pipeline(self._load_audio_for_pyannote(audio_path))
+        diarization = self._speaker_diarization_annotation(diarization_output)
         speaker_aliases: dict[str, str] = {}
         alias_counter = 1
         segments: list[TranscriptSegment] = []
@@ -178,6 +179,17 @@ class LocalKBWhisperBackend(OpenAIBackend):
             speakers=sorted(set(item.speaker for item in segments)),
             segments=segments,
         )
+
+    @staticmethod
+    def _speaker_diarization_annotation(diarization_output: Any) -> Any:
+        """Return the pyannote Annotation across pyannote.audio 3.x and 4.x outputs.
+
+        pyannote.audio 3.x speaker diarization pipelines return a pyannote.core.Annotation
+        directly, while pyannote.audio 4.x returns a DiarizeOutput wrapper whose
+        speaker_diarization attribute contains the Annotation.  The rest of this backend
+        needs the Annotation API (crop/itertracks) to align ASR chunks to speakers.
+        """
+        return getattr(diarization_output, "speaker_diarization", diarization_output)
 
     def _transcript_without_speaker_diarization(self, raw_transcript: str, chunks: list[Any]) -> DiarizedTranscript:
         segments = [

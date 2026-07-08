@@ -102,6 +102,19 @@ def test_transcribe_audio_requests_timestamps_for_long_form_whisper(monkeypatch)
         "generate_kwargs": {"language": "sw"},
     }
 
+
+def test_speaker_diarization_annotation_unwraps_pyannote_v4_output() -> None:
+    annotation = object()
+    diarize_output = types.SimpleNamespace(speaker_diarization=annotation)
+
+    assert LocalKBWhisperBackend._speaker_diarization_annotation(diarize_output) is annotation
+
+
+def test_speaker_diarization_annotation_keeps_pyannote_v3_annotation() -> None:
+    annotation = object()
+
+    assert LocalKBWhisperBackend._speaker_diarization_annotation(annotation) is annotation
+
 def test_transcript_without_speaker_diarization_uses_chunks() -> None:
     backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
 

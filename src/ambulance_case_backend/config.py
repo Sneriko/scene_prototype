@@ -31,7 +31,13 @@ class AppConfig:
     kb_whisper_model_id: str = field(init=False)
     reasoning_model: str = "gpt-4.1"
     openai_api_key: str | None = field(default_factory=lambda: os.getenv("OPENAI_API_KEY"))
-    huggingface_token: str | None = field(default_factory=lambda: os.getenv("HUGGINGFACE_TOKEN"))
+    huggingface_token: str | None = field(
+        default_factory=lambda: (
+            os.getenv("HUGGINGFACE_TOKEN")
+            or os.getenv("HF_TOKEN")
+            or os.getenv("HUGGINGFACE_HUB_TOKEN")
+        )
+    )
 
     def __post_init__(self) -> None:
         self.data_dir = self.project_root / "data"

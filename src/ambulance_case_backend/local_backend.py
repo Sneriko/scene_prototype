@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import defaultdict
 from pathlib import Path
+import shutil
 import warnings
 from typing import Any
 
@@ -30,6 +31,8 @@ class LocalKBWhisperBackend(OpenAIBackend):
                 "Install them with: pip install -e '.[local_asr]' (or pip install -e '.[edge]' for the edge server)."
             ) from exc
 
+        self._validate_local_audio_decoder()
+
         model = AutoModelForSpeechSeq2Seq.from_pretrained(
             self.config.kb_whisper_model_id,
             dtype=torch.float16 if torch.cuda.is_available() else torch.float32,
@@ -38,12 +41,13 @@ class LocalKBWhisperBackend(OpenAIBackend):
         processor = AutoProcessor.from_pretrained(self.config.kb_whisper_model_id)
 
         model.to("cuda" if torch.cuda.is_available() else "cpu")
-        return pipeline(
+        asr_pipeline = pipeline(
             "automatic-speech-recognition",
             model=model,
             tokenizer=processor.tokenizer,
             feature_extractor=processor.feature_extractor,
         )
+        return asr_pipeline
 
     def _build_diarization_pipeline(self):
         try:
@@ -66,46 +70,84 @@ class LocalKBWhisperBackend(OpenAIBackend):
         self._segment_type = Segment
         if not self.config.huggingface_token:
             warnings.warn(
-                "HUGGINGFACE_TOKEN is not set; continuing without pyannote speaker diarization. "
-                "Output will use a single 'speaker_unknown' speaker label.",
+                "No Hugging Face token is set via HUGGINGFACE_TOKEN, HF_TOKEN, or HUGGINGFACE_HUB_TOKEN; "
+                "continuing without pyannote speaker diarization. Output will use a single "
+                "'speaker_unknown' speaker label.",
                 RuntimeWarning,
                 stacklevel=2,
             )
             return None
 
         try:
-            return Pipeline.from_pretrained(
-                "pyannote/speaker-diarization-3.1",
-                token=self.config.huggingface_token,
-            )
+            return self._load_pyannote_pipeline(Pipeline)
         except Exception as exc:
             if self._is_huggingface_access_error(exc):
                 warnings.warn(
-                    "Cannot access gated pyannote/speaker-diarization-3.1 model with the configured "
-                    "HUGGINGFACE_TOKEN; continuing without speaker diarization. Visit "
-                    "https://huggingface.co/pyannote/speaker-diarization-3.1, request/accept access, "
-                    "then restart the backend with an authorized token to enable speaker labels.",
+                    "Cannot access gated pyannote speaker diarization models with the configured "
+                    "Hugging Face token; continuing without speaker diarization. Visit and accept access "
+                    "for both https://huggingface.co/pyannote/speaker-diarization-3.1 and "
+                    "https://huggingface.co/pyannote/segmentation-3.0, then restart the backend with an "
+                    "authorized HUGGINGFACE_TOKEN, HF_TOKEN, or HUGGINGFACE_HUB_TOKEN to enable speaker labels.",
                     RuntimeWarning,
                     stacklevel=2,
                 )
                 return None
             raise
 
+    def _load_pyannote_pipeline(self, pipeline_class):
+        try:
+            return pipeline_class.from_pretrained(
+                "pyannote/speaker-diarization-3.1",
+                use_auth_token=self.config.huggingface_token,
+            )
+        except TypeError as exc:
+            if "use_auth_token" not in str(exc):
+                raise
+            return pipeline_class.from_pretrained(
+                "pyannote/speaker-diarization-3.1",
+                token=self.config.huggingface_token,
+            )
+
     @staticmethod
     def _is_huggingface_access_error(exc: Exception) -> bool:
         text = str(exc).lower()
-        return any(marker in text for marker in ("401", "403", "gated repo", "restricted", "unauthorized"))
+        return any(
+            marker in text
+            for marker in ("401", "403", "gated repo", "restricted", "unauthorized", "could not download")
+        )
+
+    @staticmethod
+    def _validate_local_audio_decoder() -> None:
+        if shutil.which("ffmpeg") is None:
+            raise RuntimeError(
+                "Local KB Whisper requires the ffmpeg executable to decode demo .m4a recordings and browser audio. "
+                "Install ffmpeg and make sure it is on PATH, then rerun the command. The bundled recordings are "
+                "valid MPEG-4/M4A files; this error means the local decoder is unavailable, not that the repo audio "
+                "is in the wrong format."
+            )
 
     def transcribe_audio(self, audio_path: Path) -> str:
-        result = self._asr_pipeline(str(audio_path), generate_kwargs={"language": "sw"})
+        result = self._run_asr(audio_path, generate_kwargs={"language": "sw"})
         text = result.get("text", "") if isinstance(result, dict) else str(result)
         return str(text).strip()
+
+    def _run_asr(self, audio_path: Path, **kwargs):
+        try:
+            return self._asr_pipeline(str(audio_path), **kwargs)
+        except ValueError as exc:
+            if "soundfile" not in str(exc).lower() and "ffmpeg" not in str(exc).lower():
+                raise
+            raise RuntimeError(
+                f"Could not decode audio file {audio_path}. The bundled demo recordings are valid MPEG-4/M4A "
+                "files, but local KB Whisper relies on ffmpeg to decode them. Install ffmpeg and make sure it "
+                "is on PATH, then rerun the command."
+            ) from exc
 
     def diarize_transcript(self, raw_transcript: str, audio_path: Path | None = None) -> DiarizedTranscript:  # type: ignore[override]
         if audio_path is None:
             raise ValueError("audio_path is required for local diarization backend.")
 
-        asr_result = self._asr_pipeline(str(audio_path), return_timestamps=True, generate_kwargs={"language": "sw"})
+        asr_result = self._run_asr(audio_path, return_timestamps=True, generate_kwargs={"language": "sw"})
         chunks = asr_result.get("chunks", []) if isinstance(asr_result, dict) else []
 
         if self._diarization_pipeline is None:

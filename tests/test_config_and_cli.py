@@ -32,3 +32,12 @@ def test_cli_accepts_edge_server_command() -> None:
     assert args.command == "serve-edge"
     assert args.transcription_backend == "local_edge"
     assert args.port == 8080
+
+
+def test_app_config_reads_standard_huggingface_token_aliases(monkeypatch) -> None:
+    monkeypatch.delenv("HUGGINGFACE_TOKEN", raising=False)
+    monkeypatch.setenv("HF_TOKEN", "hf_alias_token")
+
+    config = AppConfig()
+
+    assert config.huggingface_token == "hf_alias_token"

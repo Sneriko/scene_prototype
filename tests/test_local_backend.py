@@ -1,4 +1,5 @@
 import sys
+from pathlib import Path
 import types
 
 from ambulance_case_backend.config import AppConfig
@@ -32,7 +33,7 @@ def test_diarization_pipeline_uses_pyannote_token_keyword(monkeypatch) -> None:
     assert pipeline == "fake-pipeline"
     assert captured_kwargs == {
         "model_id": "pyannote/speaker-diarization-3.1",
-        "token": "hf_test_token",
+        "use_auth_token": "hf_test_token",
     }
 
 
@@ -87,3 +88,67 @@ def test_transcript_without_speaker_diarization_uses_chunks() -> None:
     )
     assert diarized.speakers == ["speaker_unknown"]
     assert [segment.text for segment in diarized.segments] == ["Hej.", "Ont i bröstet."]
+
+
+def test_local_audio_decoder_error_mentions_demo_m4a(monkeypatch) -> None:
+    monkeypatch.setattr("ambulance_case_backend.local_backend.shutil.which", lambda name: None)
+
+    try:
+        LocalKBWhisperBackend._validate_local_audio_decoder()
+    except RuntimeError as exc:
+        message = str(exc)
+    else:  # pragma: no cover - defensive assertion helper
+        raise AssertionError("Expected missing ffmpeg to raise RuntimeError")
+
+    assert "ffmpeg" in message
+    assert "demo .m4a recordings" in message
+    assert "not that the repo audio is in the wrong format" in message
+
+
+def test_huggingface_access_error_detects_segmentation_download_failure() -> None:
+    exc = RuntimeError("Could not download Model from pyannote/segmentation-3.0")
+
+    assert LocalKBWhisperBackend._is_huggingface_access_error(exc)
+
+
+def test_diarization_pipeline_falls_back_to_token_keyword_for_newer_pyannote(monkeypatch) -> None:
+    captured_kwargs = {}
+
+    class FakePipeline:
+        @classmethod
+        def from_pretrained(cls, model_id, **kwargs):
+            if "use_auth_token" in kwargs:
+                raise TypeError("unexpected keyword argument 'use_auth_token'")
+            captured_kwargs["model_id"] = model_id
+            captured_kwargs.update(kwargs)
+            return "fake-pipeline"
+
+    backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
+    backend.config = AppConfig(huggingface_token="hf_test_token")
+
+    pipeline = backend._load_pyannote_pipeline(FakePipeline)
+
+    assert pipeline == "fake-pipeline"
+    assert captured_kwargs == {
+        "model_id": "pyannote/speaker-diarization-3.1",
+        "token": "hf_test_token",
+    }
+
+
+def test_run_asr_rewrites_transformers_decoder_error() -> None:
+    class FakeASR:
+        def __call__(self, *args, **kwargs):
+            raise ValueError("Soundfile is either not in the correct format or is malformed")
+
+    backend = LocalKBWhisperBackend.__new__(LocalKBWhisperBackend)
+    backend._asr_pipeline = FakeASR()
+
+    try:
+        backend._run_asr(Path("data/ljudfiler/Journal 1.m4a"))
+    except RuntimeError as exc:
+        message = str(exc)
+    else:  # pragma: no cover - defensive assertion helper
+        raise AssertionError("Expected decoder ValueError to be rewritten")
+
+    assert "valid MPEG-4/M4A" in message
+    assert "ffmpeg" in message

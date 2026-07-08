@@ -167,6 +167,14 @@ Run with local KB Whisper transcription:
 ambulance-case run --case-id 3 --output-dir outputs --transcription-backend local_kb_whisper --kb-whisper-size large
 ```
 
+Local KB Whisper requires an `ffmpeg` executable on `PATH` to decode the bundled `.m4a` demo recordings.
+The recordings are MPEG-4/M4A files, so a "malformed soundfile" error usually means `ffmpeg` is missing
+or not visible to the Python environment, not that the demo audio is corrupt.
+
+Speaker diarization also requires a Hugging Face token exported as `HUGGINGFACE_TOKEN`, `HF_TOKEN`, or
+`HUGGINGFACE_HUB_TOKEN`, with accepted user conditions for both `pyannote/speaker-diarization-3.1` and
+`pyannote/segmentation-3.0`.
+
 Generated files are written as:
 
 ```text

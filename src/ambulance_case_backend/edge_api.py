@@ -103,10 +103,36 @@ def case_output_from_dict(payload: dict, *, fallback_audio_path: Path) -> CaseOu
     )
 
 
-def load_demo_output(config: AppConfig, case_id: int) -> CaseOutput:
-    output_path = config.output_dir / f"case_{case_id:02d}.json"
+def demo_output_catalogs(config: AppConfig) -> list[dict[str, str]]:
+    catalogs = [{"id": "default", "label": "Prepared outputs", "path": str(config.output_dir)}]
+    if config.output_dir.exists():
+        for candidate in sorted(path for path in config.output_dir.iterdir() if path.is_dir()):
+            if any(candidate.glob("case_*.json")):
+                label = candidate.name.replace("-", " ").replace("_", " ").title()
+                catalogs.append({"id": candidate.name, "label": label, "path": str(candidate)})
+    return catalogs
+
+
+def demo_output_dir(config: AppConfig, catalog: str = "default") -> Path:
+    if catalog == "default":
+        return config.output_dir
+    if any(separator in catalog for separator in ("/", "\\")) or catalog in {"", ".", ".."}:
+        raise ValueError(f"Invalid demo output catalog: {catalog}")
+    output_dir = config.output_dir / catalog
+    try:
+        output_dir.resolve().relative_to(config.output_dir.resolve())
+    except ValueError as exc:
+        raise ValueError(f"Invalid demo output catalog: {catalog}") from exc
+    if not output_dir.is_dir():
+        raise FileNotFoundError(f"No demo output catalog exists for {catalog!r}.")
+    return output_dir
+
+
+def load_demo_output(config: AppConfig, case_id: int, catalog: str = "default") -> CaseOutput:
+    output_dir = demo_output_dir(config, catalog)
+    output_path = output_dir / f"case_{case_id:02d}.json"
     if not output_path.exists():
-        raise FileNotFoundError(f"No generated demo output exists for case {case_id}.")
+        raise FileNotFoundError(f"No generated demo output exists for case {case_id} in catalog {catalog!r}.")
     audio_path = config.audio_dir / f"Journal {case_id}.m4a"
     return case_output_from_dict(
         json.loads(output_path.read_text(encoding="utf-8")),
@@ -136,7 +162,7 @@ def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseO
 
 
 def create_app(config: AppConfig | None = None):
-    from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
+    from fastapi import BackgroundTasks, FastAPI, File, HTTPException, Query, UploadFile
     from fastapi.responses import FileResponse, Response
     from fastapi.staticfiles import StaticFiles
 
@@ -164,51 +190,75 @@ def create_app(config: AppConfig | None = None):
             "local_llm_model": app_config.local_llm_model,
         }
 
+    @app.get("/demo-output-catalogs")
+    def output_catalogs():
+        return {"catalogs": demo_output_catalogs(app_config)}
+
     @app.get("/demo-cases")
     def demo_cases():
+        catalogs = demo_output_catalogs(app_config)
         cases = []
         for case_assets in repository.list_cases():
-            output_path = app_config.output_dir / f"case_{case_assets.case_id:02d}.json"
+            outputs = {
+                catalog["id"]: (demo_output_dir(app_config, catalog["id"]) / f"case_{case_assets.case_id:02d}.json").exists()
+                for catalog in catalogs
+            }
             cases.append(
                 {
                     "case_id": case_assets.case_id,
                     "label": f"Demo case {case_assets.case_id}",
                     "audio_file": case_assets.audio_path.name,
                     "journal_file": case_assets.journal_path.name,
-                    "has_output": output_path.exists(),
+                    "audio_url": f"/demo-cases/{case_assets.case_id}/audio",
+                    "has_output": any(outputs.values()),
+                    "outputs": outputs,
                 }
             )
         return {"cases": cases}
 
-    @app.get("/demo-cases/{case_id}/output")
-    def demo_case_output(case_id: int):
+    @app.get("/demo-cases/{case_id}/audio")
+    def demo_case_audio(case_id: int):
         try:
-            return json.loads(load_demo_output(app_config, case_id).to_json())
+            case_assets = repository.get_case(case_id)
+        except StopIteration as exc:
+            raise HTTPException(status_code=404, detail=f"No demo case audio exists for case {case_id}.") from exc
+        return FileResponse(case_assets.audio_path, media_type="audio/mp4", filename=case_assets.audio_path.name)
+
+    @app.get("/demo-cases/{case_id}/output")
+    def demo_case_output(case_id: int, catalog: str = Query(default="default")):
+        try:
+            return json.loads(load_demo_output(app_config, case_id, catalog=catalog).to_json())
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
         except FileNotFoundError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 
     @app.get("/demo-cases/{case_id}/treatment.pdf")
-    def demo_treatment_pdf(case_id: int):
+    def demo_treatment_pdf(case_id: int, catalog: str = Query(default="default")):
         try:
-            payload = treatment_pdf(load_demo_output(app_config, case_id))
+            payload = treatment_pdf(load_demo_output(app_config, case_id, catalog=catalog))
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
         except FileNotFoundError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
         return Response(
             payload,
             media_type="application/pdf",
-            headers={"Content-Disposition": f'inline; filename="case-{case_id}-treatment.pdf"'},
+            headers={"Content-Disposition": f'inline; filename="case-{case_id}-{catalog}-treatment.pdf"'},
         )
 
     @app.get("/demo-cases/{case_id}/journal.pdf")
-    def demo_journal_pdf(case_id: int):
+    def demo_journal_pdf(case_id: int, catalog: str = Query(default="default")):
         try:
-            payload = journal_pdf(load_demo_output(app_config, case_id))
+            payload = journal_pdf(load_demo_output(app_config, case_id, catalog=catalog))
+        except ValueError as exc:
+            raise HTTPException(status_code=400, detail=str(exc)) from exc
         except FileNotFoundError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
         return Response(
             payload,
             media_type="application/pdf",
-            headers={"Content-Disposition": f'inline; filename="case-{case_id}-journal.pdf"'},
+            headers={"Content-Disposition": f'inline; filename="case-{case_id}-{catalog}-journal.pdf"'},
         )
 
     @app.post("/cases")

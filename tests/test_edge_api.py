@@ -2,7 +2,7 @@ from io import BytesIO
 from pathlib import Path
 
 from ambulance_case_backend.config import AppConfig
-from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, load_demo_output, process_case
+from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, demo_output_catalogs, load_demo_output, process_case
 from ambulance_case_backend.pdf_export import treatment_pdf
 
 
@@ -81,3 +81,38 @@ def test_demo_pdf_endpoints_return_pdf_documents() -> None:
 
     assert payload.startswith(b"%PDF")
     assert b"%%EOF" in payload
+
+
+def test_demo_output_catalogs_include_comparison_subdirectories(tmp_path: Path) -> None:
+    config = AppConfig()
+    config.output_dir = tmp_path
+    (tmp_path / "local-qwen").mkdir()
+    (tmp_path / "local-qwen" / "case_01.json").write_text("{}", encoding="utf-8")
+    (tmp_path / "notes").mkdir()
+
+    catalogs = demo_output_catalogs(config)
+
+    assert [catalog["id"] for catalog in catalogs] == ["default", "local-qwen"]
+    assert catalogs[1]["label"] == "Local Qwen"
+
+
+def test_demo_output_can_be_loaded_from_comparison_catalog(tmp_path: Path) -> None:
+    config = AppConfig()
+    config.output_dir = tmp_path
+    comparison_dir = tmp_path / "local-qwen"
+    comparison_dir.mkdir()
+    (comparison_dir / "case_01.json").write_text(
+        """{
+          "case_id": 1,
+          "raw_transcript": "Local transcript",
+          "diarized_transcript": {"summary": "", "speakers": [], "segments": []},
+          "treatment_suggestions": [],
+          "drafted_journal": "Local Qwen journal"
+        }""",
+        encoding="utf-8",
+    )
+
+    result = load_demo_output(config, 1, catalog="local-qwen")
+
+    assert result.raw_transcript == "Local transcript"
+    assert result.drafted_journal == "Local Qwen journal"

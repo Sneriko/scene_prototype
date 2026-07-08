@@ -1,118 +1,125 @@
-# ambulance-case-backend
+# Ambulance AI Copilot POC
 
-Python backend package for processing ambulance case recordings with OpenAI or a local KB Whisper transcription backend.
+A proof-of-concept demo for turning ambulance conversations into structured treatment support and a draft ambulance journal.
 
-## Features
+The app now has two demo-friendly workflows:
 
-- Discovers paired audio recordings and ground-truth journals from the `data/` folder.
-- Extracts treatment instructions from the supplied PDF.
-- Transcribes ambulance case recordings.
-- Supports:
-  - OpenAI transcription (`gpt-4o-transcribe`), or
-  - local KB Whisper transcription (`KBLab/kb-whisper-*`).
-- Can diarize locally with `pyannote.audio` when using KB Whisper.
-- Generates treatment suggestions grounded in the treatment instructions.
-- Drafts a journal that matches the style of the provided example journals.
-- Excludes the target journal from the in-context examples when generating output for its matching recording.
+1. **Finished demo cases** — load existing generated outputs from `outputs/` directly in the browser, bypassing recording. This is intended for coworker/investor demos where you want a reliable, repeatable walkthrough.
+2. **Live recording** — record audio in the browser, upload chunks to the local edge API, and process the recording through the configured backend. This is the intended future ambulance workflow.
+
+The backend still supports both a fully local edge path and an OpenAI-powered comparison path.
+
+## What the POC shows
+
+- A polished browser demo UI served by the local FastAPI edge server.
+- Demo-case loading from the existing `data/` and `outputs/` folders.
+- Live browser audio recording for future ambulance use.
+- Suggested treatment instructions rendered in the UI and exposed as a displayable PDF.
+- Draft ambulance journal rendered in the UI and exposed as a displayable PDF.
+- Backend modes for:
+  - fully local edge processing (`local_edge`),
+  - local KB Whisper transcription with OpenAI generation (`local_kb_whisper`),
+  - OpenAI transcription/generation (`openai`).
+
+## Repository layout
+
+```text
+src/ambulance_case_backend/
+├── cli.py                 # CLI entry point: run cases or serve the demo app
+├── config.py              # paths, environment variables, model/backend settings
+├── data_access.py         # discovers demo journals/audio from data/
+├── edge_api.py            # FastAPI app, demo endpoints, recording endpoints, PDF endpoints
+├── frontend/              # browser POC UI
+├── local_backend.py       # local KB Whisper + optional pyannote diarization
+├── local_llm_backend.py   # local OpenAI-compatible LLM generation
+├── models.py              # dataclasses for transcripts, suggestions, and final output
+├── openai_client.py       # OpenAI transcription, diarization, and generation backend
+├── pdf_export.py          # lightweight PDF rendering for treatment/journal outputs
+├── pdf_utils.py           # treatment-guideline PDF text extraction
+├── pipeline.py            # orchestration pipeline
+└── prompting.py           # shared prompts for diarization and case generation
+```
 
 ## Installation
+
+Install the base package:
 
 ```bash
 pip install -e .
 ```
 
-For local KB Whisper transcription + diarization support:
+Install developer/test dependencies:
 
 ```bash
-pip install -e .[local_asr]
+pip install -e '.[dev]'
 ```
 
-Set environment variables:
+Install local ASR/diarization dependencies:
 
 ```bash
-export OPENAI_API_KEY=your_key_here
+pip install -e '.[local_asr]'
 ```
 
-Speaker diarization uses the gated `pyannote/speaker-diarization-3.1` model when it is available. To enable real speaker labels, create a Hugging Face access token, accept/request access to the pyannote model terms on Hugging Face, and export the token before starting the backend:
-
-```bash
-export HUGGINGFACE_TOKEN=your_hf_token
-```
-
-If the token is missing or does not have access to the gated pyannote repo, local KB Whisper transcription still runs and the backend returns `speaker_unknown` transcript segments instead of failing the frontend request.
-
-If you see a `torchcodec is not installed correctly` warning from pyannote, that is an FFmpeg/TorchCodec audio-decoder warning rather than a missing Hugging Face token. The backend loads diarization audio into memory with `soundfile` before passing it to pyannote so the diarization path does not rely on TorchCodec for decoding uploaded recordings.
-
-## CLI usage
-
-Run the full pipeline for one case number (OpenAI transcription):
-
-```bash
-ambulance-case run --case-id 3
-```
-
-Run with local KB Whisper transcription + speaker diarization:
-
-```bash
-ambulance-case run --case-id 3 --transcription-backend local_kb_whisper --kb-whisper-size large
-```
-
-Available KB Whisper size options: `tiny`, `base`, `small`, `medium`, `large`.
-
-Write outputs to a custom directory:
-
-```bash
-ambulance-case run --case-id 3 --output-dir outputs
-```
-
-## Notes
-
-- The package is structured as backend-only code so a frontend can be added later.
-- The transcription and generation steps are intentionally separated so they can be swapped or cached later.
-- `pypdf` is required at runtime to read the treatment-instruction PDF.
-- Even in local transcription mode, the final treatment suggestions/journal drafting currently uses OpenAI chat completion models.
-
-## Edge API and local ambulance UI
-
-Install the API/frontend dependencies:
+Install the full edge API/frontend stack:
 
 ```bash
 pip install -e '.[edge]'
 ```
 
-Serve the local ambulance API and browser UI:
+## Running the demo UI
+
+Start the edge API and browser UI:
 
 ```bash
 ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
 ```
 
-`local_edge` uses local KB Whisper/pyannote for transcription/diarization and a local OpenAI-compatible LLM endpoint configured with `LOCAL_LLM_BASE_URL`, `LOCAL_LLM_MODEL`, and `LOCAL_LLM_API_KEY`. The default endpoint is `http://127.0.0.1:8001/v1`, so start an OpenAI-compatible local LLM server (for example vLLM, llama.cpp server, or Ollama's OpenAI-compatible API) before processing a recording, or point `LOCAL_LLM_BASE_URL` at the server you already run. The `edge` extra includes the local ASR/diarization packages (`transformers`, `torch`, and `pyannote.audio`) required by that mode.
+Then open:
 
-If the browser shows `<urlopen error [Errno 111] Connection refused>` or a newer `Cannot connect to the configured local LLM endpoint` message after transcription completes, the API is running but the configured local LLM server is not reachable. Transcription has likely started or completed; the failure is in the local journal/treatment-generation step. Start the local LLM server and restart `ambulance-case serve-edge`, or export a matching endpoint first.
-
-### Local LLM quick start with Ollama
-
-Ollama is the simplest way to run an OpenAI-compatible local LLM endpoint for development. Run these commands in WSL/Linux before starting `ambulance-case serve-edge`:
-
-```bash
-# 1. Install Ollama if it is not already installed.
-curl -fsSL https://ollama.com/install.sh | sh
-
-# 2. Start the Ollama server. Keep this terminal open.
-ollama serve
+```text
+http://127.0.0.1:8080
 ```
 
-Open a second terminal and download a model:
+The landing page automatically loads the first available finished demo case from `outputs/` and shows:
 
-```bash
-# qwen2.5:7b is a reasonable first model. Use qwen2.5:3b on slower/smaller machines.
-ollama pull qwen2.5:7b
+- suggested treatment instructions,
+- draft journal text,
+- an inline treatment PDF,
+- an inline journal PDF,
+- links to open each PDF in a new tab.
 
-# Confirm the OpenAI-compatible API is reachable.
-curl http://127.0.0.1:11434/v1/models
-```
+## Demo-case mode
 
-Then start the ambulance edge backend in the same shell where you set the environment variables:
+Demo-case mode is for reliable presentations. It uses the checked-in/generated JSON files in `outputs/` and does not call a transcription or LLM backend.
+
+The frontend calls:
+
+- `GET /demo-cases` to list demo cases found in `data/`,
+- `GET /demo-cases/{case_id}/output` to load the finished JSON output,
+- `GET /demo-cases/{case_id}/treatment.pdf` to display treatment suggestions as a PDF,
+- `GET /demo-cases/{case_id}/journal.pdf` to display the draft journal as a PDF.
+
+This keeps demo playback stable even when model services are unavailable.
+
+## Live recording mode
+
+Live recording mode is the future production workflow. The browser records microphone audio using `MediaRecorder`, uploads chunks to the edge server, finishes the recording, and polls for output.
+
+The frontend calls:
+
+- `POST /cases` to create a recording case,
+- `POST /cases/{case_id}/audio-chunks` to upload audio chunks,
+- `POST /cases/{case_id}/finish-recording` to assemble chunks and start processing,
+- `GET /cases/{case_id}/status` to poll processing status,
+- `GET /cases/{case_id}/output` to fetch the final JSON,
+- `GET /cases/{case_id}/treatment.pdf` to display the treatment PDF,
+- `GET /cases/{case_id}/journal.pdf` to display the journal PDF.
+
+## Backend modes
+
+### Fully local edge mode
+
+Use this for the intended privacy-preserving ambulance architecture:
 
 ```bash
 export LOCAL_LLM_BASE_URL=http://127.0.0.1:11434/v1
@@ -120,9 +127,97 @@ export LOCAL_LLM_MODEL=qwen2.5:7b
 ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
 ```
 
-If `ollama serve` says the address is already in use, Ollama is already running; keep it running and continue with `ollama pull ...`, the `export ...` commands, and `ambulance-case serve-edge`.
+`local_edge` uses:
 
-## Deployment planning
+- KB Whisper for transcription,
+- pyannote for speaker diarization when `HUGGINGFACE_TOKEN` is configured,
+- a local OpenAI-compatible LLM endpoint for treatment/journal generation.
 
-For a privacy-preserving ambulance setup with a Windows recording UI and an NVIDIA Spark edge server, see [`docs/ambulance_edge_deployment.md`](docs/ambulance_edge_deployment.md).
+If pyannote access is unavailable, transcription still works and segments are labeled as `speaker_unknown`.
 
+### Local transcription with OpenAI generation
+
+Use this for a hybrid comparison:
+
+```bash
+export OPENAI_API_KEY=your_key_here
+ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_kb_whisper
+```
+
+### OpenAI comparison mode
+
+Use this when you want the whole processing pipeline to run through OpenAI APIs:
+
+```bash
+export OPENAI_API_KEY=your_key_here
+ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend openai
+```
+
+## Generating or refreshing demo outputs
+
+Run the pipeline for an existing case:
+
+```bash
+ambulance-case run --case-id 3 --output-dir outputs --transcription-backend openai
+```
+
+Run with local KB Whisper transcription:
+
+```bash
+ambulance-case run --case-id 3 --output-dir outputs --transcription-backend local_kb_whisper --kb-whisper-size large
+```
+
+Generated files are written as:
+
+```text
+outputs/case_03.json
+```
+
+The demo UI will pick them up automatically.
+
+## Local LLM quick start with Ollama
+
+Install and start Ollama:
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+ollama serve
+```
+
+In a second terminal:
+
+```bash
+ollama pull qwen2.5:7b
+curl http://127.0.0.1:11434/v1/models
+```
+
+Then run the edge app:
+
+```bash
+export LOCAL_LLM_BASE_URL=http://127.0.0.1:11434/v1
+export LOCAL_LLM_MODEL=qwen2.5:7b
+ambulance-case serve-edge --host 0.0.0.0 --port 8080 --transcription-backend local_edge
+```
+
+If `ollama serve` says the address is already in use, Ollama is already running.
+
+## Tests
+
+Run the test suite:
+
+```bash
+pytest
+```
+
+## Deployment direction
+
+This POC is structured so the demo can be shown today while still pointing toward the intended product architecture:
+
+- browser recording in the ambulance,
+- processing on a local/edge server,
+- local transcription and diarization,
+- local LLM generation,
+- PDFs for review, sharing, or export,
+- OpenAI mode kept for demo comparison and benchmark purposes.
+
+For broader deployment planning, see `docs/ambulance_edge_deployment.md`.

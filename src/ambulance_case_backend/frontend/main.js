@@ -1,45 +1,123 @@
 let mediaRecorder;
 let caseId;
 let chunkNumber = 0;
+let activeMode = 'demo';
+
 const startButton = document.getElementById('start');
 const stopButton = document.getElementById('stop');
 const statusBox = document.getElementById('status');
-const outputBox = document.getElementById('output');
+const runtimeBox = document.getElementById('runtime');
+const demoSelect = document.getElementById('demoCases');
+const loadDemoButton = document.getElementById('loadDemo');
+const demoTab = document.getElementById('demoTab');
+const recordTab = document.getElementById('recordTab');
+const demoPanel = document.getElementById('demoPanel');
+const recordPanel = document.getElementById('recordPanel');
+const caseMeta = document.getElementById('caseMeta');
+const suggestionsBox = document.getElementById('suggestions');
+const journalBox = document.getElementById('journal');
+const pdfSection = document.getElementById('pdfSection');
+const pdfLinks = document.getElementById('pdfLinks');
+const treatmentFrame = document.getElementById('treatmentFrame');
+const journalFrame = document.getElementById('journalFrame');
 
 function setStatus(message) { statusBox.textContent = message; }
 
-async function createCase() {
-  const response = await fetch('/cases', { method: 'POST' });
+function setMode(mode) {
+  activeMode = mode;
+  demoPanel.classList.toggle('hidden', mode !== 'demo');
+  recordPanel.classList.toggle('hidden', mode !== 'record');
+  demoTab.classList.toggle('active', mode === 'demo');
+  recordTab.classList.toggle('active', mode === 'record');
+}
+
+async function jsonFetch(url, options) {
+  const response = await fetch(url, options);
   if (!response.ok) throw new Error(await response.text());
   return response.json();
+}
+
+async function loadRuntime() {
+  try {
+    const health = await jsonFetch('/health');
+    runtimeBox.textContent = `${health.backend} backend · local model ${health.local_llm_model}`;
+  } catch (error) {
+    runtimeBox.textContent = `Backend unavailable: ${error.message}`;
+  }
+}
+
+async function loadDemoCases() {
+  const payload = await jsonFetch('/demo-cases');
+  demoSelect.innerHTML = '';
+  payload.cases.forEach(item => {
+    const option = document.createElement('option');
+    option.value = item.case_id;
+    option.disabled = !item.has_output;
+    option.textContent = `${item.label} · ${item.has_output ? 'ready' : 'missing generated output'}`;
+    demoSelect.appendChild(option);
+  });
+}
+
+function renderOutput(output, pdfBaseUrl) {
+  caseMeta.textContent = `Case ${output.case_id} · ${output.audio_path}`;
+  suggestionsBox.innerHTML = '<h3>Suggested treatment instructions</h3>';
+  output.treatment_suggestions.forEach(suggestion => {
+    const card = document.createElement('article');
+    card.className = 'suggestion';
+    card.innerHTML = `<span class="badge">${suggestion.urgency || 'review'}</span><h4>${suggestion.title}</h4><p>${suggestion.rationale}</p>`;
+    suggestionsBox.appendChild(card);
+  });
+  journalBox.textContent = output.drafted_journal || 'No journal text returned.';
+
+  const treatmentUrl = `${pdfBaseUrl}/treatment.pdf`;
+  const journalUrl = `${pdfBaseUrl}/journal.pdf`;
+  pdfLinks.innerHTML = `
+    <a class="button primary" href="${treatmentUrl}" target="_blank" rel="noreferrer">Open treatment PDF</a>
+    <a class="button secondary" href="${journalUrl}" target="_blank" rel="noreferrer">Open journal PDF</a>
+  `;
+  treatmentFrame.src = treatmentUrl;
+  journalFrame.src = journalUrl;
+  pdfSection.classList.remove('hidden');
+}
+
+async function loadSelectedDemo() {
+  const selectedCase = demoSelect.value;
+  if (!selectedCase) return;
+  setStatus(`Loading demo case ${selectedCase}...`);
+  const output = await jsonFetch(`/demo-cases/${selectedCase}/output`);
+  renderOutput(output, `/demo-cases/${selectedCase}`);
+  setStatus(`Demo case ${selectedCase} ready.`);
+}
+
+async function createCase() {
+  return jsonFetch('/cases', { method: 'POST' });
 }
 
 async function uploadChunk(blob) {
   const formData = new FormData();
   formData.append('file', blob, `chunk-${chunkNumber}.webm`);
-  const response = await fetch(`/cases/${caseId}/audio-chunks?chunk_number=${chunkNumber}`, {
-    method: 'POST',
-    body: formData,
-  });
+  await jsonFetch(`/cases/${caseId}/audio-chunks?chunk_number=${chunkNumber}`, { method: 'POST', body: formData });
   chunkNumber += 1;
-  if (!response.ok) throw new Error(await response.text());
 }
 
 async function pollOutput() {
-  const statusResponse = await fetch(`/cases/${caseId}/status`);
-  const statusPayload = await statusResponse.json();
+  const statusPayload = await jsonFetch(`/cases/${caseId}/status`);
   setStatus(`Case ${caseId}: ${statusPayload.status}`);
   if (statusPayload.status === 'ready') {
-    const outputResponse = await fetch(`/cases/${caseId}/output`);
-    outputBox.textContent = JSON.stringify(await outputResponse.json(), null, 2);
+    const output = await jsonFetch(`/cases/${caseId}/output`);
+    renderOutput(output, `/cases/${caseId}`);
     return;
   }
   if (statusPayload.status === 'failed') {
-    outputBox.textContent = statusPayload.error || 'Processing failed.';
+    journalBox.textContent = statusPayload.error || 'Processing failed.';
     return;
   }
   setTimeout(pollOutput, 1500);
 }
+
+demoTab.addEventListener('click', () => setMode('demo'));
+recordTab.addEventListener('click', () => setMode('record'));
+loadDemoButton.addEventListener('click', () => loadSelectedDemo().catch(error => setStatus(error.message)));
 
 startButton.addEventListener('click', async () => {
   const created = await createCase();
@@ -63,8 +141,10 @@ stopButton.addEventListener('click', async () => {
   stopButton.disabled = true;
   setStatus('Finishing recording...');
   setTimeout(async () => {
-    const response = await fetch(`/cases/${caseId}/finish-recording`, { method: 'POST' });
-    if (!response.ok) throw new Error(await response.text());
+    await jsonFetch(`/cases/${caseId}/finish-recording`, { method: 'POST' });
     pollOutput();
   }, 500);
 });
+
+loadRuntime();
+loadDemoCases().then(loadSelectedDemo).catch(error => setStatus(error.message));

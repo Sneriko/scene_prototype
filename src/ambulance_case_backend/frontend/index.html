@@ -3,24 +3,115 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ambulance Edge Recorder</title>
+  <title>Ambulance AI Copilot Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
   <style>
-    body { font-family: system-ui, sans-serif; margin: 2rem; max-width: 900px; }
-    button { font-size: 1rem; margin-right: .5rem; padding: .7rem 1rem; }
-    pre, textarea { width: 100%; min-height: 12rem; }
-    .status { padding: .75rem; background: #eef; margin: 1rem 0; }
+    :root { color-scheme: light; --bg:#eef4f8; --ink:#102033; --muted:#64748b; --card:#fff; --accent:#0f766e; --accent-2:#2563eb; --line:#d8e2ea; --danger:#be123c; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background:linear-gradient(135deg,#edf7f5 0%,#f8fbff 45%,#eef4f8 100%); color:var(--ink); }
+    header { padding:2rem clamp(1rem,4vw,4rem); background:radial-gradient(circle at top right,#99f6e4 0,#eff6ff 35%,transparent 65%); }
+    .hero { max-width:1180px; margin:auto; display:grid; grid-template-columns:1.2fr .8fr; gap:1.5rem; align-items:end; }
+    h1 { font-size:clamp(2rem,5vw,4.5rem); line-height:.95; margin:.5rem 0; letter-spacing:-.05em; }
+    .eyebrow { color:var(--accent); font-weight:800; text-transform:uppercase; letter-spacing:.14em; }
+    .lead { color:#355064; font-size:1.15rem; max-width:720px; }
+    .panel, .card { background:rgba(255,255,255,.86); border:1px solid var(--line); border-radius:24px; box-shadow:0 20px 60px rgba(15,35,55,.08); }
+    .panel { padding:1.25rem; }
+    main { max-width:1180px; margin:-1rem auto 3rem; padding:0 clamp(1rem,4vw,2rem); display:grid; gap:1rem; }
+    .grid { display:grid; grid-template-columns:390px 1fr; gap:1rem; align-items:start; }
+    .card { padding:1rem; }
+    button, select, a.button { border:0; border-radius:999px; padding:.8rem 1rem; font-weight:800; cursor:pointer; text-decoration:none; display:inline-flex; gap:.5rem; align-items:center; justify-content:center; }
+    button.primary, a.primary { background:var(--accent); color:white; }
+    button.secondary, a.secondary { background:#dbeafe; color:#1d4ed8; }
+    button.danger { background:#ffe4e6; color:var(--danger); }
+    button:disabled { opacity:.5; cursor:not-allowed; }
+    select { width:100%; background:#f8fafc; border:1px solid var(--line); color:var(--ink); border-radius:14px; cursor:default; }
+    .actions { display:flex; flex-wrap:wrap; gap:.65rem; margin-top:1rem; }
+    .status { margin-top:1rem; padding:.85rem 1rem; border-radius:16px; background:#ecfeff; color:#155e75; border:1px solid #a5f3fc; font-weight:700; }
+    .muted { color:var(--muted); }
+    .metric { display:grid; grid-template-columns:repeat(3,1fr); gap:.75rem; margin-top:1rem; }
+    .metric div { background:#f8fafc; border:1px solid var(--line); border-radius:16px; padding:.8rem; }
+    .metric b { display:block; font-size:1.3rem; }
+    .output-grid { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+    .suggestion { border:1px solid var(--line); border-radius:16px; padding:1rem; margin:.75rem 0; background:#fbfdff; }
+    .badge { display:inline-flex; padding:.25rem .6rem; border-radius:999px; background:#ccfbf1; color:#115e59; font-size:.8rem; font-weight:900; text-transform:uppercase; }
+    pre { white-space:pre-wrap; font-family:ui-monospace, SFMono-Regular, Menlo, monospace; background:#0f172a; color:#e2e8f0; border-radius:18px; padding:1rem; overflow:auto; max-height:380px; }
+    iframe { width:100%; height:520px; border:1px solid var(--line); border-radius:18px; background:white; }
+    .tabs { display:flex; gap:.5rem; margin-bottom:1rem; flex-wrap:wrap; }
+    .tab { background:#eef2ff; color:#3730a3; }
+    .tab.active { background:#312e81; color:white; }
+    .hidden { display:none !important; }
+    @media (max-width: 920px) { .hero, .grid, .output-grid { grid-template-columns:1fr; } main { margin-top:0; } }
   </style>
 </head>
 <body>
-  <h1>Ambulance Edge Recorder</h1>
-  <p>Records audio on this Windows device and sends chunks only to the local ambulance edge server.</p>
-  <div>
-    <button id="start">Start recording</button>
-    <button id="stop" disabled>Stop and process</button>
-  </div>
-  <div class="status" id="status">Ready.</div>
-  <h2>Case output</h2>
-  <pre id="output">No output yet.</pre>
+  <header>
+    <div class="hero">
+      <section>
+        <div class="eyebrow">Proof-of-concept demo</div>
+        <h1>Ambulance AI Copilot</h1>
+        <p class="lead">Record locally in the ambulance or load a prepared demo case. The app turns a conversation into treatment support and a clinician-review journal, with polished PDFs ready to show.</p>
+      </section>
+      <aside class="panel">
+        <strong>Runtime</strong>
+        <p id="runtime" class="muted">Checking backend...</p>
+        <div class="metric">
+          <div><b>Local</b><span class="muted">future path</span></div>
+          <div><b>OpenAI</b><span class="muted">comparison</span></div>
+          <div><b>PDF</b><span class="muted">outputs</span></div>
+        </div>
+      </aside>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid">
+      <aside class="card">
+        <div class="tabs">
+          <button class="tab active" id="demoTab">Demo cases</button>
+          <button class="tab" id="recordTab">Record audio</button>
+        </div>
+
+        <div id="demoPanel">
+          <h2>Load a finished case</h2>
+          <p class="muted">Investor-safe shortcut: bypass recording and display existing generated outputs.</p>
+          <select id="demoCases"></select>
+          <div class="actions">
+            <button class="primary" id="loadDemo">Load demo output</button>
+          </div>
+        </div>
+
+        <div id="recordPanel" class="hidden">
+          <h2>Record new audio</h2>
+          <p class="muted">Intended production workflow: record on the ambulance device and process through the configured backend.</p>
+          <div class="actions">
+            <button class="primary" id="start">Start recording</button>
+            <button class="danger" id="stop" disabled>Stop and process</button>
+          </div>
+        </div>
+
+        <div class="status" id="status">Ready.</div>
+      </aside>
+
+      <section class="card">
+        <h2>Case narrative</h2>
+        <p class="muted" id="caseMeta">Load a demo case or record audio to show the generated clinical output.</p>
+        <div id="suggestions"></div>
+        <h3>Draft journal</h3>
+        <pre id="journal">No journal loaded yet.</pre>
+      </section>
+    </section>
+
+    <section class="card hidden" id="pdfSection">
+      <h2>Display-ready PDFs</h2>
+      <p class="muted">Open these in full screen during a demo, download them, or embed them in another presentation.</p>
+      <div class="actions" id="pdfLinks"></div>
+      <div class="output-grid">
+        <div><h3>Treatment instructions</h3><iframe id="treatmentFrame" title="Treatment PDF"></iframe></div>
+        <div><h3>Draft journal</h3><iframe id="journalFrame" title="Journal PDF"></iframe></div>
+      </div>
+    </section>
+  </main>
+
   <script src="/app/main.js"></script>
 </body>
 </html>

@@ -2,7 +2,8 @@ from io import BytesIO
 from pathlib import Path
 
 from ambulance_case_backend.config import AppConfig
-from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, process_case
+from ambulance_case_backend.edge_api import CaseStatus, EdgeCaseStore, load_demo_output, process_case
+from ambulance_case_backend.pdf_export import treatment_pdf
 
 
 def test_edge_store_chunks_and_assembles_recording(tmp_path: Path) -> None:
@@ -64,3 +65,19 @@ def test_process_case_reports_generating_status_after_transcription(tmp_path: Pa
     assert result is None
     assert observed_statuses == [CaseStatus.GENERATING]
     assert edge_case.status == CaseStatus.FAILED
+
+
+def test_demo_output_can_be_loaded_from_outputs() -> None:
+    result = load_demo_output(AppConfig(), 1)
+
+    assert result.case_id == 1
+    assert result.drafted_journal
+    assert result.treatment_suggestions
+
+
+def test_demo_pdf_endpoints_return_pdf_documents() -> None:
+    result = load_demo_output(AppConfig(), 1)
+    payload = treatment_pdf(result)
+
+    assert payload.startswith(b"%PDF")
+    assert b"%%EOF" in payload

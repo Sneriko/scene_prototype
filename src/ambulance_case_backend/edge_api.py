@@ -8,7 +8,9 @@ from typing import BinaryIO
 from uuid import uuid4
 
 from .config import AppConfig
+from .data_access import DataRepository
 from .models import CaseOutput
+from .pdf_export import journal_pdf, treatment_pdf
 from .pipeline import AmbulanceCasePipeline
 
 
@@ -86,6 +88,32 @@ class EdgeCaseStore:
         edge_case.error = error
 
 
+def case_output_from_dict(payload: dict, *, fallback_audio_path: Path) -> CaseOutput:
+    from .models import DiarizedTranscript, TreatmentSuggestion
+
+    return CaseOutput(
+        case_id=int(payload["case_id"]),
+        audio_path=Path(payload.get("audio_path") or fallback_audio_path),
+        raw_transcript=str(payload.get("raw_transcript", "")),
+        diarized_transcript=DiarizedTranscript.from_dict(payload.get("diarized_transcript", {})),
+        treatment_suggestions=[
+            TreatmentSuggestion.from_dict(item) for item in payload.get("treatment_suggestions", [])
+        ],
+        drafted_journal=str(payload.get("drafted_journal", "")),
+    )
+
+
+def load_demo_output(config: AppConfig, case_id: int) -> CaseOutput:
+    output_path = config.output_dir / f"case_{case_id:02d}.json"
+    if not output_path.exists():
+        raise FileNotFoundError(f"No generated demo output exists for case {case_id}.")
+    audio_path = config.audio_dir / f"Journal {case_id}.m4a"
+    return case_output_from_dict(
+        json.loads(output_path.read_text(encoding="utf-8")),
+        fallback_audio_path=audio_path,
+    )
+
+
 def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseOutput | None:
     edge_case = store.get_case(case_id)
     if edge_case.assembled_audio is None:
@@ -109,10 +137,11 @@ def process_case(store: EdgeCaseStore, config: AppConfig, case_id: str) -> CaseO
 
 def create_app(config: AppConfig | None = None):
     from fastapi import BackgroundTasks, FastAPI, File, HTTPException, UploadFile
-    from fastapi.responses import FileResponse
+    from fastapi.responses import FileResponse, Response
     from fastapi.staticfiles import StaticFiles
 
     app_config = config or AppConfig(transcription_backend="local_edge")
+    repository = DataRepository(app_config)
     store = EdgeCaseStore(app_config.project_root / "edge_cases")
     app = FastAPI(title="Ambulance Edge API")
 
@@ -129,7 +158,58 @@ def create_app(config: AppConfig | None = None):
 
     @app.get("/health")
     def health():
-        return {"status": "ok", "backend": app_config.transcription_backend}
+        return {
+            "status": "ok",
+            "backend": app_config.transcription_backend,
+            "local_llm_model": app_config.local_llm_model,
+        }
+
+    @app.get("/demo-cases")
+    def demo_cases():
+        cases = []
+        for case_assets in repository.list_cases():
+            output_path = app_config.output_dir / f"case_{case_assets.case_id:02d}.json"
+            cases.append(
+                {
+                    "case_id": case_assets.case_id,
+                    "label": f"Demo case {case_assets.case_id}",
+                    "audio_file": case_assets.audio_path.name,
+                    "journal_file": case_assets.journal_path.name,
+                    "has_output": output_path.exists(),
+                }
+            )
+        return {"cases": cases}
+
+    @app.get("/demo-cases/{case_id}/output")
+    def demo_case_output(case_id: int):
+        try:
+            return json.loads(load_demo_output(app_config, case_id).to_json())
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.get("/demo-cases/{case_id}/treatment.pdf")
+    def demo_treatment_pdf(case_id: int):
+        try:
+            payload = treatment_pdf(load_demo_output(app_config, case_id))
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        return Response(
+            payload,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f'inline; filename="case-{case_id}-treatment.pdf"'},
+        )
+
+    @app.get("/demo-cases/{case_id}/journal.pdf")
+    def demo_journal_pdf(case_id: int):
+        try:
+            payload = journal_pdf(load_demo_output(app_config, case_id))
+        except FileNotFoundError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+        return Response(
+            payload,
+            media_type="application/pdf",
+            headers={"Content-Disposition": f'inline; filename="case-{case_id}-journal.pdf"'},
+        )
 
     @app.post("/cases")
     def create_case():
@@ -169,6 +249,34 @@ def create_app(config: AppConfig | None = None):
             if edge_case.output is None:
                 raise HTTPException(status_code=409, detail=f"Case is {edge_case.status}.")
             return json.loads(edge_case.output.to_json())
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.get("/cases/{case_id}/treatment.pdf")
+    def case_treatment_pdf(case_id: str):
+        try:
+            edge_case = store.get_case(case_id)
+            if edge_case.output is None:
+                raise HTTPException(status_code=409, detail=f"Case is {edge_case.status}.")
+            return Response(
+                treatment_pdf(edge_case.output),
+                media_type="application/pdf",
+                headers={"Content-Disposition": f'inline; filename="{case_id}-treatment.pdf"'},
+            )
+        except KeyError as exc:
+            raise HTTPException(status_code=404, detail=str(exc)) from exc
+
+    @app.get("/cases/{case_id}/journal.pdf")
+    def case_journal_pdf(case_id: str):
+        try:
+            edge_case = store.get_case(case_id)
+            if edge_case.output is None:
+                raise HTTPException(status_code=409, detail=f"Case is {edge_case.status}.")
+            return Response(
+                journal_pdf(edge_case.output),
+                media_type="application/pdf",
+                headers={"Content-Disposition": f'inline; filename="{case_id}-journal.pdf"'},
+            )
         except KeyError as exc:
             raise HTTPException(status_code=404, detail=str(exc)) from exc
 

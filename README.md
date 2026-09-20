@@ -221,3 +221,9 @@ This POC is structured so the demo can be shown today while still pointing towar
 - OpenAI mode kept for demo comparison and benchmark purposes.
 
 For broader deployment planning, see `docs/ambulance_edge_deployment.md`.
+
+## RunPod
+
+A RunPod-ready container is included for hosting the FastAPI service and demo
+UI on a Pod. See [`docs/runpod_deployment.md`](docs/runpod_deployment.md) for
+image publishing, Pod configuration, model storage, and verification steps.

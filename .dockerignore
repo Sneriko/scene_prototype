@@ -1,0 +1,12 @@
+.git
+.gitignore
+.github
+.pytest_cache
+__pycache__
+*.py[cod]
+*.egg-info
+.venv
+venv
+edge_cases
+.DS_Store
+*.log

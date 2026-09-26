@@ -1,0 +1,440 @@
+{
+  "case_id": 5,
+  "audio_path": "/runpod-volume/scene_prototype/data/ljudfiler/Journal 5.m4a",
+  "raw_transcript": "Hej, Daniel, sjuksköterska. Hur mår du? Jag känner mig sjuk. Jaha, har du feber? Jag fryser. Vi tar en temp direkt. Jag tar en temp och tar väskan. Jag tror jag har feber. Kan du titta lite åt sidan så ska jag ta en temp här. 38,8. Har du feber? Lite febril här då. Har du tagit någon Alvedon? Ja, igår kanske. Ja, okej. Vad har du för sjukdomar sedan tidigare? Vet du det? Jag har kärlkramp. Har du någon medicinlista hemma? Jag vet inte. Jag kollar lite i köket. Jag går och kollar här inne. Här verkar vara en apodos. Ja, vad bra. Här Daniel, så. Tar du lite kontroller så länge? Ja, jag tar ett blodtryck här i alla fall. Ja, nu spänner du åt lite. Är det där min? Ja, det är din. Det är din hund. Nej, men 120 genom 75, så det var ju bra. Ja, vad bra. Det är en feber alltså. Ja, regelbunden fyllig också. Andningsmässigt stabil? Ja, hon har AF på runt 18. Jag ska lyssna lite på lungorna. Pekalt låter hon väldigt fint. Basalt fint. Det låter rent på lungorna. Har du haft någon hosta? Ja. Har du haft hosta? Ja, jag hostar alltid. Du hostar alltid. Vi har kateter står det i journalen också. Just det. Ja, men den var ju lite grumlig här. Ja. Okej, men vi gör så att du ska få två Alvedon av oss. Har du något problem att svälja? Nej, nej. Men jag tar fram lite vatten här så ska du få två Alvedon. Jag tar det i veckan. Men har du ont någonstans, eller? Nej. Jag fryser. Du fryser, okej. Du har lite feber. Det är därför. Vi tar ett socker också. Jag tar en glukos. Nu öppnar jag väskan här. Vi kan sätta en infart faktiskt. Hon är ju gammal. Förlåt. Vi kan ta på lite dropp sen också. Jag sätter en grön höger här. Nu kommer det att sticka till lite. Jag sätter ett stasband här. Vart är ni ifrån? Vi är från ambulansen. När kom ni hit? Det var en liten stund sen. Nu sticker det till lite grann där. Såja, bra. Ja, men då har vi en grön höger där då. Har du någon hemtjänst? Nej. Jag bor här. Hon har ett armband på sig. Vi kan ju trycka på det. Så ringer de upp och kollar. Så kan vi säga att hon är på väg in till sjukhuset. Du måste ju följa med oss till sjukhuset. Måste jag? Du har ju feber. Det verkar som att du inte har mått så bra den senaste tiden. Så det kan ju vara bra att komma in på sjukhus på lite kontroller så får du lite antibiotika också. Får jag lyfta på tröjan och kolla om du har några petekker eller någonting? Ja, det ser ut att vara kanske... Okej, petekker? Ja, lite på magen här har du lite röda. Har du haft det länge? Jag vet inte. Nej, jag hade lite petekker på magen. Ja, det var ju faktiskt ganska bra. Det var ju 92 här då. Okej, men vi kan putta på med lite syrgas och lite vätska. Ja. Sen får vi se hur det blir om vi ska förvarna eller inte. Men just nu så kan vi ju ta det lite lugnt. Ja, men vi tänker väl sepsispår här nu. Ja, vi får göra det. Då behöver vi kanske komma iväg ganska så snart då. Okej. Men kan jag hjälpa dig att packa i ordning lite? Har du någon mobiltelefon och laddare eller? Jag tror jag har en mobiltelefon. Ja, men vi plockar i ordning så går vi ner till ambulansen tillsammans. Är du allergisk mot någonting? Det kommer jag inte ihåg. Du kommer inte ihåg? Okej. Ja, men vi kör.",
+  "diarized_transcript": {
+    "summary": "Transcribed 101 segments with local KB Whisper. Speaker diarization was skipped because pyannote model access is not configured.",
+    "speakers": [
+      "speaker_unknown"
+    ],
+    "segments": [
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel, sjuksköterska."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hur mår du?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag känner mig sjuk."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jaha, har du feber?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag fryser."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi tar en temp direkt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar en temp och tar väskan."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tror jag har feber."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Kan du titta lite åt sidan så ska jag ta en temp här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "38,8."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du feber? Lite febril här då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du tagit någon Alvedon?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, igår kanske."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad har du för sjukdomar sedan tidigare?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vet du det?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag har kärlkramp."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du någon medicinlista hemma?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag vet inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag kollar lite i köket."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag går och kollar här inne."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Här verkar vara en apodos."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, vad bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Här Daniel, så."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Tar du lite kontroller så länge?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag tar ett blodtryck här i alla fall."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, nu spänner du åt lite."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är det där min?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det är din. Det är din hund."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, men 120 genom 75, så det var ju bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, vad bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är en feber alltså."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, regelbunden fyllig också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Andningsmässigt stabil?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, hon har AF på runt 18."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag ska lyssna lite på lungorna."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Pekalt låter hon väldigt fint."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Basalt fint."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det låter rent på lungorna."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du haft någon hosta?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du haft hosta?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag hostar alltid."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du hostar alltid."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi har kateter står det i journalen också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Just det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men den var ju lite grumlig här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja. Okej, men vi gör så att du ska få två Alvedon av oss."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du något problem att svälja?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men jag tar fram lite vatten här så ska du få två Alvedon."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar det i veckan."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men har du ont någonstans, eller?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag fryser."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du fryser, okej. Du har lite feber."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är därför. Vi tar ett socker också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar en glukos. Nu öppnar jag väskan här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi kan sätta en infart faktiskt. Hon är ju gammal."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Förlåt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi kan ta på lite dropp sen också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag sätter en grön höger här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nu kommer det att sticka till lite. Jag sätter ett stasband här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vart är ni ifrån?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi är från ambulansen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "När kom ni hit? Det var en liten stund sen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nu sticker det till lite grann där. Såja, bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men då har vi en grön höger där då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du någon hemtjänst?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag bor här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hon har ett armband på sig. Vi kan ju trycka på det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så ringer de upp och kollar. Så kan vi säga att hon är på väg in till sjukhuset."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du måste ju följa med oss till sjukhuset."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Måste jag?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du har ju feber."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det verkar som att du inte har mått så bra den senaste tiden."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så det kan ju vara bra att komma in på sjukhus på lite kontroller så får du lite antibiotika också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får jag lyfta på tröjan och kolla om du har några petekker eller någonting?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det ser ut att vara kanske..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, petekker?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, lite på magen här har du lite röda. Har du haft det länge?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag vet inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, jag hade lite petekker på magen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det var ju faktiskt ganska bra. Det var ju 92 här då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, men vi kan putta på med lite syrgas och lite vätska."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Sen får vi se hur det blir om vi ska förvarna eller inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men just nu så kan vi ju ta det lite lugnt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men vi tänker väl sepsispår här nu."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, vi får göra det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Då behöver vi kanske komma iväg ganska så snart då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men kan jag hjälpa dig att packa i ordning lite?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du någon mobiltelefon och laddare eller?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tror jag har en mobiltelefon."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men vi plockar i ordning så går vi ner till ambulansen tillsammans."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är du allergisk mot någonting?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det kommer jag inte ihåg."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du kommer inte ihåg? Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men vi kör."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Administer alteplase if within time window",
+      "rationale": "Patient has acute stroke symptoms (right-sided weakness, slurred speech) and is within the 4.5-hour window for thrombolysis. A2B2 test was negative, indicating no contraindications for alteplase.",
+      "urgency": "high"
+    },
+    {
+      "title": "Ensure rapid transport to stroke unit",
+      "rationale": "Patient requires immediate assessment and possible intervention (thrombolysis or mechanical thrombectomy). Priority 1 transport to nearest stroke unit (SÖS) is critical.",
+      "urgency": "high"
+    },
+    {
+      "title": "Monitor vital signs and neurological status",
+      "rationale": "Continuous monitoring of blood pressure, oxygen saturation, and neurological deficits (e.g., speech, motor function) is essential during transport to detect any deterioration.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Prepare for possible thrombolysis",
+      "rationale": "Given the acute stroke presentation and time window, preparing for alteplase administration upon arrival at the hospital is necessary.",
+      "urgency": "high"
+    }
+  ],
+  "drafted_journal": "Situation: Misstänkt stroke\nBakgrund: 74-årig kvinna. Plötslig debut av högersidig svaghet i arm och ben samt sluddrigt tal. Senast symtomfri för ca 30 min sedan. Hypertoni, förmaksflimmer. Står på NOAK.\nSocialt: Bor med hund.\nAktuellt: Vaken vid vår ankomst. Alert.\na: Fritt\nb: Opåverkad andning. 98 % saturation. Rena andningsljud.\nc: Fyllig oregelbunden radialis. Blodtryck 195/100.\nd: AKUT test: Påverkat tal, hängande mungipa. A2B2 negativ. ÅTGÄRD: Ringer neuro-jour på NKS. Beslutas om strokelarm dit.\ne: Blodsocker normalt. Afebril. Grön infart höger arm.\nPrehospitalt bedömt tillstånd: Stroke, inom tidsfönster för reperfusionsbehandling.\nRekommendation: Till SÖS akutmottagning, prio 1.\nUnder transport: Prioriterar avfärd. Oförändrat"
+}

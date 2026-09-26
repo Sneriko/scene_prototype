@@ -1,0 +1,263 @@
+{
+  "case_id": 4,
+  "audio_path": "/runpod-volume/scene_prototype/data/ljudfiler/Journal 4.m4a",
+  "raw_transcript": "Hej, Daniel, ambulansen. Hej, Nathalie. Hej. Är det här Noel? Ja, det här är Noel. Ja, okej. Vad är det som har hänt? Alltså, jag vet inte. Han kramp... Han krampade typ för 20 minuter sedan. Okej. Hur länge höll det i sig? Ja, men fem minuter kanske. Okej. Men... Skakade han i hela kroppen? Ja, det gjorde han. Och han kissade på sig. Är han frisk sen, har han några tidigare sjukdomar? Nej, nej. Men är han sjuk nu? Ja, han har feber. Jag tar lite kontroller på honom. Nej. Det är 100 i saturation, han verkar trött. Och lite trött. Lite lungorna är okej, låter bra. Och regelbunden puls. puls och kapillär återfyllnad under två sekunder. Är han allergisk mot någonting? Nej. Har han krampat förut? Nej, det har han inte gjort. Tog du tempen? Ja, 40 grader. Har han fått Malvedon av dig? Nej, nej. Men vad väger han? Han väger 20 kilo. Och är född 21? Född 21, ja, precis. Ska jag ge lite Alvedon nu? Ja, det ska du göra. Jag kollar dosen bara. Ja, okej. Jag tror att det är 250. Dubbelkolla så ger vi det. Ja, jag dubbelkollar det. Det var en munsönderfallande. Det stämmer, jag ger det. Nej! Okej. Men Erik, vi tar och far på en gång då. Så vi får åka till sjukhuset helt enkelt. Okej, tror du det är farligt? Det tror jag inte. Jag misstänker att det är en feberkramp, det är det tillståndet jag bedömer nu, men man måste alltid kolla det på sjukhus. Okej. Så vi åker till barnakuten på Huddinge. Okej, bra.",
+  "diarized_transcript": {
+    "summary": "Transcribed 58 segments with local KB Whisper. Speaker diarization was skipped because pyannote model access is not configured.",
+    "speakers": [
+      "speaker_unknown"
+    ],
+    "segments": [
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel, ambulansen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Nathalie."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är det här Noel?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det här är Noel."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, okej. Vad är det som har hänt?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Alltså, jag vet inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Han kramp..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Han krampade typ för 20 minuter sedan."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hur länge höll det i sig?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men fem minuter kanske."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Skakade han i hela kroppen?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det gjorde han."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och han kissade på sig."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är han frisk sen, har han några tidigare sjukdomar?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men är han sjuk nu?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, han har feber."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar lite kontroller på honom."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är 100 i saturation, han verkar trött."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och lite trött."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Lite lungorna är okej, låter bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och regelbunden puls."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "puls och kapillär återfyllnad under två sekunder."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är han allergisk mot någonting?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har han krampat förut?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, det har han inte gjort."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Tog du tempen?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, 40 grader."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har han fått Malvedon av dig?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men vad väger han?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Han väger 20 kilo."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och är född 21?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Född 21, ja, precis."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ska jag ge lite Alvedon nu?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det ska du göra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag kollar dosen bara."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tror att det är 250."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Dubbelkolla så ger vi det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag dubbelkollar det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det var en munsönderfallande."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det stämmer, jag ger det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej!"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men Erik, vi tar och far på en gång då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så vi får åka till sjukhuset helt enkelt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, tror du det är farligt?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det tror jag inte. Jag misstänker att det är en feberkramp, det är det tillståndet jag bedömer nu, men man måste alltid kolla det på sjukhus."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så vi åker till barnakuten på Huddinge."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, bra."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Administer Paracetamol for Fever Control",
+      "rationale": "To reduce fever and prevent complications from high temperature, which is critical in managing febrile seizures and preventing further episodes.",
+      "urgency": "high"
+    },
+    {
+      "title": "Continuous Monitoring During Transport",
+      "rationale": "To ensure the patient remains stable and to detect any signs of complications such as prolonged seizure activity or respiratory distress during transit.",
+      "urgency": "high"
+    },
+    {
+      "title": "Transport to Pediatric Emergency Department",
+      "rationale": "For further evaluation to rule out underlying infections, meningitis, or other serious conditions that may require hospitalization.",
+      "urgency": "high"
+    }
+  ],
+  "drafted_journal": "Situation: Febrile seizure. Bakgrund: 21-årig pojke. Plötslig debut av feber och kramp. Socialt: Ingen känd tidigare sjukdom. Aktuellt: Vaken vid vår ankomst. a: Fritt. b: Rena andningsljud, saturation 100 %. c: Blodtryck 120/75, regelbunden puls. d: AKUT test: Alert, men trött. Åtgärd: Ger Alvedon (paracetamol) för feberkontroll. e: Temp 40°C, inga andra symtom. Prehospitalt bedömt tillstånd: Feberkramp, behov av vidare utredning. Rekommendation: Till barnakuten på Huddinge för vidare vård. Under transport: Kontinuerlig övervakning, god effekt av paracetamol."
+}

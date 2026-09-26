@@ -1,0 +1,277 @@
+{
+  "case_id": 3,
+  "audio_path": "/runpod-volume/scene_prototype/data/ljudfiler/Journal 3.m4a",
+  "raw_transcript": "Hallå Daniel! Daniel är sjuksköterska. Hej, Per heter jag och jobbar som ambulanssjukvårdare. Vad heter du? Jag heter Birgitta. Vad har hänt med dig då, Birgitta? Jag har svar i höger arm. Oj, jag ser det. Hur länge har det varit så då? Jag tror en halvtimme kanske. En halvtimme? Okej. Kan du titta på mig? Jag ska göra ett snabbt akutfest bara. Följ mitt finger med blicken bara. Okej, kan du le? Kan du säga att det är vackert väder idag? Det är vackert väder. Per, jag ringer Neurolog... Neurosös direkt. Vad bra. Ska jag sätta en grön höver så länge? Ja, men sätt en PVK. Jag tar ett blodtryck här också. Ringer du så pular jag med det här så länge. Hej, nu ska du få en nål här i armen. Hej, Daniel heter jag och är 8360. Jag drar upp här så får du som en stas här uppe. Ja, då får vi se. Nu kommer det att sticka till lite grann här. Kan du säga ditt personnummer? 5205182080 Okej. Får de titta i dina journaler? Ja. Vad bra. Daniel, vi har en grön höger där, klart där. Så. Så ska jag ta ett blodtryck på dig också. Vi ska se vad det blir. Bra, nu blåser vi upp här så spänner jag lite med armen. Gör det ont? Går det bra? Ja. Ja, bra så. Påverkat tal. Bakgrund står på Noak Förmaksflimmer Har du högt blodtryck? Ja Okej Vad hade hon i? 195 genom 100 så att Okej Och saturation? 98 i saturation. Låter rent på lungorna nu då, basalt. Okej du Är det något särskilt du vill ha med dig? Vi tänker att vi åker på en gång. Får jag ta med min hund? Nej, det går inte. Nej, men har du någon granne som kan se efter hunden? Vad bra, okej. Ja, men jag hjälper dig att packa i ordning mobiltelefon och laddare, funkar det? Så sticker vi ner till ambulansen på en gång så kan du följa med mig här. Okej. Okej. Bra, då drar vi.",
+  "diarized_transcript": {
+    "summary": "Transcribed 59 segments with local KB Whisper. Speaker diarization was skipped because pyannote model access is not configured.",
+    "speakers": [
+      "speaker_unknown"
+    ],
+    "segments": [
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hallå Daniel!"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Daniel är sjuksköterska. Hej, Per heter jag och jobbar som ambulanssjukvårdare."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad heter du?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag heter Birgitta."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad har hänt med dig då, Birgitta?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag har svar i höger arm."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Oj, jag ser det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hur länge har det varit så då?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tror en halvtimme kanske."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "En halvtimme? Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Kan du titta på mig? Jag ska göra ett snabbt akutfest bara."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Följ mitt finger med blicken bara."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, kan du le?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Kan du säga att det är vackert väder idag?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är vackert väder."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Per, jag ringer Neurolog... Neurosös direkt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad bra. Ska jag sätta en grön höver så länge?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men sätt en PVK."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar ett blodtryck här också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ringer du så pular jag med det här så länge."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, nu ska du få en nål här i armen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel heter jag och är 8360."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag drar upp här så får du som en stas här uppe."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, då får vi se. Nu kommer det att sticka till lite grann här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Kan du säga ditt personnummer?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "5205182080"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får de titta i dina journaler?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad bra. Daniel, vi har en grön höger där, klart där."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så ska jag ta ett blodtryck på dig också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi ska se vad det blir."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bra, nu blåser vi upp här så spänner jag lite med armen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Gör det ont? Går det bra?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, bra så."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Påverkat tal."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bakgrund står på Noak"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Förmaksflimmer"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du högt blodtryck?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad hade hon i?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "195 genom 100 så att"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och saturation?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "98 i saturation. Låter rent på lungorna nu då, basalt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej du"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är det något särskilt du vill ha med dig? Vi tänker att vi åker på en gång."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får jag ta med min hund?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, det går inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, men har du någon granne som kan se efter hunden?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vad bra, okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men jag hjälper dig att packa i ordning mobiltelefon och laddare, funkar det?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så sticker vi ner till ambulansen på en gång så kan du följa med mig här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bra, då drar vi."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Administer morphine for pain management",
+      "rationale": "Patient presents with STEMI and severe chest pain (NRS 7/10). Morphine is indicated for pain relief and to reduce myocardial oxygen demand.",
+      "urgency": "high"
+    },
+    {
+      "title": "Administer ondansetron for nausea",
+      "rationale": "Patient reported nausea, which is a common side effect of morphine and can exacerbate discomfort. Ondansetron is a 5-HT3 antagonist effective for acute nausea.",
+      "urgency": "high"
+    },
+    {
+      "title": "Continuous EKG monitoring during transport",
+      "rationale": "STEMI requires continuous cardiac monitoring to detect arrhythmias or changes in ST segments during transport to the hospital.",
+      "urgency": "high"
+    },
+    {
+      "title": "Ensure patient in left lateral decubitus position",
+      "rationale": "This position can improve coronary perfusion and reduce myocardial ischemia during transport.",
+      "urgency": "high"
+    },
+    {
+      "title": "Administer oxygen if saturation <94%",
+      "rationale": "Although current saturation is 98%, oxygen should be administered if saturation drops below 94% to ensure adequate oxygenation in STEMI.",
+      "urgency": "medium"
+    }
+  ],
+  "drafted_journal": "Situation: Chest pain radiating to left arm. Debut at 15:45. Background: 62-year-old male with hypertension, hyperlipidemia. No known ischemic heart disease. No allergies. Currently at grandchildren's home. Sudden onset of chest pain at rest. Self-called ambulance. Current: Alert, ACVPU. Ongoing vegetative symptoms. a: Free. b: Saturation 98% without oxygen. AF 22. c: Cold, pale. BP 167/88. HR 86. EKG shows ST elevations V1-V6. Action: Administered nitroglycerin (no effect). EKG sent to HIA at Södersjukhus. HIA directs to angiography. d: Severe central chest pain for 45 minutes, radiating to left arm. Nausea. Pain NRS 7/10. Action: Administered ondansetron for nausea. Administered 2.5 mg morphine for pain. Nitroglycerin administered (no effect). e: PVK/infusion line placed. Prehospital assessment: STEMI. Recommendation: Transport to SÖS (St. Göran) for urgent angiography. Priority 1. During transport: Good effect from morphine and ondansetron. Transport in left lateral decubitus position. Continuous EKG monitoring. Deff-plates on. HIA personnel meet at ambulance bay."
+}

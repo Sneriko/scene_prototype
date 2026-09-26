@@ -1,0 +1,352 @@
+{
+  "case_id": 1,
+  "audio_path": "/runpod-volume/scene_prototype/data/ljudfiler/Journal 1.m4a",
+  "raw_transcript": "Hallå, hej, Daniel från ambulansen. Nathalie, jobbar också på ambulansen. Är det du som är Erik? Det är jag som är Erik. Hur mår du? Jag har ont i bröstet. När började det? Typ kvart i fyra kanske. Okej. Har du haft så här förut? Nej. Är du frisk sen innan? Ja, det är jag. Mediciner? Ja, jag äter Atorvastatin och Losartan Okej Men du, vi ska ta ett EKG på dig direkt, kan du ta av dig tröjan bara? Ja visst Nathalie, kan du ta kontroller? Jag kan sätta en infart direkt Du ser väldigt kallsvettig ut Erik Ja, det är som en tryckande smärta i bröstet Okej Är du allergisk mot någonting förresten? Nej, inga allergier. Men Nathalie, om du tar saturation och blodtryck så sätter jag en infart direkt. Ja, jag tar lite kontroller. 98 i saturation. Okej. Och ska vi se här, 22 i andningsfrekvens. Tar blodtrycket nu då. Det är 167 genom 88. Och 86 i puls. Jag tar EKG nu då. Men bor du här? Nej, det gör jag inte. Okej, var bor du någonstans? Jag bor i Åkersberga. Okej. Så ska vi se här, nu har jag kopplat upp. Nu tar vi EKG här. Det ser ut som lite SD-höjningar. Det skulle kunna vara en STEMI. Okej, men jag kan... Jag kan ringa... Eller jag skickar. Jag skickar det här till HIA, men kan du preppa lite morfin och ge 2,5? Det gör jag. Här ger jag 2,5 mg morfin. Ska jag ge lite nitro också? Hej, Daniel HIA. Ja, men du kan ge. Jag ger lite nitro också. Hej, Daniel på HIA. Hej, Daniel på ambulansen. Jag har tagit ett EKG och skickat frapp till er. Det ser ut som SD-höjningar. Erik, kan du säga ditt personnummer? 1964. Fyra, noll, tre, tio, noll, ett, fem, tre. Får de läsa dina journaler på sjukhus? Ja, det får de göra. Okej. Ja, nej, men det är ST-höjningar i tryck över bröstet. Debut 15.45. Mår du illa av någonting? Ja, det gör jag. Nathalie, kan du ge lite Onda citron också? Vi gör lite om dansartron, jag får det. Erik! Bra! Men Erik, vi ska vi ska packa lite snabbt här, mobil och laddare, och så kommer vi åka till SÖS, du hör ju till Danderyd, men vi åker till närmsta sjukhus. Ja! För det ser ut som att ditt hjärta har lite syrebrist så att de får titta på dig direkt. Hade du någon effekt av nitron, av den här puffen du fick i munnen? Nej, egentligen inte. Okej, ja men då åker vi.",
+  "diarized_transcript": {
+    "summary": "Transcribed 79 segments with local KB Whisper. Speaker diarization was skipped because pyannote model access is not configured.",
+    "speakers": [
+      "speaker_unknown"
+    ],
+    "segments": [
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hallå, hej, Daniel från ambulansen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nathalie, jobbar också på ambulansen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är det du som är Erik?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är jag som är Erik."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hur mår du?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag har ont i bröstet."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "När började det?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Typ kvart i fyra kanske."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du haft så här förut?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är du frisk sen innan?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det är jag."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Mediciner?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag äter Atorvastatin och Losartan"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men du, vi ska ta ett EKG på dig direkt, kan du ta av dig tröjan bara?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja visst"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nathalie, kan du ta kontroller?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag kan sätta en infart direkt"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du ser väldigt kallsvettig ut Erik"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det är som en tryckande smärta i bröstet"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Är du allergisk mot någonting förresten?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, inga allergier."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men Nathalie, om du tar saturation och blodtryck så sätter jag en infart direkt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag tar lite kontroller."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "98 i saturation."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och ska vi se här, 22 i andningsfrekvens."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Tar blodtrycket nu då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det är 167 genom 88."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och 86 i puls."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar EKG nu då."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men bor du här?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, det gör jag inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, var bor du någonstans?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag bor i Åkersberga."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så ska vi se här, nu har jag kopplat upp."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nu tar vi EKG här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det ser ut som lite SD-höjningar."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det skulle kunna vara en STEMI."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, men jag kan..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag kan ringa..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Eller jag skickar."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag skickar det här till HIA, men kan du preppa lite morfin och ge 2,5?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det gör jag."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Här ger jag 2,5 mg morfin."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ska jag ge lite nitro också?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel HIA."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, men du kan ge."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag ger lite nitro också."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel på HIA."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej, Daniel på ambulansen."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag har tagit ett EKG och skickat frapp till er."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det ser ut som SD-höjningar."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Erik, kan du säga ditt personnummer?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "1964."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Fyra, noll, tre, tio, noll, ett, fem, tre."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får de läsa dina journaler på sjukhus?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det får de göra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, nej, men det är ST-höjningar i tryck över bröstet. Debut 15.45."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Mår du illa av någonting?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, det gör jag."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nathalie, kan du ge lite Onda citron också?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi gör lite om dansartron, jag får det. Erik!"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bra!"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men Erik, vi ska vi ska packa"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "lite snabbt här, mobil och laddare, och så kommer vi åka till SÖS, du hör ju till"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Danderyd, men vi åker till närmsta sjukhus."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja!"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "För det ser ut som att ditt hjärta har lite syrebrist så att"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "de får titta på dig direkt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hade du någon effekt av nitron,"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "av den här puffen du fick i munnen?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, egentligen inte."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, ja men då åker vi."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Administer morphine for pain relief",
+      "rationale": "Patient reports chest pain with ST elevations on EKG, indicating potential STEMI. Morphine reduces preload and provides analgesia.",
+      "urgency": "high"
+    },
+    {
+      "title": "Administer nitroglycerin",
+      "rationale": "To reduce preload and relieve chest pain in suspected STEMI. Patient showed no immediate response to initial nitroglycerin administration.",
+      "urgency": "high"
+    },
+    {
+      "title": "Prepare for urgent transport to cath lab",
+      "rationale": "ST elevations on EKG suggest STEMI requiring immediate reperfusion therapy. Patient's condition warrants rapid transport to Danderyd Hospital for catheterization.",
+      "urgency": "high"
+    },
+    {
+      "title": "Monitor vital signs and oxygen saturation",
+      "rationale": "Patient is diaphoretic and shows signs of potential myocardial ischemia. Continuous monitoring is essential for detecting changes in condition.",
+      "urgency": "medium"
+    }
+  ],
+  "drafted_journal": "Situation: Bröstsmärta.\nBakgrund: Tryckande smärta i bröstet, ihållande. Debut i morse på jobbet. Mediciner: Atorvastatin och Losartan.\nSocialt: Bor i Åkersberga.\nAktuellt: Vaken vid vår ankomst. Kallsvettig. Smärta 4/10. EKG visar ST-höjningar. Åtgärd: Ger morfin 2,5 mg och nitro. Skickar EKG till HIA.\nPrehospitalt bedömt tillstånd: Misstänkt STEMI. Rekommendation: Transport till Danderyds sjukhus för kateterisering. Under transport: Fortsatt övervakning och syrgas vid behov."
+}

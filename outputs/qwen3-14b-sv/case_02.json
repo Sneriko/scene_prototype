@@ -1,0 +1,291 @@
+{
+  "case_id": 2,
+  "audio_path": "/runpod-volume/scene_prototype/data/ljudfiler/Journal 2.m4a",
+  "raw_transcript": "Hej hej Daniel sjuksköterska Hej hej Per ambulanssjukvårdare vad är det som har hänt? Jag har ont i bröstet Oj Jag tar lite kontroller på dig här så länge så ska kollegan intervjua dig. När började det här? Lite i morse När jag satt och jobbade Ja okej Har du haft så här Tack förut? Ja, ibland. Ibland, okej. Om du skulle säga, hur känns smärtan, gör det ont när du andas? Ja. Okej, är det brännande eller huggande? Eller mer tryckande? Tryckande. Okej, om du skulle skatta smärtan, 1 till 10, 10 är det värsta tänkbara? Kanske 4, ungefär. Okej, och ihållande? Ja, okej, men vi Vi ska ta ett EKG på dig och lite kontroller. Då lyfter jag på tröjan här lite så kommer du få några duttar på bröstet så det känns inget. Så sätter jag dit dem här så kan du lyfta på armen lite där, tack. Så försöker du bara slappna av och känna dig lite tung i kroppen så ska jag sätta igång den. Så hoppas vi inte får några störningar där, bra. Så slappnar du av. Har du en legitimation här någonstans förresten? Vi tar den först. Ja, där borta i min väska. Jag går och hämtar den då, vad bra. Så jag tar EKG så länge. Ja. Här var den, legitimation. Jättebra. Och nu är EKG klart. Får de titta i dina journaler på sjukhuset? Får vi öppna journalen också? Jadå. Okej. Då ska vi se. Vi har en sinusrytm. Det ser inte ut som att ditt hjärta har syrebrist Gör det inte Men jag skickar EKG till Södersjukhuset så får de titta på det på HIA också Har vi någon temp? Ja, jag kan ta temp. Jag sticker in en grej här i örat på dig så om du bara sitter still. Du kan titta lite bortåt där. Så ja, tack Nej men 37,1 Men jag tar en glukos också, det kanske är lika bra. Jag kommer sticka dig lite i fingret nu så får vi se vad du har för blåsor Du har inte diabetes sen tidigare? Nej, vad fint. Okej, då sticker det till lite grann. Bra, då ska vi se vad det blir här. 4,5. 4,5. Perfekt. Nej, men... Förlåt, vad var det du hette? Malin. Vi hittar inget fel på dig. Men bröstsmärta kan ju vara tusen olika saker. Så vi tänker så här att vi åker in i lugnt. Lugnt och stilla till Danderyds sjukhus så får de undersöka dig vidare och ta prover. Bröstsmärta ser man egentligen, ett EKG ser ju bara en ögonblicksbild. Det enda sättet att ta reda på om det skulle vara något med hjärtat är ett blodprov. Ja, vi åker in. Är det någonting du vill ha med dig? Ja, min väska. Din väska, det fixar det. Okej.",
+  "diarized_transcript": {
+    "summary": "Transcribed 65 segments with local KB Whisper. Speaker diarization was skipped because pyannote model access is not configured.",
+    "speakers": [
+      "speaker_unknown"
+    ],
+    "segments": [
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej hej Daniel sjuksköterska"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Hej hej Per ambulanssjukvårdare vad är det som har hänt? Jag har ont i bröstet"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Oj"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag tar lite kontroller på dig här så länge så ska kollegan intervjua dig. När började det här?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Lite i morse"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "När jag satt och jobbade"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja okej"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du haft så här"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Tack"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "förut? Ja, ibland."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ibland, okej. Om du skulle säga, hur känns smärtan, gör det ont när du andas?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja. Okej, är det brännande eller huggande?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Eller mer tryckande? Tryckande."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej, om du skulle skatta smärtan, 1 till 10, 10 är det värsta tänkbara?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Kanske 4, ungefär. Okej, och ihållande? Ja, okej, men vi"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi ska ta ett EKG på dig och lite kontroller."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Då lyfter jag på tröjan här lite så kommer du få några duttar på bröstet så det känns inget."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så sätter jag dit dem här så kan du lyfta på armen lite där, tack."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så försöker du bara slappna av och känna dig lite tung i kroppen så ska jag sätta igång den."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så hoppas vi inte får några störningar där, bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så slappnar du av."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har du en legitimation här någonstans förresten?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi tar den först."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, där borta i min väska."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag går och hämtar den då, vad bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så jag tar EKG så länge."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Här var den, legitimation."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jättebra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Och nu är EKG klart."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får de titta i dina journaler på sjukhuset?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Får vi öppna journalen också?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jadå."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Då ska vi se."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi har en sinusrytm."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det ser inte ut som att ditt hjärta"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "har syrebrist"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Gör det inte"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men jag skickar EKG till"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Södersjukhuset så får de titta på det på HIA också"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Har vi någon temp?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, jag kan ta temp. Jag sticker in en grej här i örat på dig så om du bara sitter still. Du kan titta lite bortåt där. Så ja, tack"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej men 37,1"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men jag tar en glukos också, det kanske är lika bra."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Jag kommer sticka dig lite i fingret nu så får vi se vad du har för blåsor"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Du har inte diabetes sen tidigare?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, vad fint. Okej, då sticker det till lite grann."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bra, då ska vi se vad det blir här."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "4,5."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "4,5."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Perfekt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Nej, men..."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Förlåt, vad var det du hette?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Malin."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Vi hittar inget fel på dig."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Men bröstsmärta kan ju vara tusen olika saker."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Så vi tänker så här att vi åker in i lugnt."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Lugnt och stilla till Danderyds sjukhus så får de undersöka dig vidare och ta prover."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Bröstsmärta ser man egentligen, ett EKG ser ju bara en ögonblicksbild."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Det enda sättet att ta reda på om det skulle vara något med hjärtat är ett blodprov."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, vi åker in. Är det någonting du vill ha med dig?"
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Ja, min väska."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Din väska, det fixar det."
+      },
+      {
+        "speaker": "speaker_unknown",
+        "text": "Okej."
+      }
+    ]
+  },
+  "treatment_suggestions": [
+    {
+      "title": "Administer morphine for pain relief",
+      "rationale": "Patient presented with severe chest pain (NRS 7/10) and STEMI on EKG. Morphine is indicated for pain control in STEMI to reduce myocardial oxygen demand and alleviate discomfort.",
+      "urgency": "high"
+    },
+    {
+      "title": "Administer ondansetron for nausea",
+      "rationale": "Patient reported nausea, which is a common complication in STEMI. Ondansetron is effective in managing nausea and vomiting in acute settings.",
+      "urgency": "medium"
+    },
+    {
+      "title": "Administer nitroglycerin for chest pain",
+      "rationale": "Nitroglycerin is a first-line treatment for acute chest pain in STEMI to reduce preload and relieve ischemia. However, it was ineffective in this case, necessitating further evaluation.",
+      "urgency": "high"
+    }
+  ],
+  "drafted_journal": "Situation: Bröstsmärta, utstrålning vänster arm. Debut 15.45.\nBakgrund: 62-årig man med hypertoni, hyperlipidemi. Ingen känd ischemisk hjärtsjukdom. Inga allergier. Nu hemma hos sina barnbarn för att vara barnvakt. Plötslig debut av bröstsmärta. Plötslig debut i vila. Har själv tillkallat ambulans.\nSocialt: Bor i Åkersberga.\nAktuellt: Vid vår ankomst vaken. A enligt ACVPU. Pågående vegetativa symtom\na: Fritt\nb: Saturation 98 % utan syrgas. AF 22.\nc: Kallsvettig och blek. Blodtryck 167/88. Hjärtfrekvens 86. EKG visar ST-höjningar V1-V6. Åtgärd: Ger nitroglycerin en puff utan effekt. Skickar EKG till HIA på Södersjukhuset (närmaste sjukhus). HIA återkopplar att patienten ska direkt till angio.\nd: Tryckande central bröstsmärta sedan 45 min, strålar mot vänster arm. Illamående. Smärta NRS 7/10. Åtgärd: Ger ondansetron mot illamående. Ger 2,5 mg morfin mot smärtan. Ger en puff nitroglycerin utan effekt.\ne: Sätter PVK/infart.\nPrehospitalt bedömt tillstånd: STEMI\nRekommendation: Till SÖS (närmaste sjukhus, pt hör till St. Göran) för akut angiografi. Prio 1.\nUnder transport: God effekt av morfin och ondansetron. Transporterar pt i hjärtläge. Kontinuerlig EKG-övervakning. Deff-plattor på. Personal från HIA möter upp i ambulanshallen."
+}
